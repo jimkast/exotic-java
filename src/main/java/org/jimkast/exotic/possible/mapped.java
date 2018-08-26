@@ -13,7 +13,7 @@ public final class mapped<X, Y> implements possible<Y> {
     }
 
     @Override
-    public void ifPresent(Consumer<Y> consumer) {
+    public void ifPresent(Consumer<? super Y> consumer) {
         origin.ifPresent(x -> consumer.accept(mapper.apply(x)));
     }
 }

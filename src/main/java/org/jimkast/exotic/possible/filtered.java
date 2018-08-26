@@ -13,7 +13,7 @@ public final class filtered<T> implements possible<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<T> consumer) {
+    public void ifPresent(Consumer<? super T> consumer) {
         origin.ifPresent(t -> check.test(t).choose(consumer, t1 -> {
         }).accept(t));
     }

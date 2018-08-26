@@ -5,7 +5,7 @@ import org.cactoos.Scalar;
 import org.cactoos.scalar.UncheckedScalar;
 
 public interface possible<T> {
-    void ifPresent(Consumer<T> consumer);
+    void ifPresent(Consumer<? super T> consumer);
 
 
     class env<T> implements possible<T> {
@@ -16,7 +16,7 @@ public interface possible<T> {
         }
 
         @Override
-        public final void ifPresent(Consumer<T> consumer) {
+        public final void ifPresent(Consumer<? super T> consumer) {
             origin.ifPresent(consumer);
         }
     }
@@ -38,7 +38,7 @@ public interface possible<T> {
         }
 
         @Override
-        public void ifPresent(Consumer<T> consumer) {
+        public void ifPresent(Consumer<? super T> consumer) {
             consumer.accept(val.value());
         }
     }
@@ -46,7 +46,7 @@ public interface possible<T> {
 
     final class empty<T> implements possible<T> {
         @Override
-        public void ifPresent(Consumer<T> consumer) {
+        public void ifPresent(Consumer<? super T> consumer) {
         }
     }
 

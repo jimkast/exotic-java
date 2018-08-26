@@ -18,7 +18,7 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<T> consumer) {
+    public void ifPresent(Consumer<? super T> consumer) {
         origin.ifPresent(consumer);
     }
 

@@ -10,7 +10,7 @@ public final class nullable<T> implements possible<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<T> consumer) {
+    public void ifPresent(Consumer<? super T> consumer) {
         if (nullable != null) {
             consumer.accept(nullable);
         }
