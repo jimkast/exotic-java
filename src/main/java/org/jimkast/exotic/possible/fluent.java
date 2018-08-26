@@ -47,11 +47,15 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
         return new UncheckedScalar<>(new any<>(check, origin)).value();
     }
 
-    public T orElseGet(Scalar<T> other) throws Exception {
+    public fluent<T> flatmap(possible<T> other) {
+        return new fluent<>(new joined<>(this, other));
+    }
+
+    public T orelse(Scalar<T> other) throws Exception {
         return new orelse<>(origin, other).value();
     }
 
-    public T orElse(T other) {
+    public T orelse(T other) {
         return new UncheckedScalar<>(new orelse<>(origin, other)).value();
     }
 
