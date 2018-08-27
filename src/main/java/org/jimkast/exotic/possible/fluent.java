@@ -1,5 +1,6 @@
 package org.jimkast.exotic.possible;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -7,8 +8,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import org.cactoos.Scalar;
 import org.cactoos.scalar.UncheckedScalar;
+import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.check;
-import org.jimkast.exotic.bool.cond;
+import org.jimkast.exotic.possible.adapter.AsIterator;
 
 public final class fluent<T> implements possible<T>, Iterable<T> {
     private final possible<T> origin;
@@ -18,8 +20,8 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<? super T> consumer) {
-        origin.ifPresent(consumer);
+    public void supply(Consumer<? super T> consumer) {
+        origin.supply(consumer);
     }
 
     @Override
@@ -39,12 +41,12 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
         return new reduced<>(initial, accumulator, new while_present<>(origin)).value();
     }
 
-    public cond every(check<T> check) {
-        return new UncheckedScalar<>(new all<>(check, origin)).value();
+    public bool every(check<T> check) {
+        return new all<>(check, origin);
     }
 
-    public cond any(check<T> check) {
-        return new UncheckedScalar<>(new any<>(check, origin)).value();
+    public bool any(check<T> check) {
+        return new any<>(check, origin);
     }
 
     public fluent<T> flatmap(possible<T> other) {
@@ -60,12 +62,32 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     public fluent<T> foreach(Consumer<T> consumer) {
-        new while_present<>(origin).ifPresent(consumer);
+        new while_present<>(origin).supply(consumer);
         return this;
     }
 
     public fluent<T> foreach(BiConsumer<T, Integer> consumer) {
         new with_index<>(new while_present<>(origin)).foreach(consumer);
         return this;
+    }
+
+    public fluent<T> sorted(Comparator<T> cmp) {
+        return new fluent<>(new sorted<>(cmp, origin));
+    }
+
+    public fluent<T> sorted() {
+        return new fluent<>(new sorted<>(origin));
+    }
+
+    public fluent<T> limited(Number max) {
+        return new fluent<>(new limited<>(max, origin));
+    }
+
+    public fluent<T> skipped(Number count) {
+        return new fluent<>(new skipped<>(count, origin));
+    }
+
+    public fluent<T> first(Number count) {
+        return new fluent<>(new skipped<>(count, origin));
     }
 }

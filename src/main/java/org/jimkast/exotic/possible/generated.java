@@ -1,25 +1,26 @@
 package org.jimkast.exotic.possible;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.UncheckedScalar;
 import org.jimkast.exotic.bool.check;
 
 public final class generated<T> implements possible<T> {
-    private T val;
     private final check<T> check;
-    private final Function<T, T> next;
+    private final UncheckedScalar<T> factory;
 
-    public generated(T initial, check<T> check, Function<T, T> next) {
-        this.val = initial;
+    public generated(check<T> check, Scalar<T> factory) {
+        this(check, new UncheckedScalar<>(factory));
+    }
+
+    public generated(check<T> check, UncheckedScalar<T> factory) {
         this.check = check;
-        this.next = next;
+        this.factory = factory;
     }
 
     @Override
-    public void ifPresent(Consumer<? super T> consumer) {
-        T current = val;
-        val = next.apply(current);
-        check.test(current).choose(consumer, t -> {
-        }).accept(current);
+    public void supply(Consumer<? super T> consumer) {
+        T val = factory.value();
+        check.test(val).choose(consumer, t -> {}).accept(val);
     }
 }

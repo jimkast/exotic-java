@@ -20,7 +20,7 @@ public final class reduced<X, Y> implements Scalar<Y> {
     public Y value() {
         Queue<Y> store = new LinkedList<>();
         store.add(initial);
-        origin.ifPresent(t -> store.add(accumulator.apply(t, store.poll())));
+        origin.supply(t -> store.add(accumulator.apply(t, store.poll())));
         return store.poll();
     }
 }

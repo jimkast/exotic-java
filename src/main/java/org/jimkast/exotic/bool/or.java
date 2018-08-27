@@ -2,11 +2,11 @@ package org.jimkast.exotic.bool;
 
 import java.util.function.Supplier;
 
-public final class or implements cond {
-    private final cond n1;
-    private final cond n2;
+public final class or implements bool {
+    private final bool n1;
+    private final bool n2;
 
-    public or(cond n1, cond n2) {
+    public or(bool n1, bool n2) {
         this.n1 = n1;
         this.n2 = n2;
     }

@@ -1,9 +1,9 @@
 package org.jimkast.exotic.bool;
 
-public final class not implements cond {
-    private final cond origin;
+public final class not implements bool {
+    private final bool origin;
 
-    public not(cond origin) {
+    public not(bool origin) {
         this.origin = origin;
     }
 

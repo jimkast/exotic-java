@@ -2,7 +2,7 @@ package org.jimkast.exotic.bool;
 
 import org.jimkast.exotic.Native;
 
-public final class eq implements cond {
+public final class eq implements bool {
     private final Object n1;
     private final Object n2;
 

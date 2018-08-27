@@ -1,24 +1,26 @@
 package org.jimkast.exotic.possible;
 
-import org.cactoos.Scalar;
+import org.cactoos.scalar.UncheckedScalar;
+import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.check;
-import org.jimkast.exotic.bool.cond;
 
-public final class any<T> implements Scalar<cond> {
-    private final Scalar<cond> origin;
+public final class any<T> implements bool {
+    private final UncheckedScalar<bool> origin;
 
     public any(check<T> check, possible<T> possible) {
-        this.origin = new orelse<>(
-            new mapped<>(
-                o -> cond.TRUE,
-                new first<>(check, possible)
-            ),
-            cond.FALSE
+        this.origin = new UncheckedScalar<>(
+            new orelse<>(
+                new mapped<>(
+                    o -> bool.TRUE,
+                    new first<>(check, possible)
+                ),
+                bool.FALSE
+            )
         );
     }
 
     @Override
-    public cond value() throws Exception {
-        return origin.value();
+    public <X> X choose(X left, X right) {
+        return origin.value().choose(left, right);
     }
 }

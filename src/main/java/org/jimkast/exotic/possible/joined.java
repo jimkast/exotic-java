@@ -1,6 +1,7 @@
 package org.jimkast.exotic.possible;
 
 import java.util.function.Consumer;
+import org.jimkast.exotic.possible.adapter.iterable;
 
 public final class joined<T> implements possible<T> {
     private final possible<possible<T>> possibles;
@@ -15,7 +16,7 @@ public final class joined<T> implements possible<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<? super T> consumer) {
-        possibles.ifPresent(p -> p.ifPresent(consumer.andThen(t -> ifPresent(consumer))));
+    public void supply(Consumer<? super T> consumer) {
+        possibles.supply(p -> p.supply(consumer));
     }
 }

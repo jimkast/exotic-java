@@ -13,11 +13,11 @@ public final class with_index<T> implements possible<T> {
     }
 
     @Override
-    public void ifPresent(Consumer<? super T> consumer) {
-        origin.ifPresent(consumer);
+    public void supply(Consumer<? super T> consumer) {
+        origin.supply(consumer);
     }
 
     public void foreach(BiConsumer<T, Integer> consumer) {
-        origin.ifPresent(t -> consumer.accept(t, i));
+        origin.supply(t -> consumer.accept(t, i));
     }
 }

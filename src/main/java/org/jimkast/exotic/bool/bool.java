@@ -2,17 +2,17 @@ package org.jimkast.exotic.bool;
 
 import java.util.function.Supplier;
 
-public interface cond {
+public interface bool {
     <T> T choose(T left, T right);
 
-    cond TRUE = new btrue();
-    cond FALSE = new bfalse();
+    bool TRUE = new btrue();
+    bool FALSE = new bfalse();
 
 
-    class env implements cond {
-        private final cond origin;
+    class env implements bool {
+        private final bool origin;
 
-        public env(cond origin) {
+        public env(bool origin) {
             this.origin = origin;
         }
 
@@ -22,7 +22,7 @@ public interface cond {
         }
     }
 
-    final class ofbool implements cond {
+    final class ofbool implements org.jimkast.exotic.bool.bool {
         private final Supplier<Boolean> bool;
 
         public ofbool(boolean bool) {
@@ -40,7 +40,7 @@ public interface cond {
     }
 
 
-    final class bfalse implements cond {
+    final class bfalse implements bool {
         @Override
         public <T> T choose(T left, T right) {
             return right;
@@ -48,7 +48,7 @@ public interface cond {
     }
 
 
-    final class btrue implements cond {
+    final class btrue implements bool {
         @Override
         public <T> T choose(T left, T right) {
             return left;
@@ -57,9 +57,9 @@ public interface cond {
 
 
     final class AsBool {
-        private final org.jimkast.exotic.bool.cond cond;
+        private final bool cond;
 
-        public AsBool(org.jimkast.exotic.bool.cond cond) {
+        public AsBool(bool cond) {
             this.cond = cond;
         }
 

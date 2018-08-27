@@ -20,7 +20,7 @@ public final class orelse<T> implements Scalar<T> {
     @Override
     public T value() throws Exception {
         Queue<T> store = new LinkedList<>();
-        possible.ifPresent(store::add);
-        return store.isEmpty() ? store.poll() : other.value();
+        possible.supply(store::add);
+        return store.isEmpty() ? other.value() : store.poll();
     }
 }

@@ -1,8 +1,9 @@
-package org.jimkast.exotic.possible;
+package org.jimkast.exotic.possible.adapter;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Optional;
+import org.jimkast.exotic.possible.possible;
 
 public final class of<T> extends possible.env<T> {
     @SafeVarargs

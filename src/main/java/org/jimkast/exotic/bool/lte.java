@@ -2,7 +2,7 @@ package org.jimkast.exotic.bool;
 
 import org.jimkast.exotic.Native;
 
-public final class lte implements cond {
+public final class lte implements bool {
     private final Number n1;
     private final Number n2;
 

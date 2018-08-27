@@ -1,12 +1,13 @@
-package org.jimkast.exotic.possible;
+package org.jimkast.exotic.possible.adapter;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Consumer;
+import org.jimkast.exotic.possible.possible;
 
 public final class AsIterator<T> implements Iterator<T>, Consumer<T> {
-    private final possible<T> possible;
+    private final org.jimkast.exotic.possible.possible<T> possible;
     private Queue<T> store = new LinkedList<>();
 
     public AsIterator(possible<T> possible) {
@@ -15,7 +16,7 @@ public final class AsIterator<T> implements Iterator<T>, Consumer<T> {
 
     @Override
     public boolean hasNext() {
-        possible.ifPresent(this);
+        possible.supply(this);
         return !store.isEmpty();
     }
 
