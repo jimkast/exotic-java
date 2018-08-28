@@ -90,4 +90,8 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     public fluent<T> first(Number count) {
         return new fluent<>(new skipped<>(count, origin));
     }
+
+    public long count() {
+        return new count(origin).longValue();
+    }
 }

@@ -5,7 +5,7 @@ import java.util.Queue;
 import org.cactoos.Scalar;
 
 public final class orelse<T> implements Scalar<T> {
-    private final org.jimkast.exotic.possible.possible<T> possible;
+    private final possible<T> possible;
     private final Scalar<T> other;
 
     public orelse(possible<T> possible, T other) {

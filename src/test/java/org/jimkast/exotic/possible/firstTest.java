@@ -74,17 +74,28 @@ public class firstTest {
 
     @Test
     public void joined() throws Exception {
-        new while_present<>(
-            new joined<>(
-                new while_present<>(new range(1, 10)),
-                new while_present<>(new range(20, 30)),
-                new while_present<>(new range(30, 40))
-            )
-        ).supply(System.out::println);
+        possible<Integer> p = new joined<>(
+            new range(1, 10),
+            new range(20, 30),
+            new range(30, 40)
+        );
+        p.supply(System.out::println);
+        p.supply(System.out::println);
+        p.supply(System.out::println);
+        p.supply(System.out::println);
+        new while_present<>(p).supply(System.out::println);
     }
 
     @Test
     public void iterable() throws Exception {
-        new while_present<>(new iterable<>(7,4,5,6)).supply(System.out::println);
+        new while_present<>(new iterable<>(7, 4, 5, 6)).supply(System.out::println);
+    }
+
+    @Test
+    public void count() throws Exception {
+        Assert.assertEquals(
+            5,
+            new count(new while_present<>(new iterable<>(7, 4, 5, 6, 10))).intValue()
+        );
     }
 }

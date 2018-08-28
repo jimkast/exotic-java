@@ -11,6 +11,9 @@ public final class while_present<T> implements possible<T> {
 
     @Override
     public void supply(Consumer<? super T> consumer) {
-        origin.supply(consumer.andThen(t -> supply(consumer)));
+        origin.supply(t -> {
+            consumer.accept(t);
+            supply(consumer);
+        });
     }
 }

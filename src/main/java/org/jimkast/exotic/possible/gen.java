@@ -9,7 +9,7 @@ import org.jimkast.exotic.bool.bool;
 public final class gen<T> implements Scalar<T> {
     private final T start;
     private final Func<T, T> next;
-    private final Queue<T> store = new LinkedList<>();
+    private final transient Queue<T> store = new LinkedList<>();
 
     public gen(T start, Func<T, T> next) {
         this.start = start;

@@ -8,7 +8,7 @@ import org.jimkast.exotic.possible.possible;
 
 public final class AsIterator<T> implements Iterator<T>, Consumer<T> {
     private final org.jimkast.exotic.possible.possible<T> possible;
-    private Queue<T> store = new LinkedList<>();
+    private transient Queue<T> store = new LinkedList<>();
 
     public AsIterator(possible<T> possible) {
         this.possible = possible;
