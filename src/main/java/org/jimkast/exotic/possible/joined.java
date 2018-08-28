@@ -9,7 +9,7 @@ import org.jimkast.exotic.possible.adapter.iterable;
 public final class joined<T> implements possible<T> {
     private final possible<possible<T>> possibles;
     private final transient Queue<possible<T>> store = new LinkedList<>();
-    private final transient possible<possible<T>> pointer = new possible.fixed<>(store::poll);
+    private final transient possible<possible<T>> used = new possible.fixed<>(store::poll);
     private final transient possible<T> empty = new possible.empty<>();
 
     @SafeVarargs
@@ -23,7 +23,7 @@ public final class joined<T> implements possible<T> {
 
     @Override
     public void supply(Consumer<? super T> consumer) {
-        new bool.ofbool(store.isEmpty()).choose(possibles, pointer).supply(p -> {
+        new bool.ofbool(store.isEmpty()).choose(possibles, used).supply(p -> {
             p.supply(t -> {
                 store.add(p);
                 consumer.accept(t);

@@ -94,4 +94,8 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     public long count() {
         return new count(origin).longValue();
     }
+
+    public fluent<T> sticky() {
+        return new fluent<>(new sticky<>(origin));
+    }
 }

@@ -98,4 +98,9 @@ public class firstTest {
             new count(new while_present<>(new iterable<>(7, 4, 5, 6, 10))).intValue()
         );
     }
+
+    @Test
+    public void sticky() throws Exception {
+        new while_present<>(new sticky<>(new range(1, 10))).supply(System.out::println);
+    }
 }

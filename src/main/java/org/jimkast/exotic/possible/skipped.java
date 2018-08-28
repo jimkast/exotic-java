@@ -6,7 +6,7 @@ import org.jimkast.exotic.bool.lte;
 
 public final class skipped<T> extends possible.env<T> {
     public skipped(Number total, possible<T> origin) {
-        super(new first<T>(
+        super(new first<>(
             new counter_check<>(total),
             origin
         ));
