@@ -8,8 +8,8 @@ import org.jimkast.exotic.bool.gte;
 import org.jimkast.exotic.bool.lte;
 import org.jimkast.exotic.possible.adapter.iterable;
 import org.jimkast.exotic.possible.adapter.of;
-import org.jimkast.exotic.possible.gens.fibonnaci;
-import org.jimkast.exotic.possible.gens.integers;
+import org.jimkast.exotic.possible.gen.fibonnaci;
+import org.jimkast.exotic.possible.gen.integers;
 import org.junit.Assert;
 import org.junit.Test;
 

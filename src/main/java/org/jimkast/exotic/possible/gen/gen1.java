@@ -1,8 +1,6 @@
-package org.jimkast.exotic.possible;
+package org.jimkast.exotic.possible.gen;
 
 import org.cactoos.Func;
-import org.jimkast.exotic.possible.gens.ScalarEnvelope;
-import org.jimkast.exotic.possible.gens.gen;
 
 public final class gen1<T> extends ScalarEnvelope<T> {
     public gen1(T start, Func<T, T> next) {

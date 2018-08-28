@@ -1,4 +1,4 @@
-package org.jimkast.exotic.possible.gens;
+package org.jimkast.exotic.possible.gen;
 
 import org.jimkast.exotic.bool.lte;
 import org.jimkast.exotic.possible.possible;

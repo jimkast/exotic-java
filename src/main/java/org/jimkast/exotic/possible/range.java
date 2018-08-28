@@ -1,7 +1,7 @@
 package org.jimkast.exotic.possible;
 
 import org.jimkast.exotic.bool.lte;
-import org.jimkast.exotic.possible.gens.integers;
+import org.jimkast.exotic.possible.gen.integers;
 
 public final class range extends possible.env<Integer> {
     public range(int to) {

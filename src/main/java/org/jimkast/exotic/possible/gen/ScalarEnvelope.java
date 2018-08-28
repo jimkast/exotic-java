@@ -1,4 +1,4 @@
-package org.jimkast.exotic.possible.gens;
+package org.jimkast.exotic.possible.gen;
 
 import org.cactoos.Scalar;
 

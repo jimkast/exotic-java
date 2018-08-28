@@ -1,6 +1,4 @@
-package org.jimkast.exotic.possible.gens;
-
-import org.jimkast.exotic.possible.gen1;
+package org.jimkast.exotic.possible.gen;
 
 public final class integers extends ScalarEnvelope<Integer> {
     public integers() {

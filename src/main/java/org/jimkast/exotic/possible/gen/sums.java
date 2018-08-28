@@ -1,8 +1,7 @@
-package org.jimkast.exotic.possible.gens;
+package org.jimkast.exotic.possible.gen;
 
 import org.cactoos.Scalar;
 import org.jimkast.exotic.number.add;
-import org.jimkast.exotic.possible.gen1;
 
 public final class sums extends ScalarEnvelope<Number> {
     public sums(Scalar<Number> gen) {

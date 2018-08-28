@@ -1,4 +1,4 @@
-package org.jimkast.exotic.possible.gens;
+package org.jimkast.exotic.possible.gen;
 
 public final class fibonnaci extends ScalarEnvelope<Integer> {
     public fibonnaci() {
