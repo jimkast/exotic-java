@@ -11,8 +11,8 @@ public final class gen<T> implements Scalar<T> {
     private final List<T> store;
 
     @SafeVarargs
-    public gen(Func<List<T>, T> gen, T... items) {
-        this(gen, new FifoQueue<>(items.length, new LinkedList<>(Arrays.asList(items))));
+    public gen(Func<List<T>, T> gen, T... seed) {
+        this(gen, new FifoQueue<>(seed.length, new LinkedList<>(Arrays.asList(seed))));
     }
 
     public gen(Func<List<T>, T> gen, List<T> store) {
