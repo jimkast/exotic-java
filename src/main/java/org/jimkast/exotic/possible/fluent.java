@@ -37,6 +37,13 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
         return new fluent<>(new filtered<>(check, origin));
     }
 
+    public <X> X reduced(X initial, BiConsumer<T, X> accumulator) {
+        return reduce(initial, (t, x) -> {
+            accumulator.accept(t, x);
+            return x;
+        });
+    }
+
     public <X> X reduce(X initial, BiFunction<T, X, X> accumulator) {
         return new reduced<>(initial, accumulator, new while_present<>(origin)).value();
     }
