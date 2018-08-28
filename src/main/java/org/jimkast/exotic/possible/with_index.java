@@ -18,6 +18,6 @@ public final class with_index<T> implements possible<T> {
     }
 
     public void foreach(BiConsumer<T, Integer> consumer) {
-        origin.supply(t -> consumer.accept(t, i));
+        origin.supply(t -> consumer.accept(t, i++));
     }
 }

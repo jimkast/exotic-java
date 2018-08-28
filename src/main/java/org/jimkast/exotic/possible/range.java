@@ -1,6 +1,7 @@
 package org.jimkast.exotic.possible;
 
 import org.jimkast.exotic.bool.lte;
+import org.jimkast.exotic.possible.gens.integers;
 
 public final class range extends possible.env<Integer> {
     public range(int to) {
@@ -13,9 +14,9 @@ public final class range extends possible.env<Integer> {
 
     public range(int from, int to, int step) {
         super(
-            new generated<>(
+            new until<>(
                 o -> new lte(o, to),
-                new gen<>(from, i -> i + step)
+                new integers(from, step)
             )
         );
     }
