@@ -1,7 +1,7 @@
 package org.jimkast.exotic.possible;
 
 import org.jimkast.exotic.bool.lte;
-import org.jimkast.exotic.possible.gen.mapped;
+import org.jimkast.exotic.numberjdk.as_int;
 import org.jimkast.exotic.possible.gen.seq_arithmetic;
 
 public final class range extends possible.env<Integer> {
@@ -15,10 +15,9 @@ public final class range extends possible.env<Integer> {
 
     public range(Number from, Number to, Number step) {
         super(
-            new gen_until<>(
+            new until<>(
                 o -> new lte(o, to),
-                new mapped<>(
-                    Number::intValue,
+                new as_int(
                     new seq_arithmetic(from, step)
                 )
             )
