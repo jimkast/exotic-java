@@ -10,7 +10,7 @@ public final class joined<T> implements possible<T> {
     private final possible<possible<T>> possibles;
     private final transient Queue<possible<T>> store = new LinkedList<>();
     private final transient possible<possible<T>> used = new possible.fixed<>(store::poll);
-    private final transient possible<T> empty = new possible.empty<>();
+//    private final transient possible<T> empty = new possible.empty<>();
 
     @SafeVarargs
     public joined(possible<T>... possibles) {
