@@ -11,7 +11,11 @@ public final class FifoQueue<T> implements List<T> {
     private final Number max;
     private final List<T> origin;
 
-    public FifoQueue(Number max, LinkedList<T> origin) {
+    public FifoQueue(Number max) {
+        this(max, new LinkedList<>());
+    }
+
+    public FifoQueue(Number max, List<T> origin) {
         this.max = max;
         this.origin = origin;
     }

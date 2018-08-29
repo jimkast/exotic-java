@@ -12,7 +12,7 @@ public final class any<T> implements bool {
             new orelse<>(
                 new mapped<>(
                     o -> bool.TRUE,
-                    new first<>(check, possible)
+                    new skip_until<>(check, possible)
                 ),
                 bool.FALSE
             )

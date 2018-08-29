@@ -28,7 +28,10 @@ public final class joined<T> implements possible<T> {
                 store.add(p);
                 consumer.accept(t);
             });
-            new bool.ofbool(store.isEmpty()).choose(this, empty).supply(consumer);
+            if (store.isEmpty()) {
+                supply(consumer);
+            }
+//            new bool.ofbool(store.isEmpty()).choose(this, empty).supply(consumer);
         });
     }
 }

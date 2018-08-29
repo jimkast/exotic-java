@@ -5,15 +5,15 @@ import org.cactoos.Scalar;
 import org.cactoos.scalar.UncheckedScalar;
 import org.jimkast.exotic.bool.check;
 
-public final class until<T> implements possible<T> {
+public final class gen_until<T> implements possible<T> {
     private final check<T> check;
     private final UncheckedScalar<T> factory;
 
-    public until(check<T> check, Scalar<T> factory) {
+    public gen_until(check<T> check, Scalar<T> factory) {
         this(check, new UncheckedScalar<>(factory));
     }
 
-    public until(check<T> check, UncheckedScalar<T> factory) {
+    public gen_until(check<T> check, UncheckedScalar<T> factory) {
         this.check = check;
         this.factory = factory;
     }

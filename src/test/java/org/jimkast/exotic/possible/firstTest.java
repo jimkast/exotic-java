@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.cactoos.Scalar;
+import org.jimkast.exotic.bool.eq;
 import org.jimkast.exotic.bool.gte;
 import org.jimkast.exotic.bool.lte;
 import org.jimkast.exotic.possible.adapter.iterable;
 import org.jimkast.exotic.possible.adapter.of;
 import org.jimkast.exotic.possible.gen.fibonnaci;
-import org.jimkast.exotic.possible.gen.integers;
+import org.jimkast.exotic.possible.gen.seq_arithmetic;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class firstTest {
     @Test
     public void supply() throws Exception {
         Assert.assertEquals(4, (int) new orelse<>(
-            new first<Integer>(
+            new skip_until<>(
                 i -> new gte(i, 4),
                 new range(1, 10)
             ),
@@ -29,7 +30,7 @@ public class firstTest {
     @Test
     public void supply2() throws Exception {
         Assert.assertEquals(5, (int) new orelse<>(
-            new first<Integer>(
+            new skip_until<>(
                 i -> new gte(i, 11),
                 new range(1, 10)
             ),
@@ -98,7 +99,7 @@ public class firstTest {
     public void count() throws Exception {
         Assert.assertEquals(
             5,
-            new count(new while_present<>(new iterable<>(7, 4, 5, 6, 10))).intValue()
+            new count(new iterable<>(7, 4, 5, 6, 10)).intValue()
         );
     }
 
@@ -116,17 +117,23 @@ public class firstTest {
     public void last() throws Exception {
         possible<Integer> p = new last<>(new range(1, 10));
         p.supply(System.out::println);
-        p.supply(System.out::println);
+    }
+
+    @Test
+    public void filtered() throws Exception {
+        new while_present<>(
+            new filtered<>(i -> new eq(i % 2, 1), new range(1, 10))
+        ).supply(System.out::println);
     }
 
     @Test
     public void fibonnaci() throws Exception {
-        Scalar<Integer> f = new fibonnaci();
+        Scalar<Number> f = new fibonnaci();
         for (int i = 0; i < 10; i++) {
             System.out.println(f.value());
         }
         System.out.println("***");
-        f = new integers(5, 2);
+        f = new seq_arithmetic(5, 2);
         new while_present<>(
             new range(1, 10)
         ).supply(System.out::println);

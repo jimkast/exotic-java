@@ -1,7 +1,10 @@
 package org.jimkast.exotic.possible.gen;
 
-public final class fibonnaci extends ScalarEnvelope<Integer> {
+import org.jimkast.exotic.number.add;
+import org.jimkast.exotic.numberjdk.NumberEnvelope;
+
+public final class fibonnaci extends NumberEnvelope {
     public fibonnaci() {
-        super(new gen2<>(0, 1, (n1, n2) -> n1 + n2));
+        super(new gen2<>(0, 1, add::new));
     }
 }

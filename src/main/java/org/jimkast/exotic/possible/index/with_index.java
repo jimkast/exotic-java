@@ -1,11 +1,12 @@
-package org.jimkast.exotic.possible;
+package org.jimkast.exotic.possible.index;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import org.jimkast.exotic.possible.possible;
 
-public final class with_index<T> implements possible<T> {
+public final class with_index<T> implements windex<T>, possible<T> {
     private final possible<T> origin;
-    private int i = 0;
+    private int i = 1;
 
 
     public with_index(possible<T> origin) {
@@ -17,7 +18,8 @@ public final class with_index<T> implements possible<T> {
         origin.supply(consumer);
     }
 
-    public void foreach(BiConsumer<T, Integer> consumer) {
+    @Override
+    public void supply(BiConsumer<? super T, Integer> consumer) {
         origin.supply(t -> consumer.accept(t, i++));
     }
 }

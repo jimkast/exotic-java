@@ -1,10 +1,10 @@
 package org.jimkast.exotic.possible.gen;
 
-import org.jimkast.exotic.bool.lte;
+import org.jimkast.exotic.bool.lt;
 import org.jimkast.exotic.possible.possible;
-import org.jimkast.exotic.possible.until;
+import org.jimkast.exotic.possible.gen_until;
 
-public final class fori extends possible.env<Integer> {
+public final class fori extends possible.env<Number> {
     public fori(int to) {
         this(0, to);
     }
@@ -15,9 +15,9 @@ public final class fori extends possible.env<Integer> {
 
     public fori(int from, int to, int step) {
         super(
-            new until<>(
-                o -> new lte(o, to),
-                new integers(from, step)
+            new gen_until<>(
+                o -> new lt(o, to),
+                new seq_arithmetic(from, step)
             )
         );
     }

@@ -1,8 +1,8 @@
 package org.jimkast.exotic.possible;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import org.jimkast.exotic.possible.gen.FifoQueue;
 
 public final class last<T> implements possible<T> {
     private final possible<T> origin;
@@ -13,8 +13,8 @@ public final class last<T> implements possible<T> {
 
     @Override
     public void supply(Consumer<? super T> consumer) {
-        List<T> store = new ArrayList<>(1);
-        origin.supply(t -> store.add(0, t));
+        List<T> store = new FifoQueue<>(1);
+        origin.supply(store::add);
         if(!store.isEmpty()) {
             consumer.accept(store.get(0));
         }

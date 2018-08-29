@@ -11,6 +11,7 @@ import org.cactoos.scalar.UncheckedScalar;
 import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.check;
 import org.jimkast.exotic.possible.adapter.AsIterator;
+import org.jimkast.exotic.possible.index.with_index;
 
 public final class fluent<T> implements possible<T>, Iterable<T> {
     private final possible<T> origin;
@@ -37,14 +38,14 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
         return new fluent<>(new filtered<>(check, origin));
     }
 
-    public <X> X reduced(X initial, BiConsumer<T, X> accumulator) {
-        return reduce(initial, (t, x) -> {
-            accumulator.accept(t, x);
+    public <X> X reduced(X initial, BiConsumer<X, T> accumulator) {
+        return reduce(initial, (x, t) -> {
+            accumulator.accept(x, t);
             return x;
         });
     }
 
-    public <X> X reduce(X initial, BiFunction<T, X, X> accumulator) {
+    public <X> X reduce(X initial, BiFunction<X, T, X> accumulator) {
         return new reduced<>(initial, accumulator, new while_present<>(origin)).value();
     }
 
@@ -74,7 +75,7 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     public fluent<T> foreach(BiConsumer<T, Integer> consumer) {
-        new with_index<>(new while_present<>(origin)).foreach(consumer);
+        new with_index<>(new while_present<>(origin)).supply(consumer);
         return this;
     }
 

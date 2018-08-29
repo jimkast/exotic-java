@@ -1,38 +1,10 @@
 package org.jimkast.exotic.possible;
 
-import java.util.function.Consumer;
+import org.jimkast.exotic.numberjdk.NumberEnvelope;
+import org.jimkast.exotic.possible.index.mapped_with_index;
 
-public final class count extends Number implements Consumer<Object> {
-    private final possible<?> p;
-    private long i = 0;
-
+public final class count extends NumberEnvelope {
     public count(possible<?> p) {
-        this.p = p;
-    }
-
-    @Override
-    public int intValue() {
-        p.supply(this);
-        return (int) i;
-    }
-
-    @Override
-    public long longValue() {
-        return i;
-    }
-
-    @Override
-    public float floatValue() {
-        return i;
-    }
-
-    @Override
-    public double doubleValue() {
-        return i;
-    }
-
-    @Override
-    public void accept(Object o) {
-        i++;
+        super(new orelse<>(new last<>(new mapped_with_index<>((o, i) -> i, p)), 0));
     }
 }
