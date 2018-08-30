@@ -10,7 +10,7 @@ public final class as_long implements Scalar<Long> {
     }
 
     @Override
-    public Long value() throws Exception {
+    public Long value() {
         return origin.longValue();
     }
 }

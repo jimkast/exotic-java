@@ -8,6 +8,10 @@ import org.jimkast.exotic.possible.possible;
 
 public final class with_index<T> extends possible2.env<T, Integer> {
     public with_index(possible<T> origin) {
-        super(new combined2<>(origin, new as_int(new seq_arithmetic(1))));
+        this(1, origin);
+    }
+
+    public with_index(int start, possible<T> origin) {
+        super(new combined2<>(origin, new as_int(new seq_arithmetic(start))));
     }
 }

@@ -10,7 +10,7 @@ public final class as_int implements Scalar<Integer> {
     }
 
     @Override
-    public Integer value() throws Exception {
+    public Integer value() {
         return origin.intValue();
     }
 }

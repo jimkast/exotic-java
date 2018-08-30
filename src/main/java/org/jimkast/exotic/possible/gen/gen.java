@@ -1,6 +1,7 @@
 package org.jimkast.exotic.possible.gen;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import org.cactoos.Func;
@@ -23,7 +24,7 @@ public final class gen<T> implements Scalar<T> {
     @Override
     public T value() throws Exception {
         T cur = store.get(0);
-        store.add(gen.apply(store));
+        store.add(gen.apply(Collections.unmodifiableList(store)));
         return cur;
     }
 }

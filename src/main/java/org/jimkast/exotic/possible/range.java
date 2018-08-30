@@ -15,7 +15,7 @@ public final class range extends possible.env<Integer> {
 
     public range(Number from, Number to, Number step) {
         super(
-            new until<>(
+            new pwhile<>(
                 o -> new lte(o, to),
                 new as_int(
                     new seq_arithmetic(from, step)

@@ -6,10 +6,6 @@ import org.cactoos.scalar.UncheckedScalar;
 public class NumberEnvelope extends Number implements Scalar<Number> {
     private final UncheckedScalar<? extends Number> number;
 
-    public NumberEnvelope(Number number) {
-        this(() -> number);
-    }
-
     public NumberEnvelope(Scalar<? extends Number> number) {
         this(new UncheckedScalar<>(number));
     }
