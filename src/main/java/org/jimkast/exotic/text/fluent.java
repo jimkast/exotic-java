@@ -1,0 +1,57 @@
+package org.jimkast.exotic.text;
+
+import org.jimkast.exotic.bool.bool;
+
+public final class fluent implements text {
+    private final text origin;
+
+    public fluent(text origin) {
+        this.origin = origin;
+    }
+
+    @Override
+    public char at(int i) {
+        return origin.at(i);
+    }
+
+    @Override
+    public int length() {
+        return origin.length();
+    }
+
+    public fluent substring(Number offset) {
+        return new fluent(new substring(origin, offset));
+    }
+
+    public fluent substring(Number offset, Number length) {
+        return new fluent(new substring(origin, offset, length));
+    }
+
+    public fluent substring_after(text delim) {
+        return new fluent(new substring_after(origin, delim));
+    }
+
+    public fluent substring_before(text delim) {
+        return new fluent(new substring_before(origin, delim));
+    }
+
+    public bool contains(text delim) {
+        return new contains(origin, delim);
+    }
+
+    public Number indexOf(text delim) {
+        return new indexof(origin, delim);
+    }
+
+    public Number indexOf(char delim) {
+        return new chindex(origin, delim);
+    }
+
+    public fluent uppercase() {
+        return new fluent(new uppercase(origin));
+    }
+
+    public fluent lowercase() {
+        return new fluent(new lowercase(origin));
+    }
+}
