@@ -23,17 +23,17 @@ public final class cached implements text {
 
     private List<text> val() {
         if (val.isEmpty()) {
-            val.add(cache(origin));
+            val.add(new simple(chars()));
         }
         return val;
     }
 
-    private static text cache(text origin) {
+    public char[] chars() {
         int len = origin.length();
         char[] buf = new char[len];
         for (int i = 0; i < len; i++) {
             buf[i] = origin.at(i);
         }
-        return new simple(buf);
+        return buf;
     }
 }

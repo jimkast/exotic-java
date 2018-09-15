@@ -5,6 +5,10 @@ import org.jimkast.exotic.bool.bool;
 public final class fluent implements text {
     private final text origin;
 
+    public fluent(CharSequence origin) {
+        this(new text.of(origin));
+    }
+
     public fluent(text origin) {
         this.origin = origin;
     }
@@ -53,5 +57,9 @@ public final class fluent implements text {
 
     public fluent lowercase() {
         return new fluent(new lowercase(origin));
+    }
+
+    public char[] chars() {
+        return new cached(origin).chars();
     }
 }
