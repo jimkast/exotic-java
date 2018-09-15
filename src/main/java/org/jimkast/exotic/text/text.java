@@ -25,10 +25,10 @@ public interface text {
     }
 
 
-    final class of_charseq implements text {
+    final class of implements text {
         private final CharSequence seq;
 
-        public of_charseq(CharSequence seq) {
+        public of(CharSequence seq) {
             this.seq = seq;
         }
 
