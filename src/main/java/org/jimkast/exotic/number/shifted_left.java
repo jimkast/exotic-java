@@ -24,11 +24,11 @@ public final class shifted_left extends Number {
 
     @Override
     public float floatValue() {
-        throw new UnsupportedOperationException("#floatValue");
+        return Float.floatToRawIntBits(intValue());
     }
 
     @Override
     public double doubleValue() {
-        throw new UnsupportedOperationException("#doubleValue");
+        return Double.longBitsToDouble(longValue());
     }
 }
