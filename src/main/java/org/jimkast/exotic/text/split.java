@@ -17,14 +17,10 @@ public final class split implements possible<text> {
     public void supply(Consumer<? super text> consumer) {
         if (index < origin.length()) {
             int from = index;
-            int until = new indexof(new substring(origin, from), delim).intValue();
-            if (until != -1) {
-                index += until + delim.length();
-                consumer.accept(new substring(origin, from, until));
-            } else {
-                index = origin.length();
-                consumer.accept(new substring(origin, from));
-            }
+            int i = new indexof(new substring(origin, from), delim).intValue();
+            int until = i == -1 ? origin.length() - from : i;
+            index += until + delim.length();
+            consumer.accept(new substring(origin, from, until));
         }
     }
 }
