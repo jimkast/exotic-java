@@ -31,7 +31,7 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     public <X> fluent<X> map(Function<T, X> mapper) {
-        return new org.jimkast.exotic.possible.fluent<>(new mapped<>(mapper, origin));
+        return new fluent<>(new mapped<>(mapper, origin));
     }
 
     public fluent<T> filter(check<T> check) {
