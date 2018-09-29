@@ -7,12 +7,12 @@ import org.jimkast.exotic.possible.range;
 import org.jimkast.exotic.possible.skip_until;
 
 public final class indexof extends NumberEnvelope {
-    public indexof(text source, text target) {
+    public indexof(binary source, binary target) {
         super(
             new orelse<>(
                 new skip_until<>(
                     i -> new starts_with(new substring(source, i), target),
-                    new range(0, new sub(new text.length(source), new text.length(target)))
+                    new range(0, new sub(new binary.length(source), new binary.length(target)))
                 ), -1
             )
         );

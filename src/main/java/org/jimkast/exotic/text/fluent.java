@@ -3,19 +3,19 @@ package org.jimkast.exotic.text;
 import java.util.regex.Pattern;
 import org.jimkast.exotic.bool.bool;
 
-public final class fluent implements text {
-    private final text origin;
+public final class fluent implements binary {
+    private final binary origin;
 
     public fluent(CharSequence origin) {
-        this(new text.of(origin));
+        this(new binary.of(origin));
     }
 
-    public fluent(text origin) {
+    public fluent(binary origin) {
         this.origin = origin;
     }
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return origin.at(i);
     }
 
@@ -32,19 +32,19 @@ public final class fluent implements text {
         return new fluent(new substring(origin, offset, length));
     }
 
-    public fluent substring_after(text delim) {
+    public fluent substring_after(binary delim) {
         return new fluent(new substring_after(origin, delim));
     }
 
-    public fluent substring_before(text delim) {
+    public fluent substring_before(binary delim) {
         return new fluent(new substring_before(origin, delim));
     }
 
-    public bool contains(text delim) {
+    public bool contains(binary delim) {
         return new contains(origin, delim);
     }
 
-    public Number indexOf(text delim) {
+    public Number indexOf(binary delim) {
         return new indexof(origin, delim);
     }
 
@@ -60,23 +60,23 @@ public final class fluent implements text {
         return new fluent(new lowercase(origin));
     }
 
-    public bool starts_with(text part) {
+    public bool starts_with(binary part) {
         return new starts_with(origin, part);
     }
 
-    public bool ends_with(text part) {
+    public bool ends_with(binary part) {
         return new ends_with(origin, part);
     }
 
-    public fluent trimmed(text part) {
+    public fluent trimmed(binary part) {
         return new fluent(new trimmed(origin));
     }
 
-    public fluent trimmed_left(text part) {
+    public fluent trimmed_left(binary part) {
         return new fluent(new trimmed_left(origin));
     }
 
-    public fluent trimmed_right(text part) {
+    public fluent trimmed_right(binary part) {
         return new fluent(new trimmed_right(origin));
     }
 

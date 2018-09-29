@@ -3,18 +3,18 @@ package org.jimkast.exotic.text;
 import java.util.function.Consumer;
 import org.jimkast.exotic.possible.possible;
 
-public final class split_ch implements possible<text> {
-    private final text origin;
+public final class split_ch implements possible<binary> {
+    private final binary origin;
     private final char delim;
     private int index = 0;
 
-    public split_ch(text origin, char delim) {
+    public split_ch(binary origin, char delim) {
         this.origin = origin;
         this.delim = delim;
     }
 
     @Override
-    public void supply(Consumer<? super text> consumer) {
+    public void supply(Consumer<? super binary> consumer) {
         if (index <= origin.length()) {
             int from = index;
             int until = new chindex(new substring(origin, index), delim).intValue();

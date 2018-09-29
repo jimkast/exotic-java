@@ -3,16 +3,16 @@ package org.jimkast.exotic.text;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class cached implements text {
-    private final text origin;
-    private transient final List<text> val = new ArrayList<>(1);
+public final class cached implements binary {
+    private final binary origin;
+    private transient final List<binary> val = new ArrayList<>(1);
 
-    public cached(text origin) {
+    public cached(binary origin) {
         this.origin = origin;
     }
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return val().get(0).at(i);
     }
 
@@ -21,7 +21,7 @@ public final class cached implements text {
         return val().get(0).length();
     }
 
-    private List<text> val() {
+    private List<binary> val() {
         if (val.isEmpty()) {
             val.add(new simple(chars()));
         }
@@ -32,7 +32,7 @@ public final class cached implements text {
         int len = origin.length();
         char[] buf = new char[len];
         for (int i = 0; i < len; i++) {
-            buf[i] = origin.at(i);
+            buf[i] = (char) origin.at(i);
         }
         return buf;
     }

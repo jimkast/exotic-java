@@ -6,13 +6,13 @@ import org.jimkast.exotic.bool.eq;
 import org.jimkast.exotic.possible.all;
 
 public final class starts_with extends bool.env {
-    public starts_with(text container, text part) {
+    public starts_with(binary container, binary part) {
         super(
             new and(
                 new bigger(container, part),
                 new all<>(
                     i -> new eq(container.at(i), part.at(i)),
-                    new text.indices(part)
+                    new binary.indices(part)
                 )
             )
         );

@@ -1,7 +1,7 @@
 package org.jimkast.exotic.text;
 
-public final class uppercase extends text.env {
-    public uppercase(text origin) {
+public final class uppercase extends binary.env {
+    public uppercase(binary origin) {
         super(new mapped(Character::toUpperCase, origin));
     }
 }

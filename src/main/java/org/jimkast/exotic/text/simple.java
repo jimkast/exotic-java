@@ -1,6 +1,6 @@
 package org.jimkast.exotic.text;
 
-public final class simple implements text {
+public final class simple implements binary {
     private final char[] ch;
 
     public simple(char[] ch) {
@@ -8,7 +8,7 @@ public final class simple implements text {
     }
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return ch[i];
     }
 

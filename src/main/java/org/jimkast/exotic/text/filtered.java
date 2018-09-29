@@ -1,17 +1,17 @@
 package org.jimkast.exotic.text;
 
-public final class filtered implements text {
-    private final char_filter filter;
-    private final text origin;
+public final class filtered implements binary {
+    private final bfilter filter;
+    private final binary origin;
 
-    public filtered(char_filter filter, text origin) {
+    public filtered(bfilter filter, binary origin) {
         this.filter = filter;
         this.origin = origin;
     }
 
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         int len = origin.length();
         int found = 0;
         for (int j = 0; j < len && found == i; j++) {

@@ -1,16 +1,16 @@
 package org.jimkast.exotic.text;
 
-public final class mapped implements text {
-    private final char_mapping mapping;
-    private final text origin;
+public final class mapped implements binary {
+    private final int_mapping mapping;
+    private final binary origin;
 
-    public mapped(char_mapping mapping, text origin) {
+    public mapped(int_mapping mapping, binary origin) {
         this.mapping = mapping;
         this.origin = origin;
     }
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return mapping.map(origin.at(i));
     }
 

@@ -7,17 +7,17 @@ import org.jimkast.exotic.possible.possible;
 import org.jimkast.exotic.possible.reduced;
 import org.jimkast.exotic.possible.skip_until;
 
-public final class concat implements text {
-    private final possible<text> all;
+public final class concat implements binary {
+    private final possible<binary> all;
 
-    public concat(possible<text> all) {
+    public concat(possible<binary> all) {
         this.all = all;
     }
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return new UncheckedScalar<>(
-            new orelse<text>(
+            new orelse<binary>(
                 new skip_until<>(
                     o -> new gt(o.length(), i),
                     all

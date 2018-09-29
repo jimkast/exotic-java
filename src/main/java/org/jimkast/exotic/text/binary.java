@@ -6,21 +6,21 @@ import org.jimkast.exotic.numberjdk.NumberEnvelope;
 import org.jimkast.exotic.possible.possible;
 import org.jimkast.exotic.possible.range;
 
-public interface text {
-    char at(int i);
+public interface binary {
+    int at(int i);
 
     int length();
 
 
-    class env implements text {
-        private final text origin;
+    class env implements binary {
+        private final binary origin;
 
-        public env(text origin) {
+        public env(binary origin) {
             this.origin = origin;
         }
 
         @Override
-        public char at(int i) {
+        public int at(int i) {
             return origin.at(i);
         }
 
@@ -31,7 +31,7 @@ public interface text {
     }
 
 
-    final class of implements text {
+    final class of implements binary {
         private final CharSequence seq;
 
         public of(CharSequence seq) {
@@ -39,7 +39,7 @@ public interface text {
         }
 
         @Override
-        public char at(int i) {
+        public int at(int i) {
             return seq.charAt(i);
         }
 
@@ -51,9 +51,9 @@ public interface text {
 
 
     final class as_charseq implements CharSequence {
-        private final text text;
+        private final binary text;
 
-        public as_charseq(text text) {
+        public as_charseq(binary text) {
             this.text = text;
         }
 
@@ -64,7 +64,7 @@ public interface text {
 
         @Override
         public char charAt(int index) {
-            return text.at(index);
+            return (char) text.at(index);
         }
 
         @Override
@@ -74,10 +74,10 @@ public interface text {
     }
 
     final class chars implements possible<Integer> {
-        private final text text;
+        private final binary text;
         private int i = 0;
 
-        public chars(text text) {
+        public chars(binary text) {
             this.text = text;
         }
 
@@ -90,13 +90,13 @@ public interface text {
     }
 
     final class indices extends possible.env<Integer> {
-        public indices(text text) {
+        public indices(binary text) {
             super(new range(0, new sub(new length(text), 1)));
         }
     }
 
     final class length extends NumberEnvelope {
-        public length(text text) {
+        public length(binary text) {
             super(text::length);
         }
     }

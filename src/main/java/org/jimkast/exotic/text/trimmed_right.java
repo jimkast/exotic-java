@@ -1,12 +1,10 @@
 package org.jimkast.exotic.text;
 
-import java.util.function.IntSupplier;
+public final class trimmed_right implements binary {
+    private final binary origin;
+    private final byte32 spaces;
 
-public final class trimmed_right implements text {
-    private final text origin;
-    private final IntSupplier spaces;
-
-    public trimmed_right(text origin) {
+    public trimmed_right(binary origin) {
         this.origin = origin;
         this.spaces = () -> {
             int len = origin.length();
@@ -20,12 +18,12 @@ public final class trimmed_right implements text {
 
 
     @Override
-    public char at(int i) {
+    public int at(int i) {
         return origin.at(i);
     }
 
     @Override
     public int length() {
-        return origin.length() - spaces.getAsInt();
+        return origin.length() - spaces.value();
     }
 }

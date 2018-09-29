@@ -67,17 +67,17 @@ public class split_chTest {
     @Test
     public void supply() {
         System.out.println("index:::" +
-            new indexof(new text.of(
+            new indexof(new binary.of(
                 "c345 3s45 | c34q45 3"
-            ), new text.of(" | ")).intValue()
+            ), new binary.of(" | ")).intValue()
         );
 
         System.out.println("substring_after:::" +
             new StringBuilder(
-                new text.as_charseq(
+                new binary.as_charseq(
                     new substring_after(
-                        new text.of("c345 3s45 | 4ec34q453w45 3"),
-                        new text.of(" | ")
+                        new binary.of("c345 3s45 | 4ec34q453w45 3"),
+                        new binary.of(" | ")
                     )
                 )
             )
@@ -86,10 +86,10 @@ public class split_chTest {
 
         System.out.println("substring_before:::" +
             new StringBuilder(
-                new text.as_charseq(
+                new binary.as_charseq(
                     new substring_before(
-                        new text.of("xdfgc345 3s45  | c34q45 3"),
-                        new text.of(" | ")
+                        new binary.of("xdfgc345 3s45  | c34q45 3"),
+                        new binary.of(" | ")
                     )
                 )
             )
@@ -98,12 +98,12 @@ public class split_chTest {
 //
         new while_present<>(
             new mapped<>(
-                text.as_charseq::new,
+                binary.as_charseq::new,
                 new split(
-                    new text.of(
+                    new binary.of(
                         "aaa234235|bbb23845 | c345 3s  | a3q45 3"
                     ),
-                    new text.of(" | ")
+                    new binary.of(" | ")
                 )
             )
         ).supply(text -> System.out.println("part ::: " + new StringBuilder(text)));
