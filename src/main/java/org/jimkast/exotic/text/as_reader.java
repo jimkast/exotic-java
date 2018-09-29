@@ -1,5 +1,6 @@
 package org.jimkast.exotic.text;
 
+import java.io.IOException;
 import java.io.Reader;
 import org.jimkast.exotic.binary.binary;
 
@@ -51,6 +52,11 @@ public final class as_reader extends Reader {
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void mark(int readAheadLimit) throws IOException {
+        mark = i;
     }
 
     @Override
