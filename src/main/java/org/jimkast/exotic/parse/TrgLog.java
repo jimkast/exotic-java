@@ -15,8 +15,8 @@ public final class TrgLog implements target {
     }
 
     @Override
-    public void accept(String ev, chunk c) throws IOException {
-        out.write(ev.getBytes());
+    public void accept(chunk ev, chunk c) throws IOException {
+        ev.print(out);
         out.write(" - ".getBytes());
         c.print(out);
         out.write('\n');

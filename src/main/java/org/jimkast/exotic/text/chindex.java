@@ -2,7 +2,7 @@ package org.jimkast.exotic.text;
 
 import org.jimkast.exotic.numberjdk.Int;
 
-public final class chindex extends Int  {
+public final class chindex extends Int {
     private final text t1;
     private final char ch;
 
@@ -14,11 +14,10 @@ public final class chindex extends Int  {
     @Override
     public int intValue() {
         int len = t1.length();
-        for (int i = 0; i < len; i++) {
-            if (t1.at(i) == ch) {
-                return i;
-            }
+        int i = 0;
+        while (i < len && t1.at(i) != ch) {
+            i++;
         }
-        return -1;
+        return i - 1;
     }
 }

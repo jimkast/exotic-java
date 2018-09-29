@@ -33,4 +33,96 @@ public class scanner_sourceTest {
             )
         ).consume(new InputStreamOf("GET   /bookings?aa=243rdfrg   HTTP1/1"));
     }
+
+
+    @Test
+    public void http() throws IOException {
+
+
+
+        /*
+        item('line',
+            regex('(\\S+)\\s+(\\S+)\\s+(\\S+)\r\n'
+
+                groups -> groups.at(0)
+            ),
+
+        )
+
+
+
+
+
+        seq(
+            item("line",
+                seq(
+                    item("method", NOSP),
+                    SP,
+                    item("uri", NOSP),
+                    SP,
+                    item("protocol", NOSP),
+                ),
+            ),
+            CRLF,
+            repeated(
+                item("header",
+                    seq(
+                        item("name", NOSP),
+                        SP,
+                        fixed(":"),
+                        SP,
+                        item("value", NOCRLF),
+                        CRLF
+                    )
+                )
+            )
+            CRLF,
+        )
+         */
+
+
+
+    }
+
+
+    @Test
+    public void json() throws IOException {
+        /*
+        json = or(
+            obj,
+            array
+        )
+
+        obj =
+            seq(
+                fixed('{'),
+                repeated(
+                    item("pair",
+                        seq(
+                            STRING,
+                            fixed(":"),
+                            VALUE
+                        )
+                    )
+                ),
+                fixed('}')
+            )
+
+
+        obj =
+            seq(
+                fixed('{'),
+                repeated(
+                    item("pair",
+                        seq(
+                            item("name", STRING),
+                            fixed(":"),
+                            VALUE
+                        )
+                    )
+                ),
+                fixed('}')
+            )
+        */
+    }
 }
