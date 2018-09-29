@@ -1,6 +1,7 @@
 package org.jimkast.exotic.text;
 
 import java.util.function.Consumer;
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.possible.possible;
 
 public final class split_ch implements possible<binary> {
@@ -17,7 +18,7 @@ public final class split_ch implements possible<binary> {
     public void supply(Consumer<? super binary> consumer) {
         if (index <= origin.length()) {
             int from = index;
-            int until = new chindex(new substring(origin, index), delim).intValue();
+            int until = new chindex(new skipped(origin, index), delim).intValue();
             this.index += until + 1;
             if (until != -1) {
                 consumer.accept(new substring(origin, from, until));

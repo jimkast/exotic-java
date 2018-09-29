@@ -2,8 +2,9 @@ package org.jimkast.exotic.numberjdk;
 
 import org.cactoos.Scalar;
 import org.cactoos.scalar.UncheckedScalar;
+import org.jimkast.exotic.binary.byte32;
 
-public class NumberEnvelope extends Number implements Scalar<Number> {
+public class NumberEnvelope extends Number implements Scalar<Number>, byte32 {
     private final UncheckedScalar<? extends Number> number;
 
     public NumberEnvelope(Scalar<? extends Number> number) {
@@ -45,7 +46,12 @@ public class NumberEnvelope extends Number implements Scalar<Number> {
     }
 
     @Override
-    public Number value() {
+    public int val() {
+        return number.value().intValue();
+    }
+
+    @Override
+    public Number value() throws Exception {
         return number.value();
     }
 }

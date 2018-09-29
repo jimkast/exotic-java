@@ -3,7 +3,7 @@ package org.jimkast.exotic.parse;
 import java.io.IOException;
 import java.io.OutputStream;
 import org.cactoos.io.InputOf;
-import org.jimkast.exotic.data.binary;
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.io.bs.BsInput;
 import org.jimkast.exotic.io.bs.BytesSource;
 

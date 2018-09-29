@@ -66,18 +66,18 @@ public class split_chTest {
 
     @Test
     public void supply() {
-        System.out.println("index:::" +
-            new indexof(new binary.of(
-                "c345 3s45 | c34q45 3"
-            ), new binary.of(" | ")).intValue()
-        );
-
+        System.out.println(new starts_with(new of_charseq("dimitris"), new of_charseq("jim")).choose("true", "false"));
+        Number i = new indexof(new of_charseq(
+            "c345 3s45 | c34q45 3   |   dfh "
+        ), new of_charseq(" | "));
+        int a1 = i.intValue();
+        int a2 = i.intValue();
         System.out.println("substring_after:::" +
             new StringBuilder(
-                new binary.as_charseq(
+                new as_charseq(
                     new substring_after(
-                        new binary.of("c345 3s45 | 4ec34q453w45 3"),
-                        new binary.of(" | ")
+                        new of_charseq("c345 3s45 | 4ec34q453w45 3"),
+                        new of_charseq(" | ")
                     )
                 )
             )
@@ -86,10 +86,10 @@ public class split_chTest {
 
         System.out.println("substring_before:::" +
             new StringBuilder(
-                new binary.as_charseq(
+                new as_charseq(
                     new substring_before(
-                        new binary.of("xdfgc345 3s45  | c34q45 3"),
-                        new binary.of(" | ")
+                        new of_charseq("xdfgc345 3s45  | c34q45 3"),
+                        new of_charseq(" | ")
                     )
                 )
             )
@@ -98,12 +98,12 @@ public class split_chTest {
 //
         new while_present<>(
             new mapped<>(
-                binary.as_charseq::new,
+                as_charseq::new,
                 new split(
-                    new binary.of(
+                    new of_charseq(
                         "aaa234235|bbb23845 | c345 3s  | a3q45 3"
                     ),
-                    new binary.of(" | ")
+                    new of_charseq(" | ")
                 )
             )
         ).supply(text -> System.out.println("part ::: " + new StringBuilder(text)));

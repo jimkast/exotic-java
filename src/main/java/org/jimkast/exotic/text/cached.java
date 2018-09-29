@@ -2,6 +2,7 @@ package org.jimkast.exotic.text;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jimkast.exotic.binary.binary;
 
 public final class cached implements binary {
     private final binary origin;

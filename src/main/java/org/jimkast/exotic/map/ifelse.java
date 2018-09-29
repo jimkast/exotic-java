@@ -1,6 +1,7 @@
 package org.jimkast.exotic.map;
 
-import org.jimkast.exotic.data.binary;
+
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.number.types.array;
 import org.jimkast.exotic.possible.possible;
 

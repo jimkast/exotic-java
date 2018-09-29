@@ -1,6 +1,7 @@
 package org.jimkast.exotic.text;
 
 import org.cactoos.scalar.UncheckedScalar;
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.bool.gt;
 import org.jimkast.exotic.possible.orelse;
 import org.jimkast.exotic.possible.possible;

@@ -1,4 +1,4 @@
-package org.jimkast.exotic.data;
+package org.jimkast.exotic.binary;
 
 public interface bconv {
     binary convert(binary b);

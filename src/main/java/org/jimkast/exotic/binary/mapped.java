@@ -1,10 +1,10 @@
-package org.jimkast.exotic.text;
+package org.jimkast.exotic.binary;
 
 public final class mapped implements binary {
-    private final int_mapping mapping;
+    private final bmapping mapping;
     private final binary origin;
 
-    public mapped(int_mapping mapping, binary origin) {
+    public mapped(bmapping mapping, binary origin) {
         this.mapping = mapping;
         this.origin = origin;
     }

@@ -1,5 +1,6 @@
 package org.jimkast.exotic.text;
 
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.gte;
 

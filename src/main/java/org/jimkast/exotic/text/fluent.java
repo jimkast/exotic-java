@@ -1,13 +1,14 @@
 package org.jimkast.exotic.text;
 
 import java.util.regex.Pattern;
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.bool.bool;
 
 public final class fluent implements binary {
     private final binary origin;
 
     public fluent(CharSequence origin) {
-        this(new binary.of(origin));
+        this(new of_charseq(origin));
     }
 
     public fluent(binary origin) {
@@ -25,7 +26,7 @@ public final class fluent implements binary {
     }
 
     public fluent substring(Number offset) {
-        return new fluent(new substring(origin, offset));
+        return new fluent(new skipped(origin, offset));
     }
 
     public fluent substring(Number offset, Number length) {
@@ -81,7 +82,7 @@ public final class fluent implements binary {
     }
 
     public fluent replaceAll(Pattern regex, String replacement) {
-        return new fluent(new of(regex.matcher(new as_charseq(origin)).replaceAll(replacement)));
+        return new fluent(new of_charseq(regex.matcher(new as_charseq(origin)).replaceAll(replacement)));
     }
 
     public bool matches(String regex) {

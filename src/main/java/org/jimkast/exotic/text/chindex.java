@@ -1,5 +1,6 @@
 package org.jimkast.exotic.text;
 
+import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.bool.eq;
 import org.jimkast.exotic.numberjdk.NumberEnvelope;
 import org.jimkast.exotic.possible.orelse;

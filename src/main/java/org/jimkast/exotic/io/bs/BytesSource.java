@@ -2,6 +2,7 @@ package org.jimkast.exotic.io.bs;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.function.Function;
 
 public interface BytesSource {
     void print(OutputStream out) throws IOException;
@@ -22,4 +23,5 @@ public interface BytesSource {
             origin.print(out);
         }
     }
+
 }

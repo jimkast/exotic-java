@@ -1,4 +1,4 @@
-package org.jimkast.exotic.text;
+package org.jimkast.exotic.binary;
 
 public final class filtered implements binary {
     private final bfilter filter;

@@ -1,5 +1,7 @@
 package org.jimkast.exotic.text;
 
+import org.jimkast.exotic.binary.binary;
+
 public final class simple implements binary {
     private final char[] ch;
 
