@@ -26,7 +26,7 @@ public final class fluent implements binary {
     }
 
     public fluent substring(Number offset) {
-        return new fluent(new skipped(origin, offset));
+        return new fluent(new skipped(offset, origin));
     }
 
     public fluent substring(Number offset, Number length) {

@@ -13,7 +13,7 @@ public final class indexof extends NumberEnvelope {
         super(
             new orelse<>(
                 new skip_until<>(
-                    i -> new starts_with(new skipped(source, i), target),
+                    i -> new starts_with(new skipped(i, source), target),
                     new range(0, new sub(new blength(source), new blength(target)))
                 ), -1
             )

@@ -3,19 +3,19 @@ package org.jimkast.exotic.text;
 import org.jimkast.exotic.binary.binary;
 
 public final class simple implements binary {
-    private final char[] ch;
+    private final int[] arr;
 
-    public simple(char[] ch) {
-        this.ch = ch;
+    public simple(int[] arr) {
+        this.arr = arr;
     }
 
     @Override
     public int at(int i) {
-        return ch[i];
+        return arr[i];
     }
 
     @Override
     public int length() {
-        return ch.length;
+        return arr.length;
     }
 }

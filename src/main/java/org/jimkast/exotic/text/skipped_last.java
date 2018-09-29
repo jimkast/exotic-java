@@ -6,7 +6,7 @@ public final class skipped_last implements binary {
     private final binary origin;
     private final Number offset;
 
-    public skipped_last(binary origin, Number offset) {
+    public skipped_last(Number offset, binary origin) {
         this.origin = origin;
         this.offset = offset;
     }

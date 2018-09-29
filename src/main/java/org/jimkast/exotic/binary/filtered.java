@@ -1,36 +1,36 @@
 package org.jimkast.exotic.binary;
 
-public final class filtered implements binary {
-    private final bfilter filter;
-    private final binary origin;
+import org.jimkast.exotic.text.headof;
+import org.jimkast.exotic.text.simple;
 
-    public filtered(bfilter filter, binary origin) {
-        this.filter = filter;
-        this.origin = origin;
+public final class filtered extends binary.env {
+    public filtered(bfilter f, binary origin) {
+        super(new bconverted(new filter(f), origin));
     }
 
 
-    @Override
-    public int at(int i) {
-        int len = origin.length();
-        int found = 0;
-        for (int j = 0; j < len && found == i; j++) {
-            if (filter.test(origin.at(j))) {
-                found++;
-            }
-        }
-        return origin.at(found);
-    }
+    static final class filter implements bconv {
+        private final bfilter filter;
 
-    @Override
-    public int length() {
-        int len = origin.length();
-        int found = 0;
-        for (int j = 0; j < len; j++) {
-            if (filter.test(origin.at(j))) {
-                found++;
-            }
+        filter(bfilter filter) {
+            this.filter = filter;
         }
-        return found;
+
+        @Override
+        public binary convert(binary origin) {
+            int found = 0;
+            int[] buf = new int[]{origin.length()};
+            int len = origin.length();
+            for (int i = 0; i < len; i++) {
+                int b = origin.at(i);
+                if (filter.test(b)) {
+                    if (found == 0) {
+                        buf = new int[]{len - i};
+                    }
+                    buf[found++] = b;
+                }
+            }
+            return new headof(found, new simple(buf));
+        }
     }
 }

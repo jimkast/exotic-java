@@ -18,7 +18,7 @@ public final class split_ch implements possible<binary> {
     public void supply(Consumer<? super binary> consumer) {
         if (index <= origin.length()) {
             int from = index;
-            int until = new chindex(new skipped(origin, index), delim).intValue();
+            int until = new chindex(new skipped(index, origin), delim).intValue();
             this.index += until + 1;
             if (until != -1) {
                 consumer.accept(new substring(origin, from, until));

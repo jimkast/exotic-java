@@ -6,7 +6,7 @@ public final class headof implements binary {
     private final binary origin;
     private final Number offset;
 
-    public headof(binary origin, Number offset) {
+    public headof(Number offset, binary origin) {
         this.origin = origin;
         this.offset = offset;
     }

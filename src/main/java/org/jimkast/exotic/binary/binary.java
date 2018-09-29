@@ -1,6 +1,7 @@
 package org.jimkast.exotic.binary;
 
 import org.jimkast.exotic.number.sub;
+import org.jimkast.exotic.possible.mapped;
 import org.jimkast.exotic.possible.possible;
 import org.jimkast.exotic.possible.range;
 
@@ -30,11 +31,16 @@ public interface binary {
 
 
     final class indices extends possible.env<Integer> {
-        public indices(binary text) {
-            super(new range(0, new sub(new blength(text), 1)));
+        public indices(binary b) {
+            super(new range(0, new sub(new blength(b), 1)));
         }
     }
 
+    final class streamed extends possible.env<Integer> {
+        public streamed(binary b) {
+            super(new mapped<>(b::at, new indices(b)));
+        }
+    }
 
     final class atindex implements byte32 {
         private final binary b;

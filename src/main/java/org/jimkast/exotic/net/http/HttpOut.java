@@ -2,9 +2,9 @@ package org.jimkast.exotic.net.http;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import org.jimkast.exotic.io.bs.BytesSource;
+import org.jimkast.exotic.io.bs.bsource;
 
-public interface HttpOut extends HttpHead, BytesSource {
+public interface HttpOut extends HttpHead, bsource {
     @Override
     HttpLine line();
 
@@ -12,7 +12,7 @@ public interface HttpOut extends HttpHead, BytesSource {
     Iterable<Prop> headers();
 
     @Override
-    void print(OutputStream out) throws IOException;
+    void transferTo(OutputStream out) throws IOException;
 
 
     class Envelope implements HttpOut {
@@ -33,8 +33,8 @@ public interface HttpOut extends HttpHead, BytesSource {
         }
 
         @Override
-        public final void print(OutputStream out) throws IOException {
-            origin.print(out);
+        public final void transferTo(OutputStream out) throws IOException {
+            origin.transferTo(out);
         }
     }
 }

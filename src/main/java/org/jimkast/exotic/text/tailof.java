@@ -6,7 +6,7 @@ public final class tailof implements binary {
     private final binary origin;
     private final Number offset;
 
-    public tailof(binary origin, Number offset) {
+    public tailof(Number offset, binary origin) {
         this.origin = origin;
         this.offset = offset;
     }

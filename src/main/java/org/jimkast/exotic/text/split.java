@@ -25,7 +25,7 @@ public final class split implements possible<binary> {
     public void supply(Consumer<? super binary> consumer) {
         if (index < origin.length()) {
             int from = index;
-            int i = new indexof(new skipped(origin, from), delim).intValue();
+            int i = new indexof(new skipped(from, origin), delim).intValue();
             int until = i == -1 ? origin.length() - from : i;
             index += until + delim.length();
             consumer.accept(new substring(origin, from, until));

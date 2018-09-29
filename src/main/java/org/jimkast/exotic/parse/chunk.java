@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import org.cactoos.io.InputOf;
 import org.jimkast.exotic.binary.binary;
-import org.jimkast.exotic.io.bs.BsInput;
-import org.jimkast.exotic.io.bs.BytesSource;
+import org.jimkast.exotic.io.bs.bs_input;
+import org.jimkast.exotic.io.bs.bsource;
 
-public interface chunk extends binary, BytesSource {
+public interface chunk extends binary, bsource {
     @Override
     int at(int i);
 
@@ -15,7 +15,7 @@ public interface chunk extends binary, BytesSource {
     int length();
 
     @Override
-    void print(OutputStream out) throws IOException;
+    void transferTo(OutputStream out) throws IOException;
 
 
     final class str implements chunk {
@@ -36,8 +36,8 @@ public interface chunk extends binary, BytesSource {
         }
 
         @Override
-        public void print(OutputStream out) throws IOException {
-            new BsInput(new InputOf(s)).print(out);
+        public void transferTo(OutputStream out) throws IOException {
+            new bs_input(new InputOf(s)).transferTo(out);
         }
     }
 }
