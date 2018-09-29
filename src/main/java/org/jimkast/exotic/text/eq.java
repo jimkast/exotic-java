@@ -1,28 +1,19 @@
 package org.jimkast.exotic.text;
 
+import org.jimkast.exotic.bool.and;
 import org.jimkast.exotic.bool.bool;
+import org.jimkast.exotic.possible.all;
 
-public final class eq implements bool {
-    private final text t1, t2;
-
+public final class eq extends bool.env {
     public eq(text t1, text t2) {
-        this.t1 = t1;
-        this.t2 = t2;
-    }
-
-    @Override
-    public <T> T choose(T left, T right) {
-        int len = t1.length();
-        if (len != t2.length()) {
-            return right;
-        }
-        int i = 0;
-        while (i < len) {
-            if (t1.at(i) != t2.at(i)) {
-                return right;
-            }
-            i++;
-        }
-        return left;
+        super(
+            new and(
+                new org.jimkast.exotic.bool.eq(new text.length(t1), new text.length(t1)),
+                new all<>(
+                    i -> new org.jimkast.exotic.bool.eq(t1.at(i), t1.at(i)),
+                    new text.indices(t1)
+                )
+            )
+        );
     }
 }

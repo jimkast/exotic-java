@@ -1,5 +1,6 @@
 package org.jimkast.exotic.text;
 
+import java.util.regex.Pattern;
 import org.jimkast.exotic.bool.bool;
 
 public final class fluent implements text {
@@ -57,6 +58,38 @@ public final class fluent implements text {
 
     public fluent lowercase() {
         return new fluent(new lowercase(origin));
+    }
+
+    public bool starts_with(text part) {
+        return new starts_with(origin, part);
+    }
+
+    public bool ends_with(text part) {
+        return new ends_with(origin, part);
+    }
+
+    public fluent trimmed(text part) {
+        return new fluent(new trimmed(origin));
+    }
+
+    public fluent trimmed_left(text part) {
+        return new fluent(new trimmed_left(origin));
+    }
+
+    public fluent trimmed_right(text part) {
+        return new fluent(new trimmed_right(origin));
+    }
+
+    public fluent replaceAll(Pattern regex, String replacement) {
+        return new fluent(new of(regex.matcher(new as_charseq(origin)).replaceAll(replacement)));
+    }
+
+    public bool matches(String regex) {
+        return matches(Pattern.compile(regex));
+    }
+
+    public bool matches(Pattern regex) {
+        return new bool.ofbool(() -> regex.matcher(new as_charseq(origin)).matches());
     }
 
     public char[] chars() {
