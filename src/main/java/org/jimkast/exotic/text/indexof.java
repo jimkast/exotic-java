@@ -13,8 +13,7 @@ public final class indexof extends NumberEnvelope {
                 new skip_until<>(
                     i -> new starts_with(new substring(source, i), target),
                     new range(0, new sub(new text.length(source), new text.length(target)))
-                ),
-                -1
+                ), -1
             )
         );
     }

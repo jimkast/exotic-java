@@ -12,7 +12,7 @@ public final class starts_with extends bool.env {
                 new bigger(container, part),
                 new all<>(
                     i -> new eq(container.at(i), part.at(i)),
-                    new text.indexes(part)
+                    new text.indices(part)
                 )
             )
         );

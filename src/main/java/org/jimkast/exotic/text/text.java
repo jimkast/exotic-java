@@ -1,7 +1,7 @@
 package org.jimkast.exotic.text;
 
 import java.util.function.Consumer;
-import org.jimkast.exotic.numberjdk.Int;
+import org.jimkast.exotic.number.sub;
 import org.jimkast.exotic.numberjdk.NumberEnvelope;
 import org.jimkast.exotic.possible.possible;
 import org.jimkast.exotic.possible.range;
@@ -73,30 +73,25 @@ public interface text {
         }
     }
 
-    final class as_possible implements possible<Character> {
+    final class chars implements possible<Integer> {
         private final text text;
         private int i = 0;
 
-        public as_possible(text text) {
+        public chars(text text) {
             this.text = text;
         }
 
         @Override
-        public void supply(Consumer<? super Character> consumer) {
+        public void supply(Consumer<? super Integer> consumer) {
             if (i < text.length()) {
-                consumer.accept(text.at(i++));
+                consumer.accept((int) text.at(i++));
             }
         }
     }
 
-    final class indexes extends possible.env<Integer> {
-        public indexes(text text) {
-            super(new range(0, new Int() {
-                @Override
-                public int intValue() {
-                    return text.length() - 1;
-                }
-            }));
+    final class indices extends possible.env<Integer> {
+        public indices(text text) {
+            super(new range(0, new sub(new length(text), 1)));
         }
     }
 

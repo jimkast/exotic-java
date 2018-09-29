@@ -1,6 +1,6 @@
 package org.jimkast.exotic.text;
 
-import org.jimkast.exotic.numberjdk.Int;
+import org.jimkast.exotic.number.sub;
 
 public final class substring implements text {
     private final text origin;
@@ -8,12 +8,7 @@ public final class substring implements text {
     private final Number len;
 
     public substring(text origin, Number offset) {
-        this(origin, offset, new Int() {
-            @Override
-            public int intValue() {
-                return origin.length() - offset.intValue();
-            }
-        });
+        this(origin, offset, new sub(new text.length(origin), offset));
     }
 
     public substring(text origin, Number offset, Number len) {

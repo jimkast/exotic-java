@@ -1,24 +1,20 @@
 package org.jimkast.exotic.text;
 
+import org.jimkast.exotic.bool.and;
 import org.jimkast.exotic.bool.bool;
+import org.jimkast.exotic.bool.eq;
+import org.jimkast.exotic.possible.all;
 
-public final class ends_with implements bool {
-    private final text container;
-    private final text part;
-
+public final class ends_with extends bool.env {
     public ends_with(text container, text part) {
-        this.container = container;
-        this.part = part;
-    }
-
-    @Override
-    public <T> T choose(T left, T right) {
-        int len = part.length();
-        for (int i = len - 1; i >= 0; i--) {
-            if (container.at(i) != part.at(i)) {
-                return right;
-            }
-        }
-        return left;
+        super(
+            new and(
+                new bigger(container, part),
+                new all<>(
+                    i -> new eq(container.at(container.length() - i), part.at(part.length() - i)),
+                    new text.indices(part)
+                )
+            )
+        );
     }
 }
