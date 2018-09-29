@@ -46,11 +46,6 @@ public class NumberEnvelope extends Number implements Scalar<Number>, byte32 {
     }
 
     @Override
-    public int val() {
-        return number.value().intValue();
-    }
-
-    @Override
     public Number value() throws Exception {
         return number.value();
     }

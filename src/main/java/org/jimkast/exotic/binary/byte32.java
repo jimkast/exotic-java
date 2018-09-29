@@ -1,7 +1,7 @@
 package org.jimkast.exotic.binary;
 
 public interface byte32 {
-    int val();
+    int intValue();
 
     class env implements byte32 {
         private final byte32 origin;
@@ -11,8 +11,8 @@ public interface byte32 {
         }
 
         @Override
-        public int val() {
-            return origin.val();
+        public int intValue() {
+            return origin.intValue();
         }
     }
 
@@ -25,7 +25,7 @@ public interface byte32 {
         }
 
         @Override
-        public int val() {
+        public int intValue() {
             return val;
         }
     }
@@ -41,9 +41,9 @@ public interface byte32 {
         }
 
         @Override
-        public int val() {
+        public int intValue() {
             if (loaded++ == 0) {
-                cache = origin.val();
+                cache = origin.intValue();
             }
             return cache;
         }

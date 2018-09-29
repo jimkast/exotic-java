@@ -46,8 +46,8 @@ public interface binary {
         }
 
         @Override
-        public int val() {
-            return b.at(index.val());
+        public int intValue() {
+            return b.at(index.intValue());
         }
     }
 }
