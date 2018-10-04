@@ -4,11 +4,11 @@ import org.jimkast.exotic.binary.binary;
 
 public final class headof implements binary {
     private final binary origin;
-    private final Number offset;
+    private final Number length;
 
-    public headof(Number offset, binary origin) {
+    public headof(Number length, binary origin) {
         this.origin = origin;
-        this.offset = offset;
+        this.length = length;
     }
 
     @Override
@@ -18,6 +18,6 @@ public final class headof implements binary {
 
     @Override
     public int length() {
-        return origin.length() - offset.intValue();
+        return length.intValue();
     }
 }
