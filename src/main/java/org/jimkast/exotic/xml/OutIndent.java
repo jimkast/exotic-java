@@ -23,34 +23,41 @@ public final class OutIndent extends OutputStream {
 
     @Override
     public void write(int b) throws IOException {
-        boolean closing = false;
-        if (b == '>' && (last == '-' || last == '/')) {
-            depth--;
-            last_opened = false;
-            origin.write(b);
-        } else if (b == '<') {
+        if (b == '<') {
             gtbuf = true;
+            return;
+        }
+        boolean self_closing = false;
+        boolean closing = false;
+        boolean opening = false;
+        if (b == '>' && (last == '-' || last == '/')) {
+            self_closing = true;
         } else if (gtbuf) {
+            gtbuf = false;
             if (b == '/') {
-                depth--;
                 closing = true;
             } else {
-                last_opened = true;
-                depth++;
+                opening = true;
             }
-            if(last_opened || !closing) {
-                origin.write('\n');
-                for (int i = 0; i < depth; i++) {
-                    sep.transferTo(origin);
-                }
-            } else {
-                last_opened = true;
-            }
-            origin.write('<');
-            origin.write(b);
             gtbuf = false;
-        } else {
-            origin.write(b);
+        }
+        if (opening || closing && !last_opened) {
+            int dep = closing ? depth - 1 : depth;
+            origin.write('\n');
+            for (int i = 0; i < dep; i++) {
+                sep.transferTo(origin);
+            }
+        }
+        if (opening || closing) {
+            origin.write('<');
+        }
+        origin.write(b);
+        if (opening) {
+            depth++;
+            last_opened = true;
+        } else if (self_closing || closing) {
+            depth--;
+            last_opened = false;
         }
         last = b;
     }
@@ -59,6 +66,9 @@ public final class OutIndent extends OutputStream {
     @Override
     public void flush() throws IOException {
         origin.flush();
+        if (gtbuf) {
+            origin.write('<');
+        }
     }
 
     @Override
