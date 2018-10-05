@@ -49,4 +49,17 @@ public interface bsource {
             }
         }
     }
+
+    final class Const implements bsource {
+        private final byte[] bytes;
+
+        public Const(byte[] bytes) {
+            this.bytes = bytes;
+        }
+
+        @Override
+        public void transferTo(OutputStream out) throws IOException {
+            out.write(bytes);
+        }
+    }
 }

@@ -2,20 +2,18 @@ package org.jimkast.exotic.xml;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.jimkast.exotic.map.FluentMap;
 
-public final class WithAttr implements Node {
-    private final Node attr;
+public final class WithPrependedChild implements Node {
+    private final Node child;
     private final Node origin;
 
-    public WithAttr(String name, String value, Node origin) {
-        this(new Attr(name, value), origin);
-    }
-
-    public WithAttr(Node attr, Node origin) {
-        this.attr = attr;
+    public WithPrependedChild(Node child, Node origin) {
+        this.child = child;
         this.origin = origin;
     }
 
@@ -31,7 +29,9 @@ public final class WithAttr implements Node {
 
     @Override
     public List<Node> children() {
-        return origin.children();
+        List<Node> copy = new ArrayList<>(origin.children());
+        copy.add(0, child);
+        return Collections.unmodifiableList(copy);
     }
 
     @Override
@@ -41,6 +41,6 @@ public final class WithAttr implements Node {
 
     @Override
     public Map<String, Node> attrs() {
-        return new FluentMap<>(origin.attrs()).with(attr.name(), attr);
+        return new FluentMap<>(origin.attrs()).with(child.name(), child);
     }
 }

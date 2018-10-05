@@ -1,4 +1,4 @@
-package org.jimkast.exotic.xml.v2;
+package org.jimkast.exotic.xml;
 
 public interface NodeType {
     boolean isText();

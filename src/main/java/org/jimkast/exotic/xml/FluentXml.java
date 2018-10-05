@@ -4,19 +4,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
-import org.jimkast.exotic.map.FluentMap;
 
-public final class WithAttr implements Node {
-    private final Node attr;
+public final class FluentXml implements Node {
     private final Node origin;
 
-    public WithAttr(String name, String value, Node origin) {
-        this(new Attr(name, value), origin);
+    public FluentXml(String name) {
+        this(new El(name));
     }
 
-    public WithAttr(Node attr, Node origin) {
-        this.attr = attr;
+    public FluentXml(Node origin) {
         this.origin = origin;
+    }
+
+    public FluentXml attr(String name, String value) {
+        return new FluentXml(new WithAttr(name, value, origin));
+    }
+
+    public FluentXml prepend(Node child) {
+        return new FluentXml(new WithPrependedChild(child, origin));
+    }
+
+    public FluentXml append(Node child) {
+        return new FluentXml(new WithAppendedChild(child, origin));
     }
 
     @Override
@@ -41,6 +50,6 @@ public final class WithAttr implements Node {
 
     @Override
     public Map<String, Node> attrs() {
-        return new FluentMap<>(origin.attrs()).with(attr.name(), attr);
+        return origin.attrs();
     }
 }

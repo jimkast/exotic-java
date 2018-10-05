@@ -1,7 +1,7 @@
-package org.jimkast.exotic.xml.v2;
+package org.jimkast.exotic.xml;
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -16,26 +16,22 @@ public final class Attr implements Node {
     }
 
     @Override
-    public void writeText(PrintStream out) throws IOException {
-        out.print(value);
+    public void writeText(OutputStream out) throws IOException {
+        out.write(value.getBytes());
     }
 
     @Override
-    public void serialize(PrintStream out) throws IOException {
-        out.print(name);
-        out.print("=\"");
-        out.print(value);
-        out.print("\"");
+    public void serialize(OutputStream out) throws IOException {
+        out.write(name.getBytes());
+        out.write('=');
+        out.write('\"');
+        out.write(value.getBytes());
+        out.write('"');
     }
 
     @Override
     public List<Node> children() {
         return Collections.emptyList();
-    }
-
-    @Override
-    public Node parent() {
-        return null;
     }
 
     @Override
@@ -46,10 +42,5 @@ public final class Attr implements Node {
     @Override
     public Map<String, Node> attrs() {
         return Collections.emptyMap();
-    }
-
-    @Override
-    public NodeType type() {
-        return null;
     }
 }
