@@ -2,10 +2,10 @@ package org.jimkast.exotic.text;
 
 import org.jimkast.exotic.binary.binary;
 
-public final class simple_chars implements binary {
-    private final char[] ch;
+public final class fixed8 implements binary {
+    private final byte[] ch;
 
-    public simple_chars(char[] ch) {
+    public fixed8(byte[] ch) {
         this.ch = ch;
     }
 

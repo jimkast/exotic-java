@@ -1,7 +1,7 @@
 package org.jimkast.exotic.binary;
 
 import org.jimkast.exotic.text.headof;
-import org.jimkast.exotic.text.simple;
+import org.jimkast.exotic.text.fixed32;
 
 public final class filtered extends binary.env {
     public filtered(bfilter f, binary origin) {
@@ -30,7 +30,7 @@ public final class filtered extends binary.env {
                     buf[found++] = b;
                 }
             }
-            return new headof(found, new simple(buf));
+            return new headof(found, new fixed32(buf));
         }
     }
 }

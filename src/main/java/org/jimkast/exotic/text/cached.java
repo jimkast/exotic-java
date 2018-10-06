@@ -24,7 +24,7 @@ public final class cached implements binary {
 
     private List<binary> val() {
         if (val.isEmpty()) {
-            val.add(new simple_chars(chars()));
+            val.add(new fixed16(chars()));
         }
         return val;
     }
