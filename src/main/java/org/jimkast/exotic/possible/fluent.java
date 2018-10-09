@@ -6,7 +6,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import org.cactoos.Scalar;
 import org.cactoos.scalar.UncheckedScalar;
 import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.check;
@@ -59,10 +58,6 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
 
     public fluent<T> flatmap(possible<T> other) {
         return new fluent<>(new joined<>(this, other));
-    }
-
-    public T orelse(Scalar<T> other) throws Exception {
-        return new orelse<>(origin, other).value();
     }
 
     public T orelse(T other) {

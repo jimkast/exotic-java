@@ -1,8 +1,10 @@
 package org.jimkast.exotic.binary;
 
 import org.jimkast.exotic.number.sub;
+import org.jimkast.exotic.possible.index.with_index;
 import org.jimkast.exotic.possible.mapped;
 import org.jimkast.exotic.possible.possible;
+import org.jimkast.exotic.possible.possible2;
 import org.jimkast.exotic.possible.range;
 
 public interface binary {
@@ -36,9 +38,15 @@ public interface binary {
         }
     }
 
-    final class streamed extends possible.env<Integer> {
-        public streamed(binary b) {
+    final class values extends possible.env<Integer> {
+        public values(binary b) {
             super(new mapped<>(b::at, new indices(b)));
+        }
+    }
+
+    final class pairs extends possible2.env<Integer, Integer> {
+        public pairs(binary b) {
+            super(new with_index<>(new values(b)));
         }
     }
 
