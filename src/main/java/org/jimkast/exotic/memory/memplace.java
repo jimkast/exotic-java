@@ -1,5 +1,5 @@
 package org.jimkast.exotic.memory;
 
-public interface addressable {
+public interface memplace {
     addr address();
 }

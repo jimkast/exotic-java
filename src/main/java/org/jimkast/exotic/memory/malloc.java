@@ -5,15 +5,18 @@ import org.jimkast.exotic.Native;
 @Native
 public final class malloc implements memblockRW {
     private final byte[] arr;
+    private final addr a;
 
     public malloc(int length) {
         this(new byte[length]);
     }
 
-    private malloc(byte[] arr) {
+    malloc(byte[] arr) {
         this.arr = arr;
+        this.a = new addr(arr);
     }
 
+    @Override
     public Number at(Number pos) {
         return arr[pos.intValue()];
     }
@@ -23,9 +26,9 @@ public final class malloc implements memblockRW {
         arr[pos.intValue()] = value.byteValue();
     }
 
-    @Override
-    public void writeFrom(Number srcOff, memblockR a, Number destOff, Number length) {
-        System.arraycopy(a.address().arr, srcOff.intValue(), arr, destOff.intValue(), length.intValue());
+    public void writeTo(memblockR block) {
+        addr a = block.address();
+        System.arraycopy(a.arr, a.offset, a.arr, a.offset, block.length().intValue());
     }
 
     @Override
@@ -35,6 +38,6 @@ public final class malloc implements memblockRW {
 
     @Override
     public addr address() {
-        return new addr(arr);
+        return a;
     }
 }
