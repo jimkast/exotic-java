@@ -36,8 +36,8 @@ public interface binary {
         }
     }
 
-    final class streamed extends possible.env<Integer> {
-        public streamed(binary b) {
+    final class values extends possible.env<Integer> {
+        public values(binary b) {
             super(new mapped<>(b::at, new indices(b)));
         }
     }
