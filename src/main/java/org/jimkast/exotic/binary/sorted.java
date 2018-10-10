@@ -1,5 +1,6 @@
 package org.jimkast.exotic.binary;
 
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import org.jimkast.exotic.text.fixed32;
 
@@ -13,6 +14,7 @@ public final class sorted extends binary.env {
     public static final class sorting implements bconv {
         @Override
         public binary convert(binary b) {
+            InputStreamReader r = new InputStreamReader(System.in);
             int len = b.length();
             int[] buf = new int[len];
             for (int i = 0; i < len; i++) {

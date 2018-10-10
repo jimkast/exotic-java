@@ -4,6 +4,7 @@ import java.util.function.Function;
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.binary.blength;
 import org.jimkast.exotic.bool.gt;
+import org.jimkast.exotic.numberjdk.Int;
 import org.jimkast.exotic.numberjdk.NumberEnvelope;
 import org.jimkast.exotic.possible.mapped;
 import org.jimkast.exotic.possible.orelse;
@@ -18,7 +19,7 @@ public final class concat implements binary {
     public concat(possible<binary> all) {
         this(
             i -> new NumberEnvelope(
-                new orelse<Number>(
+                new orelse<>(
                     new mapped<>(
                         b -> b.at(i.intValue()),
                         new skip_until<>(
@@ -26,8 +27,11 @@ public final class concat implements binary {
                             all
                         )
                     ),
-                    () -> {
-                        throw new IndexOutOfBoundsException("Index " + i + " is out of bounds.");
+                    new Int() {
+                        @Override
+                        public int intValue() {
+                            throw new IndexOutOfBoundsException("Index " + i + " is out of bounds.");
+                        }
                     }
                 )
             ),
