@@ -18,12 +18,16 @@ public final class dir_sequence implements dir {
     @Override
     public int test(binary b, int pos, List<binary> groups) {
         int count = 0;
+        int len = b.length();
         for (dir dir : all) {
             int result = dir.test(b, pos + count, groups);
             if (result == -1) {
                 return -1;
             }
             count += result;
+            if (count >= len) {
+                return -1;
+            }
         }
         return count;
     }

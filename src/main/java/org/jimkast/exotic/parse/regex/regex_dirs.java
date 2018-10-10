@@ -1,14 +1,15 @@
 package org.jimkast.exotic.parse.regex;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Consumer;
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.possible.possible;
-import org.jimkast.exotic.text.headof;
+import org.jimkast.exotic.text.substring;
 
 public final class regex_dirs implements possible<binary> {
     private final binary b;
     private final dir d;
+    private int cur = 0;
 
     public regex_dirs(binary b, dir d) {
         this.b = b;
@@ -17,9 +18,18 @@ public final class regex_dirs implements possible<binary> {
 
     @Override
     public void supply(Consumer<? super binary> consumer) {
-        int pos = d.test(b, 0, new ArrayList<>());
-        if(pos > -1) {
-            consumer.accept(new headof(pos, b));
+        int len = -1;
+        int max = b.length();
+        if (cur >= max) {
+            return;
+        }
+        int cursor = cur;
+        while (len == -1 && cursor < max) {
+            len = d.test(b, cursor++, Collections.emptyList());
+        }
+        if (len > -1) {
+            consumer.accept(new substring(b, cursor - 1, len));
+            cur = cursor;
         }
     }
 }

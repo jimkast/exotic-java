@@ -16,12 +16,14 @@ public final class dir_times implements dir {
 
     @Override
     public int test(binary b, int pos, List<binary> groups) {
-        int i;
+        int cur;
+        int i = 0;
         int j = 0;
-        int cur = 0;
         int max = from + to;
-        for (i = 0; i < max && (cur = origin.test(b, pos + j, groups)) > -1; j+=cur, i++) {
-
+        int remaining = b.length() - pos;
+        while (i < max && (j < remaining) && (cur = origin.test(b, pos + j, groups)) > -1) {
+            j += cur;
+            i++;
         }
         return i < from ? -1 : j;
     }

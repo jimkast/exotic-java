@@ -12,7 +12,6 @@ public final class dir_not implements dir {
 
     @Override
     public int test(binary b, int pos, List<binary> groups) {
-        int result = origin.test(b, pos, groups);
-        return result > -1 ? -1 : 0;
+        return origin.test(b, pos, groups) > -1 ? -1 : 0;
     }
 }
