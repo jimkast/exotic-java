@@ -28,7 +28,7 @@ public final class split implements possible<binary> {
             int i = new indexof(new skipped(from, origin), delim).intValue();
             int until = i == -1 ? origin.length() - from : i;
             index += until + delim.length();
-            consumer.accept(new substring(origin, from, until));
+            consumer.accept(new substring(from, until, origin));
         }
     }
 }

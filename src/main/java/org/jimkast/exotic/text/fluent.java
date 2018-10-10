@@ -30,7 +30,7 @@ public final class fluent implements binary {
     }
 
     public fluent substring(Number offset, Number length) {
-        return new fluent(new substring(origin, offset, length));
+        return new fluent(new substring(offset, length, origin));
     }
 
     public fluent substring_after(binary delim) {

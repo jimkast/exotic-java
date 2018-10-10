@@ -21,6 +21,6 @@ public final class as_charseq implements CharSequence {
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        return new as_charseq(new substring(text, start, end));
+        return new as_charseq(new substring(start, end, text));
     }
 }

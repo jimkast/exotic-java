@@ -21,7 +21,7 @@ public final class split_ch implements possible<binary> {
             int until = new chindex(new skipped(index, origin), delim).intValue();
             this.index += until + 1;
             if (until != -1) {
-                consumer.accept(new substring(origin, from, until));
+                consumer.accept(new substring(from, until, origin));
             }
         }
     }
