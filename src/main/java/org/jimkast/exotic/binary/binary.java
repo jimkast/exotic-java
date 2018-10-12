@@ -1,5 +1,6 @@
 package org.jimkast.exotic.binary;
 
+import java.util.function.BiPredicate;
 import org.jimkast.exotic.number.sub;
 import org.jimkast.exotic.possible.index.with_index;
 import org.jimkast.exotic.possible.mapped;
@@ -12,6 +13,27 @@ public interface binary {
 
     int length();
 
+    binary EMPTY = new binary() {
+        @Override
+        public int at(int i) {
+            return 0;
+        }
+
+        @Override
+        public int length() {
+            return 0;
+        }
+    };
+
+    BiPredicate<binary, binary> EQ = (b1, b2) -> {
+        int len = b1.length();
+        for (int i = 0; i < len; i++) {
+            if (b1.at(i) != b2.at(i)) {
+                return false;
+            }
+        }
+        return true;
+    };
 
     class env implements binary {
         private final binary origin;
