@@ -20,6 +20,11 @@
             <version>0.35</version>
         </dependency>
         <dependency>
+            <groupId>org.magicwerk</groupId>
+            <artifactId>brownies-collections</artifactId>
+            <version>0.9.13</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
