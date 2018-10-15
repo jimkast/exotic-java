@@ -8,28 +8,28 @@ import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 public final class AsSaxHandler extends DefaultHandler {
-    private final XmlTree tree;
+    private final Target target;
 
-    public AsSaxHandler(XmlTree tree) {
-        this.tree = tree;
+    public AsSaxHandler(Target target) {
+        this.target = target;
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
-        tree.startElement(new of_charseq(qName));
+        target.startElement(new of_charseq(qName));
         int len = attributes.getLength();
         for (int i = 0; i < len; i++) {
-            tree.attr(new of_charseq(attributes.getQName(i)), new of_charseq(attributes.getValue(i)));
+            target.attr(new of_charseq(attributes.getQName(i)), new of_charseq(attributes.getValue(i)));
         }
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-        tree.endElement();
+        target.endElement();
     }
 
     @Override
     public void characters(char[] ch, int start, int length) {
-        tree.text(new headof(length, new skipped(start, new fixed16(ch))));
+        target.text(new headof(length, new skipped(start, new fixed16(ch))));
     }
 }
