@@ -1,36 +1,26 @@
 package org.jimkast.exotic.binary;
 
-import org.jimkast.exotic.text.headof;
-import org.jimkast.exotic.text.fixed32;
+import java.io.IOException;
+import java.io.OutputStream;
+import org.jimkast.exotic.io.bs.bsource;
 
-public final class filtered extends binary.env {
-    public filtered(bfilter f, binary origin) {
-        super(new bconverted(new filter(f), origin));
+public final class filtered implements bsource {
+    private final bfilter filter;
+    private final binary origin;
+
+    public filtered(bfilter filter, binary origin) {
+        this.filter = filter;
+        this.origin = origin;
     }
 
-
-    static final class filter implements bconv {
-        private final bfilter filter;
-
-        filter(bfilter filter) {
-            this.filter = filter;
-        }
-
-        @Override
-        public binary convert(binary origin) {
-            int found = 0;
-            int[] buf = new int[]{origin.length()};
-            int len = origin.length();
-            for (int i = 0; i < len; i++) {
-                int b = origin.at(i);
-                if (filter.test(b)) {
-                    if (found == 0) {
-                        buf = new int[]{len - i};
-                    }
-                    buf[found++] = b;
-                }
+    @Override
+    public void transferTo(OutputStream out) throws IOException {
+        int len = origin.length();
+        for (int i = 0; i < len; i++) {
+            int b = origin.at(i);
+            if (filter.test(b)) {
+                out.write(b);
             }
-            return new headof(found, new fixed32(buf));
         }
     }
 }
