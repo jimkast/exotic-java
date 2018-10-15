@@ -28,9 +28,9 @@ public interface Row {
     };
 
     DirRowSingle INDEX = new DirRowSingle.ByNum(0);
-    DirRowSingle DEPTH = new DirRowSingle.ByNum(1);
+    DirRowSingle DEPTH = new DirRowSingle.ByNum(3);
     DirRowSingle TYPE = new DirRowSingle.ByNum(2);
-    DirRowSingle PARENT = new DirRowSingle.ByNum(3);
+    DirRowSingle PARENT = new DirRowSingle.ByNum(1);
     DirRowBinary NAME = new DirRowBinary.ByNum(4);
     DirRowBinary CONTENT = new DirRowBinary.ByNum(5);
 }
