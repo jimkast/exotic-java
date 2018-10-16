@@ -1,11 +1,14 @@
 package org.jimkast.exotic.xml.v3;
 
+import java.io.IOException;
 import java.io.PrintStream;
+import javax.xml.stream.XMLStreamConstants;
+import com.sun.xml.internal.fastinfoset.stax.StAXDocumentParser;
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.text.cached;
 import org.w3c.dom.Node;
 
-public final class XmlTree implements Table, Target {
+public final class XmlTree implements Table, Target, InputSource {
     private final int[] parents;
     private final byte[] types;
     private final byte[] depths;
@@ -42,44 +45,69 @@ public final class XmlTree implements Table, Target {
     }
 
     @Override
-    public void startElement(binary name) {
-        parents[i] = parent;
-        markup[i] = name;
-        text[i] = binary.EMPTY;
-        depths[i] = depth++;
-        parent = i++;
+    public void feed(Target target) throws IOException {
+//        for (int i = 0; i < this.i; i++) {
+//            int type = types[i];
+//            int depth = 0;
+//            if(type == StAXDocumentParser.START_ELEMENT && depth == depths[i]) {
+//                target.accept(binary.EMPTY, binary.EMPTY, StAXDocumentParser.END_ELEMENT);
+//            }
+//            switch (type) {
+//                case StAXDocumentParser.START_ELEMENT:
+//                    target.accept(markup[i], binary.EMPTY, type);
+//                    break;
+//                case StAXDocumentParser.END_ELEMENT:
+//                case StAXDocumentParser.END_DOCUMENT:
+//                    parent = parents[i];
+//                    depth--;
+//                    break;
+//                case XMLStreamConstants.ATTRIBUTE:
+//                    markup[i] = alpha;
+//                    text[i] = beta;
+//                    break;
+//                case XMLStreamConstants.CHARACTERS:
+//                    text[i] = alpha;
+//                    break;
+//                case XMLStreamConstants.PROCESSING_INSTRUCTION:
+//                case XMLStreamConstants.DTD:
+//                    markup[i] = alpha;
+//                    text[i] = beta;
+//                    break;
+//            }
+//            i++;
+//        }
     }
 
     @Override
-    public void endElement() {
-        parent = parents[i];
-        depth--;
-    }
-
-    @Override
-    public void attr(binary name, binary value) {
+    public void accept(binary alpha, binary beta, int type) {
         parents[i] = parent;
-        types[i] = Node.ATTRIBUTE_NODE;
-        markup[i] = name;
-        text[i] = value;
-        i++;
-    }
-
-    @Override
-    public void text(binary text) {
-        parents[i] = parent;
-        types[i] = Node.TEXT_NODE;
-        markup[i] = binary.EMPTY;
-        this.text[i] = text;
-        i++;
-    }
-
-    @Override
-    public void comment(binary text) {
-        parents[i] = parent;
-        types[i] = Node.COMMENT_NODE;
-        this.text[i] = text;
-        markup[i] = binary.EMPTY;
+        switch (type) {
+            case StAXDocumentParser.START_DOCUMENT:
+                depths[i] = depth++;
+                break;
+            case StAXDocumentParser.START_ELEMENT:
+                depths[i] = depth++;
+                markup[i] = alpha;
+                parent = i;
+                break;
+            case StAXDocumentParser.END_ELEMENT:
+            case StAXDocumentParser.END_DOCUMENT:
+                parent = parents[i];
+                depth--;
+                break;
+            case XMLStreamConstants.ATTRIBUTE:
+                markup[i] = alpha;
+                text[i] = beta;
+                break;
+            case XMLStreamConstants.CHARACTERS:
+                text[i] = alpha;
+                break;
+            case XMLStreamConstants.PROCESSING_INSTRUCTION:
+            case XMLStreamConstants.DTD:
+                markup[i] = alpha;
+                text[i] = beta;
+                break;
+        }
         i++;
     }
 

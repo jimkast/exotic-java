@@ -34,6 +34,22 @@ public class scanner_sourceTest {
         ).consume(new InputStreamOf("GET   /bookings?aa=243rdfrg   HTTP1/1"));
     }
 
+    @Test
+    public void sql() throws IOException {
+
+
+    }
+
+
+    @Test
+    public void xpath() throws IOException {
+        /*
+
+        new
+
+         */
+    }
+
 
     @Test
     public void http() throws IOException {
