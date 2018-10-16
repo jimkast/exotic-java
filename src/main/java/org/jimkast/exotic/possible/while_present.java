@@ -1,40 +1,36 @@
 package org.jimkast.exotic.possible;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
+import org.jimkast.exotic.bool.cond_loop;
+import org.jimkast.exotic.possible.util.FlagConsumer;
 
 public final class while_present<T> implements possible<T> {
-    private final possible<T> origin;
-    private final int[] f = new int[]{0};
+    private final Function<Consumer<? super T>, Runnable> mapping;
 
     public while_present(possible<T> origin) {
-        this.origin = origin;
+        this(origin, new FlagConsumer<>(1));
+    }
+
+    public while_present(possible<T> origin, FlagConsumer<T> incomplete) {
+        this(consumer -> {
+            return new cond_loop(
+                incomplete,
+                () -> {
+                    incomplete.reset();
+                    origin.supply(incomplete.andThen(consumer));
+                }
+            );
+        });
+    }
+
+    public while_present(Function<Consumer<? super T>, Runnable> mapping) {
+        this.mapping = mapping;
     }
 
     @Override
     public void supply(Consumer<? super T> consumer) {
-//        RunCount<? super T> count = new RunCount<>(consumer);
-//        new cond_loop(
-//            new eq(f[0], 0),
-//            () -> {
-//                f[0] = 1;
-//                origin.supply(t -> {
-//                    f[0] = 0;
-//                    consumer.accept(t);
-//                });
-//            }
-//        ).run();
-        int[] flag = new int[]{0};
-        while (flag[0] == 0) {
-            flag[0] = 1;
-            origin.supply(t -> {
-                flag[0] = 0;
-                consumer.accept(t);
-            });
-        }
-//        origin.supply(t -> {
-//            consumer.accept(t);
-//            supply(consumer);
-//        });
+        mapping.apply(consumer).run();
     }
 
 

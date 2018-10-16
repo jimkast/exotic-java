@@ -34,7 +34,7 @@ public final class fluent<T> implements possible<T>, Iterable<T> {
     }
 
     public fluent<T> filter(check<T> check) {
-        return new fluent<>(new filtered<>(check, origin));
+        return new fluent<>(new skip_until<>(check, origin));
     }
 
     public <X> X reduced(X initial, BiConsumer<X, T> accumulator) {

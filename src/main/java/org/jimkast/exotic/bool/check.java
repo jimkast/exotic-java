@@ -28,4 +28,17 @@ public interface check<T> {
             return new org.jimkast.exotic.bool.not(origin.test(o));
         }
     }
+
+    final class fixed<T> implements check<T> {
+        private final bool b;
+
+        public fixed(bool b) {
+            this.b = b;
+        }
+
+        @Override
+        public bool test(T o) {
+            return b;
+        }
+    }
 }

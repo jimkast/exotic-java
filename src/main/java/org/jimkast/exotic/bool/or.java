@@ -1,7 +1,5 @@
 package org.jimkast.exotic.bool;
 
-import java.util.function.Supplier;
-
 public final class or implements bool {
     private final bool n1;
     private final bool n2;
@@ -13,6 +11,7 @@ public final class or implements bool {
 
     @Override
     public <T> T choose(T left, T right) {
-        return n1.choose(() -> n2.choose(left, right), (Supplier<T>) () -> right).get();
+        return n1.choose(true, false) ? left : n2.choose(left, right);
+//        return n1.choose(() -> n2.choose(left, right), (Supplier<T>) () -> right).get();
     }
 }

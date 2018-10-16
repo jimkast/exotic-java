@@ -18,13 +18,13 @@ public class firstTest {
 
     @Test
     public void supply() throws Exception {
-        Assert.assertEquals(4, (int) new orelse<>(
-            new skip_until<>(
-                i -> new gte(i, 4),
-                new range(1, 10)
-            ),
-            5
-        ).value());
+        possible<Integer> p = new skip_until<>(
+            i -> new gte(i, 4),
+            new range(1, 10)
+        );
+        Assert.assertEquals(4, (int) new orelse<>(p, 99).value());
+        Assert.assertEquals(5, (int) new orelse<>(p, 99).value());
+        Assert.assertEquals(6, (int) new orelse<>(p, 99).value());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class firstTest {
     @Test
     public void filtered() throws Exception {
         new while_present<>(
-            new filtered<>(i -> new eq(i % 2, 1), new range(1, 10))
+            new skip_until<>(i -> new eq(i % 2, 1), new range(1, 10))
         ).supply(System.out::println);
     }
 
