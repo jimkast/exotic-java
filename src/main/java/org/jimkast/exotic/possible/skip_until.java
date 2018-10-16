@@ -15,10 +15,10 @@ public final class skip_until<T> implements possible<T> {
     @Override
     public void supply(Consumer<? super T> consumer) {
 
-        int[] flag = new int[]{0};
-        while (flag[0] == 0) {
-            origin.supply(t -> check.test(t).choose(consumer, x -> flag[0] = 1));
-        }
+//        int[] flag = new int[]{0};
+//        while (flag[0] == 0) {
+//            origin.supply(t -> check.test(t).choose(consumer, x -> flag[0] = 1));
+//        }
         origin.supply(new CondConsumer<>(check, consumer, new Recursive<>(this, consumer)));
 //        origin.supply(t -> check.test(t).choose(consumer, t1 -> supply(consumer)).accept(t));
     }

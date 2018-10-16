@@ -2,8 +2,9 @@ package org.jimkast.exotic.text;
 
 import java.io.InputStream;
 import org.jimkast.exotic.binary.binary;
+import org.jimkast.exotic.binary.bstream;
 
-public final class as_bytestream extends InputStream {
+public final class as_bytestream extends InputStream implements bstream {
     private final binary b;
     private int i = 0;
     private int mark = 0;

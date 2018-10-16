@@ -1,11 +1,13 @@
 package org.jimkast.exotic.text;
 
+import java.util.Arrays;
 import java.util.function.Function;
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.binary.blength;
 import org.jimkast.exotic.bool.gt;
 import org.jimkast.exotic.numberjdk.Int;
 import org.jimkast.exotic.numberjdk.NumberEnvelope;
+import org.jimkast.exotic.possible.adapter.iterable;
 import org.jimkast.exotic.possible.mapped;
 import org.jimkast.exotic.possible.orelse;
 import org.jimkast.exotic.possible.possible;
@@ -15,6 +17,14 @@ import org.jimkast.exotic.possible.skip_until;
 public final class concat implements binary {
     private final Function<Number, Number> at;
     private final Number length;
+
+    public concat(binary... all) {
+        this(Arrays.asList(all));
+    }
+
+    public concat(Iterable<binary> all) {
+        this(new iterable<>(all));
+    }
 
     public concat(possible<binary> all) {
         this(

@@ -40,7 +40,7 @@ public final class filtered implements bstreamable, bsource {
         }
 
         @Override
-        public int next() {
+        public int read() {
             int len = origin.length();
             while (i < len) {
                 int b = origin.at(i++);
