@@ -3,6 +3,7 @@ package org.jimkast.exotic.possible;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import org.jimkast.exotic.bool.and;
+import org.jimkast.exotic.bool.bool;
 import org.jimkast.exotic.bool.check;
 import org.jimkast.exotic.bool.cond_loop;
 import org.jimkast.exotic.bool.not;
@@ -16,11 +17,15 @@ public final class skip_until<T> implements possible<T> {
         this(check, origin, new FlagConsumer<>(), new FlagConsumer<>(1));
     }
 
-    public skip_until(check<T> check, possible<T> origin, FlagConsumer<T> found, FlagConsumer<T> incomplete) {
+    private skip_until(check<T> check, possible<T> origin, FlagConsumer<T> found, FlagConsumer<T> incomplete) {
+        this(check, origin, found, incomplete, new and(new not(found), incomplete));
+    }
+
+    private skip_until(check<T> check, possible<T> origin, FlagConsumer<T> found, FlagConsumer<T> incomplete, bool cond) {
         this(consumer -> {
             found.reset();
             return new cond_loop(
-                new and(new not(found), incomplete),
+                cond,
                 () -> {
                     incomplete.reset();
                     origin.supply(new CondConsumer<>(check, incomplete.andThen(found).andThen(consumer), incomplete));
