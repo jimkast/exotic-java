@@ -34,11 +34,11 @@ public interface array<T> {
 
 
     @Native
-    final class malloc<T> implements array<T> {
+    final class jdk<T> implements array<T> {
         private final T[] arr;
 
         @SafeVarargs
-        public malloc(T... arr) {
+        public jdk(T... arr) {
             this.arr = arr;
         }
 
