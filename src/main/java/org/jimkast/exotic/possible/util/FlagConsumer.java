@@ -31,12 +31,4 @@ public final class FlagConsumer<T> implements Consumer<T>, bool {
     public void reset() {
         flag[0] = 0;
     }
-
-    public void success() {
-        flag[0] = 1;
-    }
-
-    public void indeterminate() {
-        flag[0] = 2;
-    }
 }

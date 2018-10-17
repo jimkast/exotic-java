@@ -1,10 +1,10 @@
 package org.jimkast.exotic.bool;
 
-public final class or implements bool {
+public final class either implements bool {
     private final bool n1;
     private final bool n2;
 
-    public or(bool n1, bool n2) {
+    public either(bool n1, bool n2) {
         this.n1 = n1;
         this.n2 = n2;
     }

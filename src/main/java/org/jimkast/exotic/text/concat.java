@@ -12,7 +12,7 @@ import org.jimkast.exotic.possible.mapped;
 import org.jimkast.exotic.possible.orelse;
 import org.jimkast.exotic.possible.possible;
 import org.jimkast.exotic.possible.reduced;
-import org.jimkast.exotic.possible.skip_until;
+import org.jimkast.exotic.possible.filtered;
 
 public final class concat implements binary {
     private final Function<Number, Number> at;
@@ -32,7 +32,7 @@ public final class concat implements binary {
                 new orelse<>(
                     new mapped<>(
                         b -> b.at(i.intValue()),
-                        new skip_until<>(
+                        new filtered<>(
                             b -> new gt(new blength(b), i),
                             all
                         )

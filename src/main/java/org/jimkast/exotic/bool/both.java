@@ -1,10 +1,10 @@
 package org.jimkast.exotic.bool;
 
-public final class and implements bool {
+public final class both implements bool {
     private final bool n1;
     private final bool n2;
 
-    public and(bool n1, bool n2) {
+    public both(bool n1, bool n2) {
         this.n1 = n1;
         this.n2 = n2;
     }
