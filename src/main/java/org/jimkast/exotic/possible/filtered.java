@@ -19,7 +19,7 @@ public final class filtered<T> extends possible.env<T> {
     }
 
     private filtered(check<T> check, possible<T> origin, FlagConsumer<T> found, FlagConsumer<T> incomplete, bool cond) {
-        super(new pmapping<>((consumer -> {
+        super(new pmapping<>(consumer -> {
             found.reset();
             return new cond_loop(
                 cond,
@@ -28,6 +28,6 @@ public final class filtered<T> extends possible.env<T> {
                     origin.supply(new CondConsumer<>(check, incomplete.andThen(found).andThen(consumer), incomplete));
                 }
             );
-        })));
+        }));
     }
 }
