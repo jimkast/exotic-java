@@ -1,6 +1,5 @@
 package org.jimkast.exotic.xml.v3;
 
-import java.io.OutputStream;
 import org.jimkast.exotic.possible.possible;
 
 public interface Markuped {
@@ -8,15 +7,13 @@ public interface Markuped {
 
     CharSequence text();
 
-    void serialize(OutputStream out);
+//    void serialize(OutputStream out);
 
 
     Markuped EMPTY = new Markuped() {
-        private final possible<Markuped> empty = new possible.empty<>();
-
         @Override
         public possible<Markuped> query(CharSequence q) {
-            return empty;
+            return possible.empty.instance();
         }
 
         @Override
@@ -24,8 +21,8 @@ public interface Markuped {
             return "";
         }
 
-        @Override
-        public void serialize(OutputStream out) {
-        }
+//        @Override
+//        public void serialize(OutputStream out) {
+//        }
     };
 }
