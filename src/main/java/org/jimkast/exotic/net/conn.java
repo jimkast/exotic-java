@@ -1,11 +1,11 @@
 package org.jimkast.exotic.net;
 
-import java.io.InputStream;
+import java.io.IOException;
 
-public interface conn {
-    InputStream in();
+public interface Conn extends InStream, OutStream {
+    int read(byte[] block, int offset, int len) throws IOException;
 
-    InputStream out();
+    void write(byte[] block, int offset, int len) throws IOException;
 
-    void close();
+    void close() throws IOException;
 }
