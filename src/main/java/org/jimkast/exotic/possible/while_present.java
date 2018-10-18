@@ -10,14 +10,12 @@ public final class while_present<T> extends possible.env<T> {
     }
 
     public while_present(possible<T> origin, FlagConsumer<T> incomplete) {
-        super(new pmapping<>(consumer -> {
-            return new cond_loop(
-                incomplete,
-                () -> {
-                    incomplete.reset();
-                    origin.supply(incomplete.andThen(consumer));
-                }
-            );
-        }));
+        super(new pmapping<>(consumer -> new cond_loop(
+            incomplete,
+            () -> {
+                incomplete.reset();
+                origin.supply(incomplete.andThen(consumer));
+            }
+        )));
     }
 }
