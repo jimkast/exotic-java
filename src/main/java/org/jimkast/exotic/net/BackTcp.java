@@ -16,7 +16,9 @@ public final class BackTcp implements BackCloseable {
 
     @Override
     public void feed(Session session) throws IOException {
-        session.accept(s.establish());
+        try (Conn conn = s.establish()) {
+            session.accept(conn);
+        }
     }
 
     @Override
