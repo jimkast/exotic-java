@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public final class BackTcp implements BackCloseable {
-    private final ServerSocket s;
+    private final ConnFactory s;
 
     public BackTcp(ServerSocket s) {
+        this(new TcpServerSocket(s));
+    }
+
+    public BackTcp(ConnFactory s) {
         this.s = s;
     }
 
     @Override
     public void feed(Session session) throws IOException {
-        session.accept(new ConnTcp(s.accept()));
+        session.accept(s.establish());
     }
 
     @Override
