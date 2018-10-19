@@ -7,7 +7,7 @@ import org.jimkast.exotic.numberjdk.NumSticky;
 public final class trimmed_right extends binary.env {
     public trimmed_right(binary origin) {
         super(
-            new skipped_last(
+            new headof(
                 new NumSticky(
                     new Int() {
                         @Override
