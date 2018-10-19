@@ -1,6 +1,8 @@
 package org.jimkast.exotic.net;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import sun.misc.Unsafe;
 
 public final class SessionExchange implements Session {
     private final IOExchange exchange;
@@ -11,6 +13,8 @@ public final class SessionExchange implements Session {
 
     @Override
     public void accept(Conn channel) throws IOException {
-        exchange.exchange(channel).transferTo(new OutStream.AsOutputStream(channel));
+        long l = Unsafe.getUnsafe().allocateMemory(16);
+        ByteBuffer.allocateDirect(500);
+        exchange.exchange(channel).transferTo(new OutStreamCloseable.AsOutputStream(channel));
     }
 }
