@@ -3,13 +3,11 @@ package org.jimkast.exotic.net.http;
 import java.io.IOException;
 import java.io.InputStream;
 import org.cactoos.Input;
+import org.jimkast.exotic.xml.v3.Markuped;
 
-public interface HttpIn extends HttpHead, Input {
-    @Override
-    HttpLine line();
+public interface HttpIn extends Input {
+    Markuped head();
 
-    @Override
-    Iterable<Prop> headers();
 
     @Override
     InputStream stream() throws IOException;
@@ -23,17 +21,12 @@ public interface HttpIn extends HttpHead, Input {
         }
 
         @Override
-        public HttpLine line() {
-            return origin.line();
+        public Markuped head() {
+            return origin.head();
         }
 
         @Override
-        public Iterable<Prop> headers() {
-            return origin.headers();
-        }
-
-        @Override
-        public final InputStream stream() throws IOException {
+        public InputStream stream() throws IOException {
             return origin.stream();
         }
     }

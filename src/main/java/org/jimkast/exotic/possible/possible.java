@@ -7,6 +7,7 @@ import org.cactoos.scalar.UncheckedScalar;
 public interface possible<T> {
     void supply(Consumer<? super T> consumer);
 
+    possible<?> EMPTY = new empty<>();
 
     class env<T> implements possible<T> {
         private final possible<T> origin;
@@ -48,6 +49,12 @@ public interface possible<T> {
         @Override
         public void supply(Consumer<? super T> consumer) {
         }
+
+        @SuppressWarnings("unchecked")
+        public static <T> possible<T> instance() {
+            return (possible<T>) EMPTY;
+        }
+
     }
 
 

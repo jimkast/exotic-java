@@ -1,22 +1,23 @@
 package org.jimkast.exotic.xml.v3;
 
-import java.io.OutputStream;
+import java.util.function.Consumer;
 import org.jimkast.exotic.possible.possible;
 
-public interface Markuped {
-    possible<Markuped> query(CharSequence q);
+public interface Markuped extends possible<Markuped> {
+    Markuped query(CharSequence q);
 
     CharSequence text();
 
-    void serialize(OutputStream out);
+    @Override
+    void supply(Consumer<? super Markuped> consumer);
+
+    //    void serialize(OutputStream out);
 
 
     Markuped EMPTY = new Markuped() {
-        private final possible<Markuped> empty = new possible.empty<>();
-
         @Override
-        public possible<Markuped> query(CharSequence q) {
-            return empty;
+        public Markuped query(CharSequence q) {
+            return this;
         }
 
         @Override
@@ -25,7 +26,8 @@ public interface Markuped {
         }
 
         @Override
-        public void serialize(OutputStream out) {
+        public void supply(Consumer<? super Markuped> consumer) {
+
         }
     };
 }

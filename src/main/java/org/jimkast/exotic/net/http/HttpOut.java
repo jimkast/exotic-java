@@ -3,17 +3,10 @@ package org.jimkast.exotic.net.http;
 import java.io.IOException;
 import java.io.OutputStream;
 import org.jimkast.exotic.io.bs.bsource;
+import org.jimkast.exotic.xml.v3.Markuped;
 
-public interface HttpOut extends HttpHead, bsource {
-    @Override
-    HttpLine line();
-
-    @Override
-    Iterable<Prop> headers();
-
-    @Override
-    void transferTo(OutputStream out) throws IOException;
-
+public interface HttpOut extends bsource {
+    Markuped head();
 
     class Envelope implements HttpOut {
         private final HttpOut origin;
@@ -23,17 +16,12 @@ public interface HttpOut extends HttpHead, bsource {
         }
 
         @Override
-        public final HttpLine line() {
-            return origin.line();
+        public Markuped head() {
+            return origin.head();
         }
 
         @Override
-        public final Iterable<Prop> headers() {
-            return origin.headers();
-        }
-
-        @Override
-        public final void transferTo(OutputStream out) throws IOException {
+        public void transferTo(OutputStream out) throws IOException {
             origin.transferTo(out);
         }
     }
