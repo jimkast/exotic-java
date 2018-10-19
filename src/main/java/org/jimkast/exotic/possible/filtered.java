@@ -11,7 +11,7 @@ public final class filtered<T> extends possible.env<T> {
         });
     }
 
-    private filtered(check<T> check, possible<T> origin, Consumer<T> empty) {
-        super(new pmapping<>(consumer -> new PossibleAsRunnable<>(new while_present<>(new pwhile<>(check, consumer, origin)), empty)));
+    private filtered(check<T> check, possible<T> origin, Consumer<? super T> empty) {
+        super(new pmapping<>(consumer -> new PossibleAsRunnable<>(new while_present<>(new pwhile<>(check, origin, consumer)), empty)));
     }
 }
