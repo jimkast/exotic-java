@@ -1,6 +1,7 @@
 package org.jimkast.exotic.net;
 
 import java.util.function.Function;
+import org.jimkast.exotic.heap.InStream;
 import org.jimkast.exotic.io.bs.bsource;
 import org.jimkast.exotic.net.http.HttpIn;
 import org.jimkast.exotic.net.http.HttpOut;

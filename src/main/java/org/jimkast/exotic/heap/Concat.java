@@ -1,9 +1,8 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 import java.io.IOException;
 import java.util.List;
 import org.jimkast.exotic.map.MappingInt;
-import org.jimkast.exotic.net.OutStream;
 
 public final class Concat implements MemBlockR {
     private final MappingInt<MemBlockR> mapping;

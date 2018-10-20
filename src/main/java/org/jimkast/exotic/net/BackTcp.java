@@ -2,6 +2,7 @@ package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import org.jimkast.exotic.heap.Conn;
 
 public final class BackTcp implements BackCloseable {
     private final ConnFactory s;

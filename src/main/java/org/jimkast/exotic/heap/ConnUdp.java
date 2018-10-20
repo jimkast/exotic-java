@@ -1,4 +1,4 @@
-package org.jimkast.exotic.net;
+package org.jimkast.exotic.heap;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -12,15 +12,17 @@ public final class ConnUdp implements Conn {
     }
 
     @Override
-    public int read(byte[] block, int offset, int len) throws IOException {
-        DatagramPacket p = new DatagramPacket(block, offset, len);
+    public int read(HeapBlock heap) throws IOException {
+        HeapAddr addr = heap.address();
+        DatagramPacket p = new DatagramPacket(addr.jarr, addr.offset, heap.length());
         s.receive(p);
         return p.getLength();
     }
 
     @Override
-    public void write(byte[] block, int offset, int len) throws IOException {
-        s.send(new DatagramPacket(block, offset, len));
+    public void write(HeapBlock heap) throws IOException {
+        HeapAddr addr = heap.address();
+        s.send(new DatagramPacket(addr.jarr, addr.offset, heap.length()));
     }
 
     @Override

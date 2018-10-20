@@ -1,4 +1,4 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 import org.jimkast.exotic.memory.addr;
 

@@ -1,11 +1,11 @@
-package org.jimkast.exotic.net;
+package org.jimkast.exotic.heap;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 
 public interface OutStreamCloseable extends OutStream, Closeable {
-    void write(byte[] block, int offset, int len) throws IOException;
+    void write(HeapBlock heap) throws IOException;
 
 
     final class AsCloseable implements OutStreamCloseable {
@@ -16,8 +16,8 @@ public interface OutStreamCloseable extends OutStream, Closeable {
         }
 
         @Override
-        public void write(byte[] block, int offset, int len) throws IOException {
-            out.write(block, offset, len);
+        public void write(HeapBlock heap) throws IOException {
+            out.write(heap);
         }
 
         @Override
@@ -46,7 +46,7 @@ public interface OutStreamCloseable extends OutStream, Closeable {
 
         @Override
         public void write(byte[] block, int offset, int len) throws IOException {
-            out.write(block, offset, len);
+            out.write(new HeapFixed(block, offset, len));
         }
 
         @Override

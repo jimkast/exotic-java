@@ -1,9 +1,9 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 import java.io.IOException;
 
 public interface MemBlockW extends Countable, IntMapping {
-    void write(int skip, byte[] block, int offset, int len) throws IOException;
+    void write(int skip, HeapBlock block) throws IOException;
 
     @Override
     int length();

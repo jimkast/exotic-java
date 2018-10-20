@@ -1,4 +1,4 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 public final class BlockHeap {
     private final byte[] b;

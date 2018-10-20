@@ -1,4 +1,4 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 public interface Countable {
     int length();

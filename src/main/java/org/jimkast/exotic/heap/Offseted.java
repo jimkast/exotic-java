@@ -1,7 +1,6 @@
-package org.jimkast.exotic.string;
+package org.jimkast.exotic.heap;
 
 import java.io.IOException;
-import org.jimkast.exotic.net.OutStream;
 
 public final class Offseted implements MemBlockR, MemBlockW {
     private final int offset;
@@ -27,8 +26,9 @@ public final class Offseted implements MemBlockR, MemBlockW {
         return origin.length() - offset;
     }
 
+
     @Override
-    public void write(int skip, byte[] block, int offset, int len) throws IOException {
-        origin.write(skip + offset, block, offset, len);
+    public void write(int skip, HeapBlock block) throws IOException {
+        origin.write(skip + offset, block);
     }
 }

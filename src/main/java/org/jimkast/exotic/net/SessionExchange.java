@@ -2,6 +2,8 @@ package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.jimkast.exotic.heap.Conn;
+import org.jimkast.exotic.heap.OutStreamCloseable;
 import sun.misc.Unsafe;
 
 public final class SessionExchange implements Session {
