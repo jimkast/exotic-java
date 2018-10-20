@@ -1,31 +1,34 @@
 package org.jimkast.exotic.string;
 
-public final class Offseted implements Readable {
-    private final int offset;
-    private final Readable r;
+import java.io.IOException;
+import org.jimkast.exotic.net.OutStream;
 
-    public Offseted(int offset, Readable r) {
+public final class Offseted implements MemBlockR, MemBlockW {
+    private final int offset;
+    private final MemBlockRW origin;
+
+    public Offseted(int offset, MemBlockRW origin) {
         this.offset = offset;
-        this.r = r;
+        this.origin = origin;
     }
 
     @Override
-    public int at(int i) {
-        return r.at(i + offset);
+    public int map(int offset) {
+        return origin.map(offset + this.offset);
+    }
+
+    @Override
+    public void printTo(OutStream out, int offset, int length) throws IOException {
+        origin.printTo(out, this.offset + offset, length);
     }
 
     @Override
     public int length() {
-        return r.length() - offset;
+        return origin.length() - offset;
     }
 
     @Override
-    public Readable slice(int offset, int length) {
-        return r.slice(offset + this.offset, length);
-    }
-
-    @Override
-    public void transferTo(Writeable out) {
-        r.slice(this.offset, length() - this.offset).transferTo(out);
+    public void write(int skip, byte[] block, int offset, int len) throws IOException {
+        origin.write(skip + offset, block, offset, len);
     }
 }

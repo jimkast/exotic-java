@@ -1,44 +1,76 @@
 package org.jimkast.exotic.string;
 
+import java.io.IOException;
 import java.util.List;
+import org.jimkast.exotic.map.MappingInt;
+import org.jimkast.exotic.net.OutStream;
 
-public final class Concat implements Readable {
-    private final List<Readable> all;
+public final class Concat implements MemBlockR {
+    private final MappingInt<MemBlockR> mapping;
+    private final Countable sum;
 
-    public Concat(List<Readable> all) {
-        this.all = all;
+    public Concat(Iterable<MemBlockR> all) {
+        this(new Mapping<>(all), new Sum(all));
+    }
+
+    Concat(MappingInt<MemBlockR> mapping, Countable all) {
+        this.mapping = mapping;
+        this.sum = all;
     }
 
     @Override
-    public int at(int i) {
-        return slice(i, 1).at(0);
+    public int map(int i) {
+        return mapping.map(i).map(0);
     }
 
     @Override
     public int length() {
-        int l = 0;
-        for (Readable s : all) {
-            l += s.length();
-        }
-        return l;
+        return sum.length();
     }
 
     @Override
-    public Readable slice(int offset, int length) {
-        int count = 0;
-        for (Readable s : all) {
-            count += s.length();
-            if (offset < count) {
-                return s.slice(count - offset, length);
+    public void printTo(OutStream out, int offset, int length) throws IOException {
+        mapping.map(offset).printTo(out, 0, length);
+    }
+
+
+    public final static class Mapping<T extends Countable> implements MappingInt<T> {
+        private final Iterable<T> all;
+
+        public Mapping(Iterable<T> all) {
+            this.all = all;
+        }
+
+        @Override
+        public T map(int index) {
+            int count = 0;
+            for (T s : all) {
+                count += s.length();
+                if (count > index) {
+                    return s;
+                }
             }
+            throw new IndexOutOfBoundsException("For index " + index);
         }
-        throw new IndexOutOfBoundsException("For index " + offset);
     }
 
-    @Override
-    public void transferTo(Writeable out) {
-        for (Readable r : all) {
-            r.transferTo(out);
+    public final static class BinaryMapping<T extends Countable> implements MappingInt<T> {
+        private final List<Integer> all;
+
+        public BinaryMapping(List<Integer> all) {
+            this.all = all;
+        }
+
+        @Override
+        public T map(int index) {
+            int from = 0;
+            int to = all.size() - 1;
+            int count = 0;
+
+            for (int s : all) {
+
+            }
+            throw new IndexOutOfBoundsException("For index " + index);
         }
     }
 }
