@@ -1,8 +1,9 @@
-package org.jimkast.exotic.heap;
+package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import org.jimkast.exotic.heap.HeapBlock;
 
 public final class ConnUdp implements Conn {
     private final DatagramSocket s;
@@ -13,16 +14,14 @@ public final class ConnUdp implements Conn {
 
     @Override
     public int read(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        DatagramPacket p = new DatagramPacket(addr.jarr, addr.offset, heap.length());
+        DatagramPacket p = heap.supply(DatagramPacket::new);
         s.receive(p);
         return p.getLength();
     }
 
     @Override
     public void write(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        s.send(new DatagramPacket(addr.jarr, addr.offset, heap.length()));
+        s.send(heap.supply(DatagramPacket::new));
     }
 
     @Override

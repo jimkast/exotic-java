@@ -2,8 +2,6 @@ package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import org.jimkast.exotic.heap.Conn;
-import org.jimkast.exotic.heap.ConnTcp;
 
 public final class TcpServerSocket implements ConnFactory {
     private final ServerSocket s;

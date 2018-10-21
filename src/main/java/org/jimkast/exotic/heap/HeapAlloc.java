@@ -1,6 +1,7 @@
 package org.jimkast.exotic.heap;
 
 import java.io.IOException;
+import org.jimkast.exotic.net.OutStream;
 
 public final class HeapAlloc implements HeapBlock, MemBlockR, MemBlockW {
     private final byte[] jarr;

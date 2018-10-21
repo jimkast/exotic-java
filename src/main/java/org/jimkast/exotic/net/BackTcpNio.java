@@ -2,7 +2,6 @@ package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.nio.channels.ServerSocketChannel;
-import org.jimkast.exotic.heap.ConnTcpNio;
 
 public final class BackTcpNio implements BackCloseable {
     private final ServerSocketChannel s;

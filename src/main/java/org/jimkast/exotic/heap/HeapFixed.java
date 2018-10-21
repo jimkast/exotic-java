@@ -4,15 +4,15 @@ public final class HeapFixed implements HeapBlock {
     private final HeapAddr pointer;
     private final Number length;
 
-    HeapFixed(byte[] jarr) {
+    public HeapFixed(byte[] jarr) {
         this(new HeapAddr(jarr), jarr.length);
     }
 
-    HeapFixed(byte[] jarr, int offset, Number length) {
+    public HeapFixed(byte[] jarr, int offset, Number length) {
         this(new HeapAddr(jarr, offset), length);
     }
 
-    HeapFixed(HeapAddr pointer, Number length) {
+    public HeapFixed(HeapAddr pointer, Number length) {
         this.pointer = pointer;
         this.length = length;
     }

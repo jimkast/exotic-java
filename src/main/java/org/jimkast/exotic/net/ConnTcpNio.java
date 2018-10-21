@@ -1,8 +1,8 @@
-package org.jimkast.exotic.heap;
+package org.jimkast.exotic.net;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import org.jimkast.exotic.heap.HeapBlock;
 
 public final class ConnTcpNio implements Conn {
     private final SocketChannel s;
@@ -13,14 +13,12 @@ public final class ConnTcpNio implements Conn {
 
     @Override
     public int read(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        return s.read(ByteBuffer.wrap(addr.jarr, addr.offset, heap.length()));
+        return s.read(heap.buffer());
     }
 
     @Override
     public void write(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        s.write(ByteBuffer.wrap(addr.jarr, addr.offset, heap.length()));
+        s.write(heap.buffer());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.jimkast.exotic.heap;
 
 import java.io.IOException;
+import org.jimkast.exotic.net.OutStream;
 
 public interface MemBlockR extends Countable, IntMapping, MemInput {
     @Override

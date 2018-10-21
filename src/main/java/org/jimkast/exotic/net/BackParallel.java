@@ -2,13 +2,13 @@ package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 
 public final class BackParallel implements Back {
-    private final ExecutorService svc;
+    private final Executor svc;
     private final Back origin;
 
-    public BackParallel(ExecutorService svc, Back origin) {
+    public BackParallel(Executor svc, Back origin) {
         this.svc = svc;
         this.origin = origin;
     }

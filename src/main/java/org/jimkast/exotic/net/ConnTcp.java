@@ -1,7 +1,8 @@
-package org.jimkast.exotic.heap;
+package org.jimkast.exotic.net;
 
 import java.io.IOException;
 import java.net.Socket;
+import org.jimkast.exotic.heap.HeapBlock;
 
 public final class ConnTcp implements Conn {
     private final Socket s;
@@ -12,14 +13,12 @@ public final class ConnTcp implements Conn {
 
     @Override
     public int read(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        return s.getInputStream().read(addr.jarr, addr.offset, heap.length());
+        return heap.readFrom(s.getInputStream());
     }
 
     @Override
     public void write(HeapBlock heap) throws IOException {
-        HeapAddr addr = heap.address();
-        s.getOutputStream().write(addr.jarr, addr.offset, heap.length());
+        heap.writeTo(s.getOutputStream());
     }
 
     @Override

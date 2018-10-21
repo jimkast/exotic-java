@@ -1,8 +1,10 @@
-package org.jimkast.exotic.heap;
+package org.jimkast.exotic.net;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.jimkast.exotic.heap.HeapBlock;
+import org.jimkast.exotic.heap.HeapFixed;
 
 public interface OutStreamCloseable extends OutStream, Closeable {
     void write(HeapBlock heap) throws IOException;
