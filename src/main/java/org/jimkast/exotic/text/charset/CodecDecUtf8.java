@@ -10,14 +10,14 @@ public final class CodecDecUtf8 implements CsCodec {
         if (b == -1) {
             return -1;
         }
-        if (b < 0b10000000) {
+        if (b < 0x80) {
             return b;
         }
         byte[] buf = new byte[4];
-        if (b < 0b11100000) {
+        if (b < 0x800) {
             buf[2] = (byte) b;
             buf[3] = (byte) stream.read();
-        } else if (b < 0b11110000) {
+        } else if (b <= 0xFFFF) {
             buf[1] = (byte) b;
             buf[2] = (byte) stream.read();
             buf[3] = (byte) stream.read();
