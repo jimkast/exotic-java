@@ -8,7 +8,7 @@ import org.cactoos.io.InputOf;
 import org.jimkast.exotic.io.input.InputIoChecked;
 import org.xml.sax.SAXException;
 
-public final class JdkSaxInputSource implements InputSource {
+public final class JdkSaxInputSource implements XmlSource {
     private final SAXParser parser;
     private final Input input;
 

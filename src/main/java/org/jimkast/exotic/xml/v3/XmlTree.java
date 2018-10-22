@@ -8,7 +8,7 @@ import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.text.cached;
 import org.w3c.dom.Node;
 
-public final class XmlTree implements Table, Target, InputSource {
+public final class XmlTree implements Table, Target, XmlSource {
     private final int[] parents;
     private final byte[] types;
     private final byte[] depths;
