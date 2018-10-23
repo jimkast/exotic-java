@@ -15,7 +15,7 @@ public final class PsOfIterator<T> implements PSource<T> {
     @Override
     public Cond feed(Target<T> target) {
         Cond result = Cond.ADAPTER.map(iterator.hasNext());
-        result.<Target<T>>choose(target, Target.Noop.instance()).accept(iterator.next());
+        result.choose(target, Target.Noop.<T>instance()).accept(iterator.next());
         return result;
     }
 }

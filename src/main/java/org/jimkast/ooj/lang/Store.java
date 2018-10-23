@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public interface Store<T> extends Target<T>, Scalar<T> {
+public interface Store<T> extends Target<T>, Scalar<T>, PSource<T> {
 
     final class StoreList<T> implements Store<T> {
         private final List<T> list;
@@ -31,6 +31,15 @@ public interface Store<T> extends Target<T>, Scalar<T> {
                 list.set(0, t);
             }
         }
+
+        @Override
+        public Cond feed(Target<T> target) {
+            if (list.isEmpty()) {
+                return Cond.FALSE;
+            }
+            target.accept(list.get(0));
+            return Cond.TRUE;
+        }
     }
 
     final class StoreQueue<T> implements Store<T> {
@@ -52,6 +61,15 @@ public interface Store<T> extends Target<T>, Scalar<T> {
         @Override
         public void accept(T t) {
             queue.add(t);
+        }
+
+        @Override
+        public Cond feed(Target<T> target) {
+            if (queue.isEmpty()) {
+                return Cond.FALSE;
+            }
+            target.accept(queue.poll());
+            return Cond.TRUE;
         }
     }
 }

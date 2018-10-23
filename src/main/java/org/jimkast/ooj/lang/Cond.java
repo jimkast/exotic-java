@@ -40,4 +40,18 @@ public interface Cond {
             return b ? main : other;
         }
     }
+
+
+    final class Not implements Cond {
+        private final Cond origin;
+
+        public Not(Cond origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public <T> T choose(T main, T other) {
+            return origin.choose(other, main);
+        }
+    }
 }
