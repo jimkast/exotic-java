@@ -1,6 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.cond.ChkLt;
+import org.jimkast.ooj.cond.ChkLte;
 import org.jimkast.ooj.lang.Check;
 import org.jimkast.ooj.lang.Cond;
 import org.jimkast.ooj.lang.PSource;
@@ -15,7 +15,7 @@ public final class PsRange implements PSource<Integer> {
     }
 
     public PsRange(int start, int max) {
-        this(start, new ChkLt(max));
+        this(start, new ChkLte(max));
     }
 
     public PsRange(int i, Check<Number> chk) {
