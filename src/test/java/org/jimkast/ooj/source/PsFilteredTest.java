@@ -8,7 +8,7 @@ public class PsFilteredTest {
 
     @Test
     public void setUp() throws Exception {
-        new PsForAll<>(
+        new PsForEach<>(
             new PsFiltered<>(
                 i -> i > 5 && i < 12 || i > 17 ? Cond.TRUE : Cond.FALSE,
                 new PsRange(20)
@@ -19,7 +19,7 @@ public class PsFilteredTest {
 
     @Test
     public void setUp2() throws Exception {
-        new PsForAll<>(new PsRange(20)).feed(System.out::println);
+        new PsForEach<>(new PsRange(20)).feed(System.out::println);
     }
 
     @Test
@@ -34,13 +34,13 @@ public class PsFilteredTest {
         p.feed(System.out::println);
         p.feed(System.out::println);
 
-        new PsForAll<>(p).feed(System.out::println);
+        new PsForEach<>(p).feed(System.out::println);
     }
 
 
     @Test
     public void iterator() throws Exception {
-        new PsForAll<>(
+        new PsForEach<>(
             new PsOfIterator<>(
                 Arrays.asList(1, 4, 6, 8, 9, 2).iterator()
             )
