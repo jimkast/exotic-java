@@ -19,6 +19,6 @@ public final class PsFallback<T> implements PSource<T> {
 
     @Override
     public Cond feed(Target<T> target) {
-        return origin.feed(target).<PSource<T>>choose(PSource.Empty.instance(), other).feed(target);
+        return origin.feed(target).choose(PSource.Empty.<T>instance(), other).feed(target);
     }
 }

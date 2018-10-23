@@ -24,13 +24,17 @@ public class PsFilteredTest {
 
     @Test
     public void all() throws Exception {
-        new PsForAll<>(
-            new PsAll<>(
-                new PsRange(1, 10),
-                new PsRange(11, 20),
-                new PsRange(21, 30)
-            )
-        ).feed(System.out::println);
+        PsAll<Integer> p = new PsAll<>(
+            new PsRange(1, 10),
+            new PsRange(11, 20),
+            new PsRange(21, 30)
+        );
+        p.feed(System.out::println);
+        p.feed(System.out::println);
+        p.feed(System.out::println);
+        p.feed(System.out::println);
+
+        new PsForAll<>(p).feed(System.out::println);
     }
 
 
