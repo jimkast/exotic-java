@@ -7,7 +7,7 @@ import org.jimkast.ooj.lang.Target;
 
 public final class PsAll<T> implements PSource<T> {
     private final PSource<PSource<T>> sources;
-    private PSource<T> current = new PSource.Empty<>();
+    private PSource<T> current = PSource.Empty.instance();
 
     @SafeVarargs
     public PsAll(PSource<T>... sources) {
