@@ -15,4 +15,18 @@ public interface Check<T> {
             return origin.test(t).choose(Cond.FALSE, Cond.TRUE);
         }
     }
+
+
+    final class Eq<T> implements Check<T> {
+        private final T against;
+
+        public Eq(T against) {
+            this.against = against;
+        }
+
+        @Override
+        public Cond test(T t) {
+            return against == t ? Cond.TRUE : Cond.FALSE;
+        }
+    }
 }

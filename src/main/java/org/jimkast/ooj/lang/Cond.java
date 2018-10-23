@@ -21,6 +21,19 @@ public interface Cond {
         }
     };
 
+    class Env implements Cond {
+        private final Cond origin;
+
+        public Env(Cond origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public <T> T choose(T main, T other) {
+            return origin.choose(main, other);
+        }
+    }
+
     final class JdkMapping implements Mapping<Boolean, Cond> {
         @Override
         public Cond map(Boolean key) {

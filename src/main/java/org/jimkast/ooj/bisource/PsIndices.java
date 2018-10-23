@@ -4,6 +4,10 @@ import org.jimkast.ooj.lang.PSource;
 
 public final class PsIndices extends PSource.Env<Integer> {
     public PsIndices(PSource<?> origin) {
-        super(new PsBi2<>(new PsWithIndex<>(origin)));
+        this(1, origin);
+    }
+
+    public PsIndices(int start, PSource<?> origin) {
+        super(new PsBi2<>(new PsWithIndex<>(start, origin)));
     }
 }
