@@ -30,4 +30,10 @@ public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
             return mapping.map(key);
         }
     }
+
+    final class Fixed<K, V> extends Env<K, V> {
+        public Fixed(V value) {
+            super(new OfMapping<>(new Mapping.Fixed<>(new PSource.Fixed<>(value))));
+        }
+    }
 }
