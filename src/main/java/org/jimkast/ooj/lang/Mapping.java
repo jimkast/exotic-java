@@ -16,6 +16,19 @@ public interface Mapping<K, T> {
         }
     }
 
+    final class Fixed<K, T> implements Mapping<K, T> {
+        private final T value;
+
+        public Fixed(T value) {
+            this.value = value;
+        }
+
+        @Override
+        public T map(K key) {
+            return value;
+        }
+    }
+
     final class MappingCond<K, T> implements Mapping<K, T> {
         private final Check<K> check;
         private final T main;

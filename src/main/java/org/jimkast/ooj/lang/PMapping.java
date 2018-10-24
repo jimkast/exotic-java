@@ -2,7 +2,7 @@ package org.jimkast.ooj.lang;
 
 import java.util.Arrays;
 import org.jimkast.ooj.source.OrElse;
-import org.jimkast.ooj.source.PsAll;
+import org.jimkast.ooj.source.PsFlattened;
 import org.jimkast.ooj.source.PsMapped;
 import org.jimkast.ooj.source.PsOfIterator;
 
@@ -36,6 +36,13 @@ public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
     }
 
 
+    final class Fixed<K, V> extends Env<K, V> {
+        public Fixed(V value) {
+            super(new OfMapping<>(new PMapping.Fixed<>(value)));
+        }
+    }
+
+
     final class Simple<K, V> extends Env<K, V> {
         public Simple(Check<K> check, V value) {
             super(new OfMapping<>(new MappingCond<>(check, new PSource.Fixed<>(value), PSource.Empty.instance())));
@@ -43,21 +50,21 @@ public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
     }
 
 
-    final class All<K, V> implements PMapping<K, V> {
+    final class Any<K, V> implements PMapping<K, V> {
         private final PSource<PMapping<K, V>> all;
 
         @SafeVarargs
-        public All(PMapping<K, V>... all) {
+        public Any(PMapping<K, V>... all) {
             this(new PsOfIterator<>(Arrays.asList(all).iterator()));
         }
 
-        public All(PSource<PMapping<K, V>> all) {
+        public Any(PSource<PMapping<K, V>> all) {
             this.all = all;
         }
 
         @Override
         public PSource<V> map(K key) {
-            return new PsAll<>(
+            return new PsFlattened<>(
                 new PsMapped<>(
                     p -> p.map(key),
                     all
@@ -73,7 +80,7 @@ public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
 
         @SafeVarargs
         public AsMapping(V other, PMapping<K, V>... possible) {
-            this(other, new All<>(possible));
+            this(other, new Any<>(possible));
         }
 
         public AsMapping(V other, PMapping<K, V> possible) {

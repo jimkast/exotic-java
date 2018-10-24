@@ -5,16 +5,16 @@ import org.jimkast.ooj.lang.Cond;
 import org.jimkast.ooj.lang.PSource;
 import org.jimkast.ooj.lang.Target;
 
-public final class PsAll<T> implements PSource<T> {
+public final class PsFlattened<T> implements PSource<T> {
     private final PSource<PSource<T>> sources;
     private PSource<T> current = PSource.Empty.instance();
 
     @SafeVarargs
-    public PsAll(PSource<T>... sources) {
+    public PsFlattened(PSource<T>... sources) {
         this(new PsOfIterator<>(Arrays.asList(sources).iterator()));
     }
 
-    public PsAll(PSource<PSource<T>> sources) {
+    public PsFlattened(PSource<PSource<T>> sources) {
         this.sources = sources;
     }
 
