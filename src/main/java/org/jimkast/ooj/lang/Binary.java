@@ -1,4 +1,4 @@
 package org.jimkast.ooj.lang;
 
-public interface Binary extends IntMapping, Quantity {
+public interface Binary extends IntIntMapping, Quantity {
 }
