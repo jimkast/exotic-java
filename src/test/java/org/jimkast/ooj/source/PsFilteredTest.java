@@ -1,6 +1,8 @@
 package org.jimkast.ooj.source;
 
 import java.util.Arrays;
+import org.jimkast.ooj.bisource.PsBiForEach;
+import org.jimkast.ooj.bisource.PsWithIndex;
 import org.jimkast.ooj.lang.Cond;
 import org.junit.Test;
 
@@ -45,5 +47,14 @@ public class PsFilteredTest {
                 Arrays.asList(1, 4, 6, 8, 9, 2).iterator()
             )
         ).feed(System.out::println);
+    }
+
+    @Test
+    public void indiced() {
+        new PsBiForEach<>(
+            new PsWithIndex<>(
+                new PsOfIterator<>("dfg", "dthyd46y", "zsfa453")
+            )
+        ).feed((s, i) -> System.out.println(i + ":" + s));
     }
 }

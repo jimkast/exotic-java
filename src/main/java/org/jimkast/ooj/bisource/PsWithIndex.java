@@ -6,7 +6,7 @@ import org.jimkast.ooj.lang.PSource;
 
 public final class PsWithIndex<T> extends BiPSource.Env<T, Integer> {
     public PsWithIndex(PSource<T> origin) {
-        this(0, origin);
+        this(1, origin);
     }
 
     public PsWithIndex(int i, PSource<T> origin) {
@@ -17,7 +17,7 @@ public final class PsWithIndex<T> extends BiPSource.Env<T, Integer> {
         private int i;
 
         public Indices() {
-            this(0);
+            this(1);
         }
 
         public Indices(int i) {
