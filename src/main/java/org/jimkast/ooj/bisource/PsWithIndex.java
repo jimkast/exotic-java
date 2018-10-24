@@ -9,6 +9,6 @@ public final class PsWithIndex<T> extends BiPSource.Env<T, Integer> {
     }
 
     public PsWithIndex(int i, PSource<T> origin) {
-        super(new PsBiCombined<>(origin, new SourceInts(i)));
+        super(new PsBiCombined<>(origin, new SrcInts(i)));
     }
 }

@@ -3,19 +3,19 @@ package org.jimkast.ooj.bisource;
 import org.jimkast.ooj.lang.Source;
 import org.jimkast.ooj.lang.Target;
 
-public final class SourceInts implements Source<Integer> {
+public final class SrcInts implements Source<Integer> {
     private int i;
     private final int step;
 
-    public SourceInts() {
+    public SrcInts() {
         this(1);
     }
 
-    public SourceInts(int i) {
+    public SrcInts(int i) {
         this(i, 1);
     }
 
-    public SourceInts(int i, int step) {
+    public SrcInts(int i, int step) {
         this.i = i;
         this.step = step;
     }
