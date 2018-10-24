@@ -1,9 +1,10 @@
 package org.jimkast.ooj.bisource;
 
+import org.jimkast.ooj.lang.Scalar;
 import org.jimkast.ooj.lang.Source;
 import org.jimkast.ooj.lang.Target;
 
-public final class SrcInts implements Source<Integer> {
+public final class SrcInts implements Source<Integer>, Scalar<Integer> {
     private int i;
     private final int step;
 
@@ -22,6 +23,11 @@ public final class SrcInts implements Source<Integer> {
 
     @Override
     public void feed(Target<Integer> target) {
-        target.accept(i += step);
+        target.accept(value());
+    }
+
+    @Override
+    public Integer value() {
+        return i += step;
     }
 }

@@ -29,4 +29,17 @@ public interface Mapping<K, T> {
         }
     }
 
+
+    final class FixedScalar<K, T> implements Mapping<K, T> {
+        private final Scalar<T> source;
+
+        public FixedScalar(Scalar<T> source) {
+            this.source = source;
+        }
+
+        @Override
+        public T map(K key) {
+            return source.value();
+        }
+    }
 }
