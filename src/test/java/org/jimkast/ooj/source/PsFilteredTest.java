@@ -2,6 +2,7 @@ package org.jimkast.ooj.source;
 
 import java.util.Arrays;
 import org.jimkast.ooj.bisource.PsBiForEach;
+import org.jimkast.ooj.bisource.PsSize;
 import org.jimkast.ooj.bisource.PsWithIndex;
 import org.jimkast.ooj.lang.Cond;
 import org.junit.Test;
@@ -56,5 +57,8 @@ public class PsFilteredTest {
                 new PsOfIterator<>("dfg", "dthyd46y", "zsfa453")
             )
         ).feed((s, i) -> System.out.println(i + ":" + s));
+
+
+        System.out.println(new PsSize(new PsOfIterator<>("dfg", "dthyd46y", "zsfa453")).length());
     }
 }
