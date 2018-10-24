@@ -1,5 +1,4 @@
 package org.jimkast.ooj.lang;
 
-public interface Dictionary<K, V> extends Mapping<K, V> {
-    SourceWithLength<K> keys();
+public interface Dictionary<K, V> extends DictionaryR<K, V>, BiTarget<K, V> {
 }

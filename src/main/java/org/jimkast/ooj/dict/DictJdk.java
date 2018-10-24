@@ -1,40 +1,36 @@
 package org.jimkast.ooj.dict;
 
 import java.util.Map;
-import java.util.Set;
-import org.jimkast.ooj.lang.Cond;
 import org.jimkast.ooj.lang.Dictionary;
 import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.SourceWithLength;
-import org.jimkast.ooj.lang.Target;
 import org.jimkast.ooj.source.PsOfIterator;
 
 public final class DictJdk<K, V> implements Dictionary<K, V> {
+    private final V def;
     private final Map<K, V> map;
 
-    public DictJdk(Map<K, V> map) {
+    public DictJdk(V def, Map<K, V> map) {
+        this.def = def;
         this.map = map;
     }
 
     @Override
     public V map(K key) {
-        return map.get(key);
+        return map.getOrDefault(key, def);
     }
 
     @Override
-    public SourceWithLength<K> keys() {
-        final Set<K> set = map.keySet();
-        final PSource<K> source = new PsOfIterator<>(set.iterator());
-        return new SourceWithLength<K>() {
-            @Override
-            public Cond feed(Target<K> target) {
-                return source.feed(target);
-            }
+    public void accept(K key, V value) {
+        map.put(key, value);
+    }
 
-            @Override
-            public int length() {
-                return set.size();
-            }
-        };
+    @Override
+    public int length() {
+        return map.size();
+    }
+
+    @Override
+    public PSource<K> keys() {
+        return new PsOfIterator<>(map.keySet().iterator());
     }
 }
