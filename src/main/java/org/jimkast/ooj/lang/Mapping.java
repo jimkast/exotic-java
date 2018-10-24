@@ -3,6 +3,19 @@ package org.jimkast.ooj.lang;
 public interface Mapping<K, T> {
     T map(K key);
 
+    class Env<K, T> implements Mapping<K, T> {
+        private final Mapping<K, T> origin;
+
+        public Env(Mapping<K, T> origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public T map(K key) {
+            return origin.map(key);
+        }
+    }
+
     final class MappingCond<K, T> implements Mapping<K, T> {
         private final Check<K> check;
         private final T main;
