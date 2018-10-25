@@ -1,24 +1,15 @@
 package org.jimkast.ooj.source;
 
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 import org.jimkast.ooj.cond.Cond;
 
-public final class StoreQueue<T> implements Store<T>, Iterator<T> {
-    private final Queue<T> queue;
-
-    public StoreQueue() {
-        this(new LinkedList<>());
-    }
-
-    public StoreQueue(Queue<T> queue) {
-        this.queue = queue;
-    }
+public final class Store1Simple<T> implements Store<T>, Iterator<T> {
+    private static final Integer ZERO = 0;
+    private final Object[] mem = new Object[]{ZERO};
 
     @Override
     public void accept(T t) {
-        queue.add(t);
+        mem[0] = t;
     }
 
     @Override
@@ -32,11 +23,13 @@ public final class StoreQueue<T> implements Store<T>, Iterator<T> {
 
     @Override
     public boolean hasNext() {
-        return queue.isEmpty();
+        return ZERO.equals(mem[0]);
     }
 
     @Override
     public T next() {
-        return queue.poll();
+        T temp = (T) mem[0];
+        mem[0] = ZERO;
+        return temp;
     }
 }
