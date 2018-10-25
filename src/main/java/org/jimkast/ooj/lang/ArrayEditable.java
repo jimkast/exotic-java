@@ -1,6 +1,6 @@
 package org.jimkast.ooj.lang;
 
-import org.jimkast.ooj.source.Target;
+import org.jimkast.ooj.bisource.BiTarget;
 
-public interface ArrayEditable<T> extends Array<T>, Target<T> {
+public interface ArrayEditable<T> extends Array<T>, BiTarget<Integer, T> {
 }
