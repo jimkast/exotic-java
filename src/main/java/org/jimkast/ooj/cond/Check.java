@@ -26,7 +26,7 @@ public interface Check<T> {
 
         @Override
         public Cond test(T t) {
-            return against == t ? Cond.TRUE : Cond.FALSE;
+            return against.equals(t) ? Cond.TRUE : Cond.FALSE;
         }
     }
 }

@@ -1,11 +1,22 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.source.PSource;
 import org.jimkast.ooj.lang.Quantity;
-import org.jimkast.ooj.source.OrElse;
+import org.jimkast.ooj.source.PsOrElse;
+import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.ScalarMapping;
 
 public final class PsSize extends Quantity.Env {
-    public PsSize(PSource<?>source) {
-        super(new OfScalar(new OrElse<>(0, new PsLast<>(new PsIndices(source)))));
+    public PsSize(PSource<?> source) {
+        this(0 , source);
+    }
+
+
+    public PsSize(int orelse, PSource<?>source) {
+        super(new OfScalar(
+            new ScalarMapping<>(
+                new PsLast<>(new PsIndices(source)),
+                new PsOrElse<>(orelse)
+            )
+        ));
     }
 }

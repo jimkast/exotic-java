@@ -3,7 +3,7 @@ package org.jimkast.ooj.source;
 import java.util.Arrays;
 import org.jimkast.ooj.bisource.PsBiForEach;
 import org.jimkast.ooj.bisource.PsSize;
-import org.jimkast.ooj.bisource.PsWithIndex;
+import org.jimkast.ooj.bisource.PsWithCounter;
 import org.jimkast.ooj.cond.Cond;
 import org.junit.Test;
 
@@ -53,7 +53,7 @@ public class PsFilteredTest {
     @Test
     public void indiced() {
         new PsBiForEach<>(
-            new PsWithIndex<>(
+            new PsWithCounter<>(
                 new PsOfIterator<>("dfg", "dthyd46y", "zsfa453")
             )
         ).feed((s, i) -> System.out.println(i + ":" + s));

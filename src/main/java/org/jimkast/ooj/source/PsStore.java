@@ -7,7 +7,7 @@ public final class PsStore<T> implements PSource<T> {
     private final PSource<T> origin;
 
     public PsStore(PSource<T> origin) {
-        this(new Store.StoreQueue<>(), origin);
+        this(new StoreQueue<>(), origin);
     }
 
     public PsStore(Store<T> store, PSource<T> origin) {

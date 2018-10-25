@@ -13,7 +13,7 @@ public final class PsFlattened<T> implements PSource<T> {
     }
 
     public PsFlattened(PSource<PSource<T>> sources) {
-        this(sources, new Store.StoreQueue<>());
+        this(sources, new StoreQueue<>());
     }
 
     PsFlattened(PSource<PSource<T>> sources, Store<PSource<T>> store) {

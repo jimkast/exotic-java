@@ -11,6 +11,6 @@ public final class PsIndexOf<T> extends Quantity.Env {
     }
 
     public PsIndexOf(Check<T> check, PSource<T> source) {
-        super(new PsSize(new PsWhile<>(check, source)));
+        super(new PsSize(-1, new PsWhile<>(check, source)));
     }
 }

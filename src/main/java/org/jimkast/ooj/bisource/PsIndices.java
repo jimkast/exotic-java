@@ -8,6 +8,6 @@ public final class PsIndices extends PSource.Env<Integer> {
     }
 
     public PsIndices(int start, PSource<?> origin) {
-        super(new PsBi2<>(new PsWithIndex<>(start, origin)));
+        super(new PsBi2<>(new PsWithCounter<>(start, origin)));
     }
 }

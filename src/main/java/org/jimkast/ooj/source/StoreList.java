@@ -3,36 +3,24 @@ package org.jimkast.ooj.source;
 import java.util.ArrayList;
 import java.util.List;
 import org.jimkast.ooj.cond.Cond;
-import org.jimkast.ooj.map.Mapping;
 
-public final class StoreSticky<T> implements Mapping<T, T>, Store<T> {
+public final class StoreList<T> implements Store<T> {
     private final List<T> list;
 
-    public StoreSticky() {
+    public StoreList() {
         this(new ArrayList<>(1));
     }
 
-    public StoreSticky(List<T> list) {
+    public StoreList(List<T> list) {
         this.list = list;
-    }
-
-    @Override
-    public T map(T t) {
-        if (list.isEmpty()) {
-            list.add(t);
-        }
-        return list.get(0);
-    }
-
-    @Override
-    public T value() {
-        return list.get(0);
     }
 
     @Override
     public void accept(T t) {
         if (list.isEmpty()) {
             list.add(t);
+        } else {
+            list.set(0, t);
         }
     }
 

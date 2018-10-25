@@ -3,12 +3,12 @@ package org.jimkast.ooj.bisource;
 import org.jimkast.ooj.map.Mapping;
 import org.jimkast.ooj.source.PSource;
 
-public final class PsWithIndex<T> extends BiPSource.Env<T, Integer> {
-    public PsWithIndex(PSource<T> origin) {
+public final class PsWithCounter<T> extends BiPSource.Env<T, Integer> {
+    public PsWithCounter(PSource<T> origin) {
         this(1, origin);
     }
 
-    public PsWithIndex(int i, PSource<T> origin) {
+    public PsWithCounter(int i, PSource<T> origin) {
         super(new PsBiCombined<>(origin, new Indices<>(i)));
     }
 
