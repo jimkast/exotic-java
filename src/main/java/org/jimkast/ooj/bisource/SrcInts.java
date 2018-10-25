@@ -1,8 +1,8 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.Scalar;
-import org.jimkast.ooj.lang.Source;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.source.Scalar;
+import org.jimkast.ooj.source.Source;
+import org.jimkast.ooj.source.Target;
 
 public final class SrcInts implements Source<Integer>, Scalar<Integer> {
     private int i;

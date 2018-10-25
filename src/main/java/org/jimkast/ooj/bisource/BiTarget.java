@@ -1,4 +1,4 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.bisource;
 
 public interface BiTarget<X, Y> {
     void accept(X x, Y y);

@@ -2,10 +2,8 @@ package org.jimkast.ooj.source;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.Store;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.map.Mapping;
 
 public final class StoreSticky<T> implements Mapping<T, T>, Store<T> {
     private final List<T> list;

@@ -1,7 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.Scalar;
+import org.jimkast.ooj.map.Mapping;
 
 public final class ScalarSticky<T> implements Scalar<T> {
     private final Mapping<T, T> store;

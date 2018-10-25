@@ -1,5 +1,7 @@
 package org.jimkast.ooj.lang;
 
+import org.jimkast.ooj.source.Scalar;
+
 public interface Quantity {
     int length();
 

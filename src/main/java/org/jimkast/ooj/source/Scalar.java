@@ -1,4 +1,4 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.source;
 
 public interface Scalar<T> {
     T value();

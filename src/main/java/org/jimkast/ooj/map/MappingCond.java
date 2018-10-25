@@ -1,7 +1,6 @@
 package org.jimkast.ooj.map;
 
-import org.jimkast.ooj.lang.Check;
-import org.jimkast.ooj.lang.Mapping;
+import org.jimkast.ooj.cond.Check;
 
 public final class MappingCond<K, T> implements Mapping<K, T> {
     private final Check<K> check;

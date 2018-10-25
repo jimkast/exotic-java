@@ -1,9 +1,8 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.BiPSource;
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Target;
 
 public final class PsBi2<T> implements PSource<T> {
     private final BiPSource<?, T> origin;

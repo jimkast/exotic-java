@@ -4,7 +4,7 @@ import java.util.Arrays;
 import org.jimkast.ooj.bisource.PsBiForEach;
 import org.jimkast.ooj.bisource.PsSize;
 import org.jimkast.ooj.bisource.PsWithIndex;
-import org.jimkast.ooj.lang.Cond;
+import org.jimkast.ooj.cond.Cond;
 import org.junit.Test;
 
 public class PsFilteredTest {

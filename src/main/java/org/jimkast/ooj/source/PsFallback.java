@@ -1,8 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
 
 public final class PsFallback<T> implements PSource<T> {
     private final PSource<T> other;

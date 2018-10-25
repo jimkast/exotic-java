@@ -1,4 +1,4 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.cond;
 
 public interface Check<T> {
     Cond test(T t);

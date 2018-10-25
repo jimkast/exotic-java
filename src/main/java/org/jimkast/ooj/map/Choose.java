@@ -1,6 +1,5 @@
 package org.jimkast.ooj.map;
 
-import org.jimkast.ooj.lang.Mapping;
 import org.jimkast.ooj.source.OrElse;
 
 public final class Choose<K, V> implements Mapping<K, V> {

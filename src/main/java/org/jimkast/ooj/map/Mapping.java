@@ -1,4 +1,6 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.map;
+
+import org.jimkast.ooj.source.Scalar;
 
 public interface Mapping<K, T> {
     T map(K key);

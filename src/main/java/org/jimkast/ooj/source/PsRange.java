@@ -1,10 +1,8 @@
 package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.cond.ChkLte;
-import org.jimkast.ooj.lang.Check;
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Check;
+import org.jimkast.ooj.cond.Cond;
 
 public final class PsRange implements PSource<Integer> {
     private int i;

@@ -1,9 +1,10 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.source;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import org.jimkast.ooj.cond.Cond;
 
 public interface Store<T> extends Target<T>, Scalar<T>, PSource<T> {
 

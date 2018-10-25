@@ -1,9 +1,7 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Check;
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Check;
+import org.jimkast.ooj.cond.Cond;
 
 public final class AllMatch<T> implements Cond {
     private final PSource<T> source;

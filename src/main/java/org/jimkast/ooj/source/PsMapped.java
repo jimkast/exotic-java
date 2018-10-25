@@ -1,9 +1,7 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.map.Mapping;
 
 public final class PsMapped<X, Y> implements PSource<Y> {
     private final Mapping<X, Y> mapping;

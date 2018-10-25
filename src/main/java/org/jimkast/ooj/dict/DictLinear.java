@@ -2,8 +2,8 @@ package org.jimkast.ooj.dict;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jimkast.ooj.lang.Dictionary;
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.map.Dictionary;
+import org.jimkast.ooj.source.PSource;
 import org.jimkast.ooj.source.PsOfIterator;
 
 public final class DictLinear<K, V> implements Dictionary<K, V> {

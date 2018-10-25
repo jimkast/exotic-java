@@ -1,4 +1,4 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.source;
 
 public interface Target<T> {
     void accept(T t);

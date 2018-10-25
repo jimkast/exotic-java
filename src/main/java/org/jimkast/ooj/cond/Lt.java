@@ -1,7 +1,5 @@
 package org.jimkast.ooj.cond;
 
-import org.jimkast.ooj.lang.Cond;
-
 public final class Lt implements Cond {
     private final Number n1;
     private final Number n2;

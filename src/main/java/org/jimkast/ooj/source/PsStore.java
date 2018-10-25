@@ -1,9 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Store;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
 
 public final class PsStore<T> implements PSource<T> {
     private final Store<T> store;

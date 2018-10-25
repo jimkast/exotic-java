@@ -1,4 +1,6 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.cond;
+
+import org.jimkast.ooj.map.Mapping;
 
 public interface Cond {
     <T> T choose(T main, T other);

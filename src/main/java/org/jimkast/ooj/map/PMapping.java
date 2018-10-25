@@ -1,7 +1,6 @@
 package org.jimkast.ooj.map;
 
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.source.PSource;
 
 public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
 

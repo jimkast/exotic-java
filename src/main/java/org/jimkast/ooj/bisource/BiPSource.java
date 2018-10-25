@@ -1,4 +1,6 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.bisource;
+
+import org.jimkast.ooj.cond.Cond;
 
 public interface BiPSource<X,Y> {
     Cond feed(BiTarget<X,Y> target);

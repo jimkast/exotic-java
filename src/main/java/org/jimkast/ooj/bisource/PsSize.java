@@ -1,6 +1,6 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.source.PSource;
 import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.source.OrElse;
 

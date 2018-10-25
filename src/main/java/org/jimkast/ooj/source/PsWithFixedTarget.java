@@ -1,8 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Cond;
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.cond.Cond;
 
 public final class PsWithFixedTarget<T> implements PSource<T> {
     private final Target<T> fixed;

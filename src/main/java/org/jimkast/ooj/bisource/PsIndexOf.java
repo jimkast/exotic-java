@@ -1,7 +1,7 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.Check;
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.cond.Check;
+import org.jimkast.ooj.source.PSource;
 import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.source.PsWhile;
 

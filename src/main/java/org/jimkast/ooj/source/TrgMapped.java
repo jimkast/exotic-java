@@ -1,7 +1,6 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.Target;
+import org.jimkast.ooj.map.Mapping;
 
 public final class TrgMapped<X, Y> implements Target<X> {
     private final Mapping<X, Y> mapping;

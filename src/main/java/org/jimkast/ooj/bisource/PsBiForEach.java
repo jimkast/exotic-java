@@ -1,8 +1,6 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.BiPSource;
-import org.jimkast.ooj.lang.BiTarget;
-import org.jimkast.ooj.lang.Cond;
+import org.jimkast.ooj.cond.Cond;
 
 public final class PsBiForEach<X, Y> implements BiPSource<X, Y> {
     private final BiPSource<X, Y> origin;

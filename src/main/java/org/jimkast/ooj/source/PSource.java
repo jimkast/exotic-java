@@ -1,4 +1,6 @@
-package org.jimkast.ooj.lang;
+package org.jimkast.ooj.source;
+
+import org.jimkast.ooj.cond.Cond;
 
 public interface PSource<T> {
     Cond feed(Target<T> target);

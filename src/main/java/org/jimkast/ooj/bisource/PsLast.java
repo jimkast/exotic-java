@@ -1,7 +1,7 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.PSource;
-import org.jimkast.ooj.lang.Store;
+import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.PsForEach;
 import org.jimkast.ooj.source.PsStore;
 

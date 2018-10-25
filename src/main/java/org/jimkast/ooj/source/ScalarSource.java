@@ -1,9 +1,5 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.lang.Scalar;
-import org.jimkast.ooj.lang.Source;
-import org.jimkast.ooj.lang.Store;
-
 public final class ScalarSource<T> implements Scalar<T> {
     private final Source<T> source;
     private final Store<T> store;

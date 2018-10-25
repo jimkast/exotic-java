@@ -1,8 +1,7 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.lang.BiPSource;
-import org.jimkast.ooj.lang.Mapping;
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.map.Mapping;
+import org.jimkast.ooj.source.PSource;
 
 public final class PsWithIndex<T> extends BiPSource.Env<T, Integer> {
     public PsWithIndex(PSource<T> origin) {

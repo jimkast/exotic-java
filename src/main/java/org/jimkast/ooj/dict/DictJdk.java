@@ -1,8 +1,8 @@
 package org.jimkast.ooj.dict;
 
 import java.util.Map;
-import org.jimkast.ooj.lang.Dictionary;
-import org.jimkast.ooj.lang.PSource;
+import org.jimkast.ooj.map.Dictionary;
+import org.jimkast.ooj.source.PSource;
 import org.jimkast.ooj.source.PsOfIterator;
 
 public final class DictJdk<K, V> implements Dictionary<K, V> {
