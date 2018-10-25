@@ -16,4 +16,20 @@ public interface Target<T> {
         }
     }
 
+
+    final class Both<T> implements Target<T> {
+        private final Target<T> t1;
+        private final Target<T> t2;
+
+        public Both(Target<T> t1, Target<T> t2) {
+            this.t1 = t1;
+            this.t2 = t2;
+        }
+
+        @Override
+        public void accept(T t) {
+            t1.accept(t);
+            t2.accept(t);
+        }
+    }
 }
