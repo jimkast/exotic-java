@@ -6,10 +6,20 @@ import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.source.PSource;
 
 public interface ObjectArray<T> extends Mapping<Integer, PSource<T>>, BiTarget<Integer, T>, Quantity {
+    @Override
+    PSource<T> map(Integer i);
+
+    @Override
+    void accept(Integer i, T t);
+
+    @Override
+    int length();
+
 
     final class Native<T> implements ObjectArray<T> {
         private final T[] arr;
 
+        @SuppressWarnings("unchecked")
         public Native(int size) {
             this((T[]) new Object[size]);
         }
