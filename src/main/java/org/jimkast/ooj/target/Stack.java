@@ -1,11 +1,9 @@
 package org.jimkast.ooj.target;
 
 import org.jimkast.ooj.cond.Cond;
-import org.jimkast.ooj.lang.Quantity;
-import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
 
-public final class Stack<T> implements Store<T>, Quantity {
+public final class Stack<T> implements StoreCountable<T> {
     private final ObjectArray<T> arr;
     private int count = 0;
     private int next = 0;
