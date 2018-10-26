@@ -24,7 +24,8 @@ public interface ObjectArray<T> extends Mapping<Integer, PSource<T>>, BiTarget<I
             this((T[]) new Object[size]);
         }
 
-        public Native(T[] arr) {
+        @SafeVarargs
+        public Native(T... arr) {
             this.arr = arr;
         }
 
