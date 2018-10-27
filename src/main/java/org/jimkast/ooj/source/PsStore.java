@@ -1,13 +1,14 @@
 package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.target.RefQueue;
 
 public final class PsStore<T> implements PSource<T> {
     private final Store<T> store;
     private final PSource<T> origin;
 
     public PsStore(PSource<T> origin) {
-        this(new StoreQueue<>(), origin);
+        this(new RefQueue<>(), origin);
     }
 
     public PsStore(Store<T> store, PSource<T> origin) {

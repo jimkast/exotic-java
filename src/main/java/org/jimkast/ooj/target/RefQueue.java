@@ -1,9 +1,10 @@
 package org.jimkast.ooj.target;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.source.Scalar;
 import org.jimkast.ooj.source.Target;
 
-public final class RefQueue<T> implements StoreCountable<T> {
+public final class RefQueue<T> implements StoreCountable<T>, Scalar<T> {
     private T ref;
 
     public RefQueue() {
@@ -31,5 +32,10 @@ public final class RefQueue<T> implements StoreCountable<T> {
     @Override
     public int length() {
         return ref == null ? 0 : 1;
+    }
+
+    @Override
+    public T value() {
+        return ref;
     }
 }

@@ -2,6 +2,7 @@ package org.jimkast.ooj.source;
 
 import java.util.Arrays;
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.target.RefQueue;
 
 public final class PsFlattened<T> implements PSource<T> {
     private final PSource<PSource<T>> sources;
@@ -13,7 +14,7 @@ public final class PsFlattened<T> implements PSource<T> {
     }
 
     public PsFlattened(PSource<PSource<T>> sources) {
-        this(sources, new StoreQueue<>());
+        this(sources, new RefQueue<>());
     }
 
     PsFlattened(PSource<PSource<T>> sources, Store<PSource<T>> store) {
