@@ -24,7 +24,8 @@ public final class Stack<T> implements StoreCountable<T> {
         count--;
         int len = arr.length();
         next = (next + len - 1) % len;
-        return arr.map(next).feed(target);
+        target.accept(arr.map(next));
+        return Cond.TRUE;
     }
 
     @Override

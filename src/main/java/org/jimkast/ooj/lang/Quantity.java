@@ -20,6 +20,20 @@ public interface Quantity {
     }
 
 
+    final class Fixed implements Quantity {
+        private final int length;
+
+        public Fixed(int length) {
+            this.length = length;
+        }
+
+        @Override
+        public int length() {
+            return length;
+        }
+    }
+
+
     final class OfScalar implements Quantity {
         private final Scalar<? extends Number> scalar;
 

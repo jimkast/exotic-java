@@ -23,7 +23,8 @@ public final class Queue<T> implements StoreCountable<T> {
         }
         count--;
         int len = arr.length();
-        return arr.map((next + len - count - 1) % len).feed(target);
+        target.accept(arr.map((next + len - count - 1) % len));
+        return Cond.TRUE;
     }
 
     @Override

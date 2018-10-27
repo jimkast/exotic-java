@@ -3,11 +3,10 @@ package org.jimkast.ooj.target;
 import org.jimkast.exotic.map.Mapping;
 import org.jimkast.ooj.bisource.BiTarget;
 import org.jimkast.ooj.lang.Quantity;
-import org.jimkast.ooj.source.PSource;
 
-public interface ObjectArray<T> extends Mapping<Integer, PSource<T>>, BiTarget<Integer, T>, Quantity {
+public interface ObjectArray<T> extends Mapping<Integer, T>, BiTarget<Integer, T>, Quantity {
     @Override
-    PSource<T> map(Integer i);
+    T map(Integer i);
 
     @Override
     void accept(Integer i, T t);
@@ -30,9 +29,8 @@ public interface ObjectArray<T> extends Mapping<Integer, PSource<T>>, BiTarget<I
         }
 
         @Override
-        public PSource<T> map(Integer i) {
-            T val = arr[i];
-            return val == null ? PSource.Empty.instance() : new PSource.Fixed<>(val);
+        public T map(Integer i) {
+            return arr[i];
         }
 
         @Override
