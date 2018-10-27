@@ -3,13 +3,13 @@ package org.jimkast.ooj.target;
 import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.source.Target;
 
-public final class Ref<T> implements StoreCountable<T> {
+public final class RefQueue<T> implements StoreCountable<T> {
     private T ref;
 
-    public Ref() {
+    public RefQueue() {
     }
 
-    public Ref(T ref) {
+    public RefQueue(T ref) {
         this.ref = ref;
     }
 
@@ -19,6 +19,7 @@ public final class Ref<T> implements StoreCountable<T> {
             return Cond.FALSE;
         }
         target.accept(ref);
+        ref = null;
         return Cond.TRUE;
     }
 
