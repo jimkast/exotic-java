@@ -1,7 +1,7 @@
 package org.jimkast.ooj.source;
 
 import java.util.Iterator;
-import org.jimkast.ooj.bisource.BiTarget;
+import org.jimkast.ooj.bisource.BiPSource;
 import org.jimkast.ooj.bisource.PsBiForEach;
 import org.jimkast.ooj.bisource.PsLast;
 import org.jimkast.ooj.bisource.PsSize;
@@ -38,12 +38,12 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
         return new PsMatchAny<>(filter, origin);
     }
 
-    public void foreach(Target<T> target) {
-        new PsForEach<>(origin).feed(target);
+    public PsFluent<T> foreach() {
+        return new PsFluent<>(new PsForEach<>(origin));
     }
 
-    public void fori(BiTarget<T, Integer> target) {
-        new PsBiForEach<>(new PsWithCounter<>(origin)).feed(target);
+    public BiPSource<T, Integer> fori() {
+        return new PsBiForEach<>(new PsWithCounter<>(origin));
     }
 
     @Override
