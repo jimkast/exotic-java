@@ -28,6 +28,6 @@ public final class PsAsIterator<T> implements Iterator<T> {
             fetched = true;
             source.feed(store);
         }
-        return store.value();
+        return store.map(0);
     }
 }

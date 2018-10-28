@@ -1,10 +1,11 @@
 package org.jimkast.ooj.target;
 
 import org.jimkast.ooj.cond.Cond;
-import org.jimkast.ooj.source.Scalar;
+import org.jimkast.ooj.lang.ArrayTarget;
+import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
 
-public final class RefQueue<T> implements StoreCountable<T>, Scalar<T> {
+public final class RefQueue<T> implements Store<T>, ArrayTarget<T> {
     private T ref;
 
     public RefQueue() {
@@ -35,7 +36,10 @@ public final class RefQueue<T> implements StoreCountable<T>, Scalar<T> {
     }
 
     @Override
-    public T value() {
+    public T map(int offset) {
+        if (offset != 0 || ref == null) {
+            throw new IndexOutOfBoundsException("For offset " + offset);
+        }
         return ref;
     }
 }

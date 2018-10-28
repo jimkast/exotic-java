@@ -1,9 +1,11 @@
 package org.jimkast.ooj.target;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.lang.ArrayTarget;
+import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
 
-public final class Stack<T> implements StoreCountable<T> {
+public final class Stack<T> implements Store<T>, ArrayTarget<T> {
     private final ObjectArray<T> arr;
     private int count = 0;
     private int next = 0;
@@ -41,5 +43,11 @@ public final class Stack<T> implements StoreCountable<T> {
     @Override
     public int length() {
         return count;
+    }
+
+    @Override
+    public T map(int offset) {
+        int len = arr.length();
+        return arr.map((next + len - offset) % len);
     }
 }

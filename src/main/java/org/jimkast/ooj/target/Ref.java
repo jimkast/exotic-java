@@ -1,9 +1,11 @@
 package org.jimkast.ooj.target;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.lang.Array;
+import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
 
-public final class Ref<T> implements StoreCountable<T> {
+public final class Ref<T> implements Store<T>, Array<T> {
     private T ref;
 
     public Ref() {
@@ -30,5 +32,13 @@ public final class Ref<T> implements StoreCountable<T> {
     @Override
     public int length() {
         return ref == null ? 0 : 1;
+    }
+
+    @Override
+    public T map(int offset) {
+        if (offset != 0 || ref == null) {
+            throw new IndexOutOfBoundsException("For offset " + offset);
+        }
+        return ref;
     }
 }

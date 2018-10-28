@@ -1,19 +1,8 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.exotic.map.Mapping;
-import org.jimkast.ooj.bisource.BiTarget;
-import org.jimkast.ooj.lang.Quantity;
+import org.jimkast.ooj.lang.ArrayEditable;
 
-public interface ObjectArray<T> extends Mapping<Integer, T>, BiTarget<Integer, T>, Quantity {
-    @Override
-    T map(Integer i);
-
-    @Override
-    void accept(Integer i, T t);
-
-    @Override
-    int length();
-
+public interface ObjectArray<T> extends ArrayEditable<T> {
 
     final class Native<T> implements ObjectArray<T> {
         private final T[] arr;
@@ -29,7 +18,7 @@ public interface ObjectArray<T> extends Mapping<Integer, T>, BiTarget<Integer, T
         }
 
         @Override
-        public T map(Integer i) {
+        public T map(int i) {
             return arr[i];
         }
 
