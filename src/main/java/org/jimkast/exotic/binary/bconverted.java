@@ -16,8 +16,8 @@ public final class bconverted implements binary {
 
 
     @Override
-    public int at(int i) {
-        return scalar.value().at(i);
+    public int map(int i) {
+        return scalar.value().map(i);
     }
 
     @Override

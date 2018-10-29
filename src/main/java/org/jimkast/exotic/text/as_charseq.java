@@ -16,7 +16,7 @@ public final class as_charseq implements CharSequence {
 
     @Override
     public char charAt(int index) {
-        return (char) text.at(index);
+        return (char) text.map(index);
     }
 
     @Override

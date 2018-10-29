@@ -16,7 +16,7 @@ public final class bstream_1by1 implements bsource {
     public void transferTo(OutputStream out) throws IOException {
         int len = origin.length();
         for (int i = 0; i < len; i++) {
-            out.write(origin.at(i));
+            out.write(origin.map(i));
         }
     }
 }

@@ -9,13 +9,13 @@ import org.jimkast.exotic.possible.possible2;
 import org.jimkast.exotic.possible.range;
 
 public interface binary {
-    int at(int i);
+    int map(int i);
 
     int length();
 
     binary EMPTY = new binary() {
         @Override
-        public int at(int i) {
+        public int map(int i) {
             return 0;
         }
 
@@ -28,7 +28,7 @@ public interface binary {
     BiPredicate<binary, binary> EQ = (b1, b2) -> {
         int len = b1.length();
         for (int i = 0; i < len; i++) {
-            if (b1.at(i) != b2.at(i)) {
+            if (b1.map(i) != b2.map(i)) {
                 return false;
             }
         }
@@ -43,8 +43,8 @@ public interface binary {
         }
 
         @Override
-        public final int at(int i) {
-            return origin.at(i);
+        public final int map(int i) {
+            return origin.map(i);
         }
 
         @Override
@@ -62,7 +62,7 @@ public interface binary {
 
     final class values extends possible.env<Integer> {
         public values(binary b) {
-            super(new mapped<>(b::at, new indices(b)));
+            super(new mapped<>(b::map, new indices(b)));
         }
     }
 
@@ -83,7 +83,7 @@ public interface binary {
 
         @Override
         public int intValue() {
-            return b.at(index.intValue());
+            return b.map(index.intValue());
         }
     }
 }

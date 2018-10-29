@@ -14,7 +14,7 @@ public final class trimmed_right extends binary.env {
                         public int intValue() {
                             int len = origin.length();
                             int k = 0;
-                            while (k < len && Character.isWhitespace(origin.at(len - k))) {
+                            while (k < len && Character.isWhitespace(origin.map(len - k))) {
                                 k++;
                             }
                             return len - k;

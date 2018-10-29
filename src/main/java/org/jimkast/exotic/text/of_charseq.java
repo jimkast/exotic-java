@@ -10,7 +10,7 @@ public final class of_charseq implements binary {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return seq.charAt(i);
     }
 

@@ -12,14 +12,14 @@ public final class swapped implements binary {
     }
 
     @Override
-    public int at(int index) {
+    public int map(int index) {
         if (index == i) {
-            return origin.at(j);
+            return origin.map(j);
         }
         if (index == j) {
-            return origin.at(i);
+            return origin.map(i);
         }
-        return origin.at(index);
+        return origin.map(index);
     }
 
     @Override

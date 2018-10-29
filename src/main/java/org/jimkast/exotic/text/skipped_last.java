@@ -12,8 +12,8 @@ public final class skipped_last implements binary {
     }
 
     @Override
-    public int at(int index) {
-        return origin.at(index);
+    public int map(int index) {
+        return origin.map(index);
     }
 
     @Override

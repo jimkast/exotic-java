@@ -28,7 +28,7 @@ public final class bytes_part implements binary, bsource, Input {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return arr[i];
     }
 

@@ -15,8 +15,8 @@ public final class smaller_index_of extends Int {
         int index = -1;
         int len = b.length();
         for (int i = 0; i < len; i++) {
-            int val = b.at(i);
-            if (b.at(i) < min) {
+            int val = b.map(i);
+            if (b.map(i) < min) {
                 min = val;
                 index = i;
             }

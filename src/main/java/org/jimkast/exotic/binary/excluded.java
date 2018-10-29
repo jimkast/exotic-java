@@ -10,8 +10,8 @@ public final class excluded implements binary {
     }
 
     @Override
-    public int at(int i) {
-        return index >= i ? origin.at(i + 1) : origin.at(i);
+    public int map(int i) {
+        return index >= i ? origin.map(i + 1) : origin.map(i);
     }
 
     @Override

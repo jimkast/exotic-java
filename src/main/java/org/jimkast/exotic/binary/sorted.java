@@ -16,7 +16,7 @@ public final class sorted extends binary.env {
             int len = b.length();
             int[] buf = new int[len];
             for (int i = 0; i < len; i++) {
-                buf[i] = b.at(i);
+                buf[i] = b.map(i);
             }
             Arrays.sort(buf);
             return new fixed32(buf);

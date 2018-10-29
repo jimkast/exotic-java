@@ -19,7 +19,7 @@ public final class ends_with extends bool.env {
             new both(
                 new bigger(container, part),
                 new all<>(
-                    i -> new eq(container.at(clen.intValue() - i), part.at(plen.intValue() - i)),
+                    i -> new eq(container.map(clen.intValue() - i), part.map(plen.intValue() - i)),
                     new binary.indices(part)
                 )
             )

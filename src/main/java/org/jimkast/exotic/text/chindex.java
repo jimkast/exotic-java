@@ -11,7 +11,7 @@ public final class chindex extends NumberEnvelope {
         super(
             new orelse<>(
                 new filtered<>(
-                    i -> new eq(t1.at(i), ch),
+                    i -> new eq(t1.map(i), ch),
                     new binary.indices(t1)
                 ), -1
             )

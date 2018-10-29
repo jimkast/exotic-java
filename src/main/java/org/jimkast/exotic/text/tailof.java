@@ -12,8 +12,8 @@ public final class tailof implements binary {
     }
 
     @Override
-    public int at(int index) {
-        return origin.at(index + origin.length() - offset.intValue());
+    public int map(int index) {
+        return origin.map(index + origin.length() - offset.intValue());
     }
 
     @Override

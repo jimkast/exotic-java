@@ -18,8 +18,8 @@ public final class cached_length implements binary {
     }
 
     @Override
-    public int at(int i) {
-        return b.at(i);
+    public int map(int i) {
+        return b.map(i);
     }
 
     @Override

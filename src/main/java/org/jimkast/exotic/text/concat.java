@@ -31,7 +31,7 @@ public final class concat implements binary {
             i -> new NumberEnvelope(
                 new orelse<>(
                     new mapped<>(
-                        b -> b.at(i.intValue()),
+                        b -> b.map(i.intValue()),
                         new filtered<>(
                             b -> new gt(new blength(b), i),
                             all
@@ -56,7 +56,7 @@ public final class concat implements binary {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return at.apply(i).intValue();
     }
 

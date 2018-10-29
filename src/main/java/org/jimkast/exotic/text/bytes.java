@@ -16,7 +16,7 @@ public final class bytes implements binary, bsource, Input {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return arr[i];
     }
 

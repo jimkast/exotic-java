@@ -12,7 +12,7 @@ public final class bofstream implements binary {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return 0;
     }
 

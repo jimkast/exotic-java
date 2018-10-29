@@ -12,8 +12,8 @@ public final class skipped implements binary {
     }
 
     @Override
-    public int at(int index) {
-        return origin.at(index + offset.intValue());
+    public int map(int index) {
+        return origin.map(index + offset.intValue());
     }
 
     @Override

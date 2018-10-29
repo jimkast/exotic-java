@@ -13,8 +13,8 @@ public final class cached implements binary {
     }
 
     @Override
-    public int at(int i) {
-        return val().get(0).at(i);
+    public int map(int i) {
+        return val().get(0).map(i);
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class cached implements binary {
         int len = origin.length();
         char[] buf = new char[len];
         for (int i = 0; i < len; i++) {
-            buf[i] = (char) origin.at(i);
+            buf[i] = (char) origin.map(i);
         }
         return buf;
     }

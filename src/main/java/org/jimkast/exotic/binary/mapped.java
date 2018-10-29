@@ -10,8 +10,8 @@ public final class mapped implements binary {
     }
 
     @Override
-    public int at(int i) {
-        return mapping.map(origin.at(i));
+    public int map(int i) {
+        return mapping.map(origin.map(i));
     }
 
     @Override

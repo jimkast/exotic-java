@@ -10,7 +10,7 @@ public final class fixed32 implements binary {
     }
 
     @Override
-    public int at(int i) {
+    public int map(int i) {
         return arr[i];
     }
 

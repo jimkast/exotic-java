@@ -16,8 +16,8 @@ public final class fluent implements binary {
     }
 
     @Override
-    public int at(int i) {
-        return origin.at(i);
+    public int map(int i) {
+        return origin.map(i);
     }
 
     @Override

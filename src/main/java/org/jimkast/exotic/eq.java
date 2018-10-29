@@ -12,7 +12,7 @@ public final class eq extends bool.env {
             new both(
                 new org.jimkast.exotic.bool.eq(new blength(t1), new blength(t1)),
                 new all<>(
-                    i -> new org.jimkast.exotic.bool.eq(t1.at(i), t2.at(i)),
+                    i -> new org.jimkast.exotic.bool.eq(t1.map(i), t2.map(i)),
                     new binary.indices(t1)
                 )
             )

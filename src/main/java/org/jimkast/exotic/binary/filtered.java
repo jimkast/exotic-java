@@ -22,7 +22,7 @@ public final class filtered implements bstreamable, bsource {
     public void transferTo(OutputStream out) throws IOException {
         int len = origin.length();
         for (int i = 0; i < len; i++) {
-            int b = origin.at(i);
+            int b = origin.map(i);
             if (filter.test(b)) {
                 out.write(b);
             }
@@ -43,7 +43,7 @@ public final class filtered implements bstreamable, bsource {
         public int read() {
             int len = origin.length();
             while (i < len) {
-                int b = origin.at(i++);
+                int b = origin.map(i++);
                 if (filter.test(b)) {
                     return b;
                 }

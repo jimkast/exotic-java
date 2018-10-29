@@ -18,7 +18,7 @@ public final class as_bytestream extends InputStream implements bstream {
         if (i >= b.length()) {
             return -1;
         }
-        return b.at(i++);
+        return b.map(i++);
     }
 
     @Override

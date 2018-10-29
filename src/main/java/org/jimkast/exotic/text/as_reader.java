@@ -19,7 +19,7 @@ public final class as_reader extends Reader {
         int max = Math.max(total - i, len);
         int start = i;
         for (int j = 0; j < max; j++) {
-            cbuf[off + j] = (char) b.at(i++);
+            cbuf[off + j] = (char) b.map(i++);
         }
         return i - start;
     }
@@ -35,7 +35,7 @@ public final class as_reader extends Reader {
         if (i >= b.length()) {
             return -1;
         }
-        return b.at(i++);
+        return b.map(i++);
     }
 
     @Override
