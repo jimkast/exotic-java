@@ -26,7 +26,7 @@ public final class HeapAlloc implements HeapBlock, MemBlockR, MemBlockW {
 
     @Override
     public void printTo(OutStream out, int offset, int length) throws IOException {
-        out.write(this);
+        out.accept(this);
     }
 
     @Override

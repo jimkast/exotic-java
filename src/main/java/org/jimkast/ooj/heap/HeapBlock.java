@@ -13,10 +13,21 @@ public interface HeapBlock extends Quantity {
     int length();
 
     default int readFrom(InputStream in) throws IOException {
+        try {
+            return readFrom(in::read);
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    default int readFrom(JdkByteArraySource in) throws Exception {
         return address().readFrom(in, length());
     }
 
     default void writeTo(OutputStream out) throws IOException {
+        supplyVoid(out::write);
         address().writeTo(out, length());
     }
 
@@ -26,5 +37,9 @@ public interface HeapBlock extends Quantity {
 
     default <T> T supply(JdkByteArrayConsumer<T> consumer) {
         return address().supply(consumer, length());
+    }
+
+    default void supplyVoid(JdkByteArrayVoidConsumer consumer) throws IOException {
+        address().supplyVoid(consumer, length());
     }
 }

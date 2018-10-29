@@ -20,7 +20,7 @@ public final class ConnUdp implements Conn {
     }
 
     @Override
-    public void write(HeapBlock heap) throws IOException {
+    public void accept(HeapBlock heap) throws IOException {
         s.send(heap.supply(DatagramPacket::new));
     }
 

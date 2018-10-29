@@ -17,7 +17,7 @@ public final class ConnTcpNio implements Conn {
     }
 
     @Override
-    public void write(HeapBlock heap) throws IOException {
+    public void accept(HeapBlock heap) throws IOException {
         s.write(heap.buffer());
     }
 

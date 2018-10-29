@@ -51,6 +51,7 @@ public final class Queue<T> implements Store<T>, ArrayTarget<T> {
 
     @Override
     public T map(int offset) {
-        return arr.map(next + arr.length() - count - offset);
+        int len = arr.length();
+        return arr.map((next + len - count - 1 + offset) % len);
     }
 }

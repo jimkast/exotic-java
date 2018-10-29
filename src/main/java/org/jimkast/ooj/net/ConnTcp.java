@@ -17,7 +17,7 @@ public final class ConnTcp implements Conn {
     }
 
     @Override
-    public void write(HeapBlock heap) throws IOException {
+    public void accept(HeapBlock heap) throws IOException {
         heap.writeTo(s.getOutputStream());
     }
 

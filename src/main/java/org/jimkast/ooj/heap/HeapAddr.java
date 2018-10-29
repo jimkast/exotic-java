@@ -1,7 +1,6 @@
 package org.jimkast.ooj.heap;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import org.jimkast.exotic.Native;
@@ -20,8 +19,8 @@ public final class HeapAddr {
         this.offset = offset;
     }
 
-    public int readFrom(InputStream in, int length) throws IOException {
-        return in.read(jarr, offset, length);
+    public int readFrom(JdkByteArraySource in, int length) throws Exception {
+        return in.feed(jarr, offset, length);
     }
 
     public void writeTo(OutputStream out, int length) throws IOException {
@@ -34,5 +33,9 @@ public final class HeapAddr {
 
     public <T> T supply(JdkByteArrayConsumer<T> consumer, int length) {
         return consumer.accept(jarr, offset, length);
+    }
+
+    public void supplyVoid(JdkByteArrayVoidConsumer consumer, int length) throws IOException {
+        consumer.accept(jarr, offset, length);
     }
 }
