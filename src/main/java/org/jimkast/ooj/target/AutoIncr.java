@@ -1,8 +1,8 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.exotic.numberjdk.Int;
+import org.jimkast.ooj.lang.Quantity;
 
-public final class AutoIncr extends Int {
+public final class AutoIncr implements Quantity {
     private int i;
 
     public AutoIncr() {
@@ -14,7 +14,7 @@ public final class AutoIncr extends Int {
     }
 
     @Override
-    public int intValue() {
+    public int length() {
         return i++;
     }
 }
