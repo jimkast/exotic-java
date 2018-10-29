@@ -1,5 +1,6 @@
 package org.jimkast.ooj.lang;
 
+import org.jimkast.exotic.numberjdk.Int;
 import org.jimkast.ooj.source.Scalar;
 
 public interface Quantity {
@@ -44,6 +45,20 @@ public interface Quantity {
         @Override
         public int length() {
             return scalar.value().intValue();
+        }
+    }
+
+
+    final class AsInt extends Int {
+        private final Quantity q;
+
+        public AsInt(Quantity q) {
+            this.q = q;
+        }
+
+        @Override
+        public int intValue() {
+            return q.length();
         }
     }
 }
