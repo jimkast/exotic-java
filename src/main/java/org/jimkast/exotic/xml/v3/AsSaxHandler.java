@@ -11,9 +11,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public final class AsSaxHandler extends DefaultHandler {
-    private final Target target;
+    private final XmlTarget target;
 
-    public AsSaxHandler(Target target) {
+    public AsSaxHandler(XmlTarget target) {
         this.target = target;
     }
 

@@ -7,7 +7,7 @@ import javax.xml.stream.XMLStreamConstants;
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.text.bstream_1by1;
 
-public final class TrgSerialize implements Target {
+public final class TrgSerialize implements XmlTarget {
     private final PrintStream out;
 
     public TrgSerialize(PrintStream out) {

@@ -22,7 +22,7 @@ public final class JdkSaxInputSource implements XmlSource {
     }
 
     @Override
-    public void feed(Target target) throws IOException {
+    public void feed(XmlTarget target) throws IOException {
         try {
             parser.parse(new InputIoChecked(input).stream(), new AsSaxHandler(target));
         } catch (SAXException e) {

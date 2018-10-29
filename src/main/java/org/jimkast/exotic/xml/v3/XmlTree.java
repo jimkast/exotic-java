@@ -1,14 +1,11 @@
 package org.jimkast.exotic.xml.v3;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import javax.xml.stream.XMLStreamConstants;
 import com.sun.xml.internal.fastinfoset.stax.StAXDocumentParser;
 import org.jimkast.exotic.binary.binary;
-import org.jimkast.exotic.text.cached;
-import org.w3c.dom.Node;
 
-public final class XmlTree implements Table, Target, XmlSource {
+public final class XmlTree implements Table, XmlStore {
     private final int[] parents;
     private final byte[] types;
     private final byte[] depths;
@@ -45,7 +42,7 @@ public final class XmlTree implements Table, Target, XmlSource {
     }
 
     @Override
-    public void feed(Target target) throws IOException {
+    public void feed(XmlTarget target) throws IOException {
 //        for (int i = 0; i < this.i; i++) {
 //            int type = types[i];
 //            int depth = 0;
@@ -110,27 +107,6 @@ public final class XmlTree implements Table, Target, XmlSource {
         }
         i++;
     }
-
-    public void serialize(PrintStream out) {
-        for (int j = 0; j < i; j++) {
-            if (types[j] == 0) {
-                out.print('<');
-                out.print(new cached(markup[j]).chars());
-            } else if (types[j] == Node.ATTRIBUTE_NODE) {
-                out.print(' ');
-                out.print(new cached(markup[j]).chars());
-                out.print('=');
-                out.print(new cached(text[j]).chars());
-            } else if (types[j] == Node.TEXT_NODE) {
-                out.print(new cached(text[j]).chars());
-            } else if (types[j] == Node.COMMENT_NODE) {
-                out.print("<!--");
-                out.print(new cached(text[j]).chars());
-                out.print("-->");
-            }
-        }
-    }
-
 
     public static final class TreeRow implements Row {
         private final int index;
