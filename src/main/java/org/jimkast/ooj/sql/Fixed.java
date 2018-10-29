@@ -1,8 +1,8 @@
-package org.jimkast.exotic.sql;
+package org.jimkast.ooj.sql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.jimkast.exotic.possible.possible;
+import org.jimkast.ooj.source.PSource;
 
 public final class Fixed implements SqlExchange {
     private final Connection conn;
@@ -14,7 +14,7 @@ public final class Fixed implements SqlExchange {
     }
 
     @Override
-    public possible<Row> rs() throws SQLException {
+    public PSource<Row> rs() throws SQLException {
         return new RsAsPossible(conn.createStatement().executeQuery(query.toString()));
     }
 }

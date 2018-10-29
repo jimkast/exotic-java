@@ -1,4 +1,4 @@
-package org.jimkast.exotic.sql;
+package org.jimkast.ooj.sql;
 
 import java.io.InputStream;
 import java.sql.SQLException;

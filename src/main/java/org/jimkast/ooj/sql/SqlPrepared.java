@@ -1,13 +1,13 @@
-package org.jimkast.exotic.sql;
+package org.jimkast.ooj.sql;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import org.jimkast.exotic.binary.binary;
-import org.jimkast.exotic.number.types.array;
-import org.jimkast.exotic.possible.possible;
+import org.jimkast.ooj.lang.Array;
+import org.jimkast.ooj.lang.Binary;
+import org.jimkast.ooj.source.PSource;
 
 public interface SqlPrepared {
-    possible<Row> rows(array<binary> params) throws SQLException;
+    PSource<Row> rows(Array<Binary> params) throws SQLException;
 
     final class Jdbc implements SqlPrepared {
         private final PreparedStatement st;
@@ -17,7 +17,7 @@ public interface SqlPrepared {
         }
 
         @Override
-        public possible<Row> rows(array<binary> params) throws SQLException {
+        public PSource<Row> rows(Array<Binary> params) throws SQLException {
             int len = params.length();
             for (int i = 0; i < len; i++) {
 
