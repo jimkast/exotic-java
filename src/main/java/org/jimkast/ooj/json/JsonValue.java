@@ -1,4 +1,4 @@
-package org.jimkast.exotic.json;
+package org.jimkast.ooj.json;
 
 import org.jimkast.exotic.binary.binary;
 import org.jimkast.exotic.number.types.array;
