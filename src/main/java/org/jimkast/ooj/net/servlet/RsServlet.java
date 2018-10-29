@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import javax.servlet.http.HttpServletResponse;
 import org.jimkast.ooj.net.http.HttpOut;
 import org.jimkast.exotic.possible.while_present;
-import org.jimkast.exotic.xml.v3.Markuped;
+import org.jimkast.ooj.xml.Markuped;
 
 public final class RsServlet implements Consumer<HttpServletResponse> {
     private final HttpOut res;

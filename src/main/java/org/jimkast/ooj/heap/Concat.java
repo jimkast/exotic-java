@@ -2,19 +2,19 @@ package org.jimkast.ooj.heap;
 
 import java.io.IOException;
 import java.util.List;
-import org.jimkast.exotic.map.MappingInt;
-import org.jimkast.ooj.net.OutStream;
+import org.jimkast.ooj.lang.IntMapping;
 import org.jimkast.ooj.lang.Quantity;
+import org.jimkast.ooj.net.OutStream;
 
 public final class Concat implements MemBlockR {
-    private final MappingInt<MemBlockR> mapping;
+    private final IntMapping<MemBlockR> mapping;
     private final Quantity sum;
 
     public Concat(Iterable<MemBlockR> all) {
         this(new Mapping<>(all), new Sum(all));
     }
 
-    Concat(MappingInt<MemBlockR> mapping, Quantity all) {
+    Concat(IntMapping<MemBlockR> mapping, Quantity all) {
         this.mapping = mapping;
         this.sum = all;
     }
@@ -35,7 +35,7 @@ public final class Concat implements MemBlockR {
     }
 
 
-    public final static class Mapping<T extends Quantity> implements MappingInt<T> {
+    public final static class Mapping<T extends Quantity> implements IntMapping<T> {
         private final Iterable<T> all;
 
         public Mapping(Iterable<T> all) {
@@ -55,7 +55,7 @@ public final class Concat implements MemBlockR {
         }
     }
 
-    public final static class BinaryMapping<T extends Quantity> implements MappingInt<T> {
+    public final static class BinaryMapping<T extends Quantity> implements IntMapping<T> {
         private final List<Integer> all;
 
         public BinaryMapping(List<Integer> all) {

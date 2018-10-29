@@ -3,7 +3,7 @@ package org.jimkast.ooj.net.http;
 import java.io.IOException;
 import java.io.OutputStream;
 import org.jimkast.exotic.io.bs.bsource;
-import org.jimkast.exotic.xml.v3.Markuped;
+import org.jimkast.ooj.xml.Markuped;
 
 public interface HttpOut extends bsource {
     Markuped head();

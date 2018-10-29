@@ -3,7 +3,7 @@ package org.jimkast.ooj.net.http;
 import java.io.IOException;
 import java.io.InputStream;
 import org.cactoos.Input;
-import org.jimkast.exotic.xml.v3.Markuped;
+import org.jimkast.ooj.xml.Markuped;
 
 public interface HttpIn extends Input {
     Markuped head();
