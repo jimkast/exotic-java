@@ -27,19 +27,18 @@ public interface HeapBlock extends Quantity {
     }
 
     default void writeTo(OutputStream out) throws IOException {
-        supplyVoid(out::write);
         address().writeTo(out, length());
     }
 
-    default ByteBuffer buffer() throws IOException {
-        return address().buffer(length());
+    default ByteBuffer byteBuffer() throws IOException {
+        return address().byteBuffer(length());
     }
 
     default <T> T supply(JdkByteArrayConsumer<T> consumer) {
         return address().supply(consumer, length());
     }
 
-    default void supplyVoid(JdkByteArrayVoidConsumer consumer) throws IOException {
+    default void feed(JdkByteArrayVoidConsumer consumer) throws IOException {
         address().supplyVoid(consumer, length());
     }
 }

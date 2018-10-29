@@ -41,7 +41,7 @@ public interface MessageDigest extends OutStream, Quantity, InStream {
 
         @Override
         public void accept(HeapBlock heap) throws IOException {
-            heap.supplyVoid(md::update);
+            heap.feed(md::update);
         }
     }
 }

@@ -27,7 +27,7 @@ public final class HeapAddr {
         out.write(jarr, offset, length);
     }
 
-    public ByteBuffer buffer(int length) {
+    public ByteBuffer byteBuffer(int length) {
         return ByteBuffer.wrap(jarr, offset, length);
     }
 

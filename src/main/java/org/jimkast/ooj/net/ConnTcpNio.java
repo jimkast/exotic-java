@@ -13,12 +13,12 @@ public final class ConnTcpNio implements Conn {
 
     @Override
     public int read(HeapBlock heap) throws IOException {
-        return s.read(heap.buffer());
+        return s.read(heap.byteBuffer());
     }
 
     @Override
     public void accept(HeapBlock heap) throws IOException {
-        s.write(heap.buffer());
+        s.write(heap.byteBuffer());
     }
 
     @Override
