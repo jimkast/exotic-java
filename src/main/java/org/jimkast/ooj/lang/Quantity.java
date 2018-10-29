@@ -61,4 +61,22 @@ public interface Quantity {
             return q.length();
         }
     }
+
+
+    final class Sum implements Quantity {
+        private final Iterable<? extends Quantity> all;
+
+        public Sum(Iterable<? extends Quantity> all) {
+            this.all = all;
+        }
+
+        @Override
+        public int length() {
+            int sum = 0;
+            for (Quantity q : all) {
+                sum += q.length();
+            }
+            return sum;
+        }
+    }
 }
