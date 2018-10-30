@@ -35,6 +35,22 @@ public interface BiTarget<X, Y> {
         }
     }
 
+    final class Split<X, Y> implements BiTarget<X, Y> {
+        private final Target<X> t1;
+        private final Target<Y> t2;
+
+        public Split(Target<X> t1, Target<Y> t2) {
+            this.t1 = t1;
+            this.t2 = t2;
+        }
+
+        @Override
+        public void accept(X x, Y y) {
+            t1.accept(x);
+            t2.accept(y);
+        }
+    }
+
     final class Ignore1<X, Y> implements BiTarget<X, Y> {
         private final Target<Y> target;
 
