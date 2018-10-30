@@ -7,7 +7,7 @@ public final class BiPs2<T> implements BiSource<T, T> {
     private final Source<Array<T>> origin;
 
     public BiPs2(T t, Source<T> origin) {
-        this(new BiPsN<>(origin, t));
+        this(new BiPsN<>(origin, t, null));
     }
 
     public BiPs2(Source<Array<T>> origin) {
@@ -16,6 +16,6 @@ public final class BiPs2<T> implements BiSource<T, T> {
 
     @Override
     public void feed(BiTarget<T, T> target) {
-        origin.feed(tArray -> target.accept(tArray.map(0), tArray.map(1)));
+        origin.feed(arr -> target.accept(arr.map(0), arr.map(1)));
     }
 }

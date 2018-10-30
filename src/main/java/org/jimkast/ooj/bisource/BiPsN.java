@@ -14,7 +14,7 @@ public final class BiPsN<T> implements Source<Array<T>> {
 
     @SafeVarargs
     public BiPsN(Source<T> origin, T... t) {
-        this(new Check.Eq<>(t.length), new Queue<>(t), origin);
+        this(new Check.Eq<>(t.length), new Queue<>(t.length - 1, t), origin);
     }
 
     public BiPsN(Check<Integer> check, ArrayTarget<T> arr, Source<T> origin) {

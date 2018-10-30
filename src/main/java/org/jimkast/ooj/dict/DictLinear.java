@@ -3,7 +3,7 @@ package org.jimkast.ooj.dict;
 import java.util.LinkedList;
 import org.jimkast.ooj.array.ArrayJdk;
 import org.jimkast.ooj.bisource.BiSource;
-import org.jimkast.ooj.bisource.PsBiCombined2;
+import org.jimkast.ooj.bisource.PsBiCombined;
 import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.map.Dictionary;
 import org.jimkast.ooj.source.PsOfArray;
@@ -47,7 +47,7 @@ public final class DictLinear<K, V> implements Dictionary<K, V> {
 
     @Override
     public BiSource<K, V> stream() {
-        return new PsBiCombined2<>(
+        return new PsBiCombined<>(
             new PsOfArray<>(keys),
             new PsOfArray<>(values)
         );

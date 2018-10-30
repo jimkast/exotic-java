@@ -6,8 +6,8 @@ import org.jimkast.ooj.source.Target;
 
 public final class Queue<T> implements Store<T>, ArrayTarget<T> {
     private final ObjectArray<T> arr;
-    private int count = 0;
-    private int next = 0;
+    private int count;
+    private int next;
 
     public Queue(int size) {
         this(new ObjectArray.Native<>(size));
@@ -15,11 +15,22 @@ public final class Queue<T> implements Store<T>, ArrayTarget<T> {
 
     @SafeVarargs
     public Queue(T... items) {
-        this(new ObjectArray.Native<>(items));
+        this(0, items);
+    }
+
+    @SafeVarargs
+    public Queue(int count, T... items) {
+        this(count, new ObjectArray.Native<>(items));
     }
 
     public Queue(ObjectArray<T> arr) {
+        this(0, arr);
+    }
+
+    public Queue(int count, ObjectArray<T> arr) {
         this.arr = arr;
+        this.count = count;
+        this.next = count;
     }
 
     @Override
