@@ -1,6 +1,5 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
@@ -16,13 +15,11 @@ public final class RefQueue<T> implements Store<T>, ArrayTarget<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if (ref == null) {
-            return Cond.FALSE;
+    public void feed(Target<T> target) {
+        if (ref != null) {
+            target.accept(ref);
+            ref = null;
         }
-        target.accept(ref);
-        ref = null;
-        return Cond.TRUE;
     }
 
     @Override

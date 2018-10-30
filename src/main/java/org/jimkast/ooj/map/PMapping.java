@@ -1,8 +1,8 @@
 package org.jimkast.ooj.map;
 
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
-public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
+public interface PMapping<K, V> extends Mapping<K, Source<V>> {
 
     class Env<K, V> implements PMapping<K, V> {
         private final PMapping<K, V> origin;
@@ -12,27 +12,27 @@ public interface PMapping<K, V> extends Mapping<K, PSource<V>> {
         }
 
         @Override
-        public final PSource<V> map(K key) {
+        public final Source<V> map(K key) {
             return origin.map(key);
         }
     }
 
     final class OfMapping<K, V> implements PMapping<K, V> {
-        private final Mapping<K, PSource<V>> mapping;
+        private final Mapping<K, Source<V>> mapping;
 
-        public OfMapping(Mapping<K, PSource<V>> mapping) {
+        public OfMapping(Mapping<K, Source<V>> mapping) {
             this.mapping = mapping;
         }
 
         @Override
-        public PSource<V> map(K key) {
+        public Source<V> map(K key) {
             return mapping.map(key);
         }
     }
 
     final class Fixed<K, V> extends Env<K, V> {
         public Fixed(V value) {
-            super(new OfMapping<>(new Mapping.Fixed<>(new PSource.Fixed<>(value))));
+            super(new OfMapping<>(new Mapping.Fixed<>(new Source.Fixed<>(value))));
         }
     }
 }

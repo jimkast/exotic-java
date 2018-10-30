@@ -1,7 +1,7 @@
 package org.jimkast.ooj.source;
 
 import java.util.Iterator;
-import org.jimkast.ooj.bisource.BiPSource;
+import org.jimkast.ooj.bisource.BiSource;
 import org.jimkast.ooj.bisource.PsBiForEach;
 import org.jimkast.ooj.bisource.PsLast;
 import org.jimkast.ooj.bisource.PsSize;
@@ -11,10 +11,10 @@ import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.map.Mapping;
 import org.jimkast.ooj.source.adapter.PsAsIterator;
 
-public final class PsFluent<T> implements PSource<T>, Iterable<T> {
-    private final PSource<T> origin;
+public final class PsFluent<T> implements Source<T>, Iterable<T> {
+    private final Source<T> origin;
 
-    public PsFluent(PSource<T> origin) {
+    public PsFluent(Source<T> origin) {
         this.origin = origin;
     }
 
@@ -26,7 +26,7 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
         return new PsFluent<>(new PsFiltered<>(filter, origin));
     }
 
-    public PsFluent<T> flatten(PSource<T> other) {
+    public PsFluent<T> flatten(Source<T> other) {
         return new PsFluent<>(new PsFlattened<>(origin, other));
     }
 
@@ -42,7 +42,7 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
         return new PsFluent<>(new PsForEach<>(origin));
     }
 
-    public BiPSource<T, Integer> fori() {
+    public BiSource<T, Integer> fori() {
         return new PsBiForEach<>(new PsWithCounter<>(origin));
     }
 
@@ -51,7 +51,7 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
         return new PsAsIterator<>(origin);
     }
 
-    public PsFluent<T> orelse(PSource<T> other) {
+    public PsFluent<T> orelse(Source<T> other) {
         return new PsFluent<>(new PsFallback<>(other, origin));
     }
 
@@ -71,7 +71,7 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
         return new PsContains<>(t, origin);
     }
 
-    public Cond containsAll(PSource<T> items) {
+    public Cond containsAll(Source<T> items) {
         return new PsContainsAll<>(items, origin);
     }
 
@@ -84,7 +84,7 @@ public final class PsFluent<T> implements PSource<T>, Iterable<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        return origin.feed(target);
+    public void feed(Target<T> target) {
+        origin.feed(target);
     }
 }

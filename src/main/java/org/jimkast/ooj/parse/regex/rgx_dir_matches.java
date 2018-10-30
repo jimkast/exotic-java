@@ -2,12 +2,11 @@ package org.jimkast.ooj.parse.regex;
 
 import java.util.Collections;
 import org.jimkast.ooj.array.ArrayJdk;
-import org.jimkast.ooj.bisource.BiPSource;
+import org.jimkast.ooj.bisource.BiSource;
 import org.jimkast.ooj.bisource.BiTarget;
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.Binary;
 
-public final class rgx_dir_matches implements BiPSource<Integer, Integer> {
+public final class rgx_dir_matches implements BiSource<Integer, Integer> {
     private final Binary b;
     private final dir d;
     private int cur = 0;
@@ -18,10 +17,10 @@ public final class rgx_dir_matches implements BiPSource<Integer, Integer> {
     }
 
     @Override
-    public Cond feed(BiTarget<Integer, Integer> target) {
+    public void feed(BiTarget<Integer, Integer> target) {
         int max = b.length();
         if (cur >= max) {
-            return Cond.FALSE;
+            return;
         }
         int len = -1;
         int cursor = cur;
@@ -32,6 +31,5 @@ public final class rgx_dir_matches implements BiPSource<Integer, Integer> {
             target.accept(cursor - 1, len);
             cur = cursor;
         }
-        return Cond.TRUE;
     }
 }

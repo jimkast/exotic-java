@@ -3,7 +3,7 @@ package org.jimkast.ooj.sql;
 import java.sql.SQLException;
 import org.jimkast.ooj.lang.Array;
 import org.jimkast.ooj.lang.Binary;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 import org.jimkast.ooj.target.ObjectArray;
 
 public final class Prepared implements SqlExchange {
@@ -20,7 +20,7 @@ public final class Prepared implements SqlExchange {
     }
 
     @Override
-    public PSource<Row> rs() throws SQLException {
+    public Source<Row> rs() throws SQLException {
         return st.rows(params);
     }
 }

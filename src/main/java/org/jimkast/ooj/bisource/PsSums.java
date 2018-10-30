@@ -1,10 +1,10 @@
 package org.jimkast.ooj.bisource;
 
 import org.jimkast.ooj.map.Mapping;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
-public final class PsSums extends PSource.Env<Number> {
-    public PsSums(PSource<Number> origin) {
+public final class PsSums extends Source.Env<Number> {
+    public PsSums(Source<Number> origin) {
         super(new PsBi2<>(new PsBiCombined<>(origin, new Sum())));
     }
 

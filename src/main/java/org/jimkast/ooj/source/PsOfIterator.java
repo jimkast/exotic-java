@@ -2,9 +2,8 @@ package org.jimkast.ooj.source;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import org.jimkast.ooj.cond.Cond;
 
-public final class PsOfIterator<T> implements PSource<T> {
+public final class PsOfIterator<T> implements Source<T> {
     private final Iterator<T> iterator;
 
     @SafeVarargs
@@ -17,11 +16,9 @@ public final class PsOfIterator<T> implements PSource<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if(!iterator.hasNext()) {
-            return Cond.FALSE;
+    public void feed(Target<T> target) {
+        if (iterator.hasNext()) {
+            target.accept(iterator.next());
         }
-        target.accept(iterator.next());
-        return Cond.TRUE;
     }
 }

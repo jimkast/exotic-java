@@ -2,7 +2,7 @@ package org.jimkast.ooj.sql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
 public final class Fixed implements SqlExchange {
     private final Connection conn;
@@ -14,7 +14,7 @@ public final class Fixed implements SqlExchange {
     }
 
     @Override
-    public PSource<Row> rs() throws SQLException {
+    public Source<Row> rs() throws SQLException {
         return new RsAsPossible(conn.createStatement().executeQuery(query.toString()));
     }
 }

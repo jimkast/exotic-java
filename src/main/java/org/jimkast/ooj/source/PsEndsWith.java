@@ -5,7 +5,7 @@ import org.jimkast.ooj.cond.Check;
 import org.jimkast.ooj.cond.Cond;
 
 public final class PsEndsWith<X> extends Cond.Env {
-    public PsEndsWith(X item, PSource<X> source) {
+    public PsEndsWith(X item, Source<X> source) {
         super(
             new PsIsEmpty<>(
                 new PsWhile<>(

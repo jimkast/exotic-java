@@ -1,20 +1,18 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.cond.Cond;
+public final class PsForEach<T> implements Source<T> {
+    private final CondSource<T> origin;
 
-public final class PsForEach<T> implements PSource<T> {
-    private final PSource<T> origin;
+    public PsForEach(Source<T> origin) {
+        this(new CondSource.Default<>(origin));
+    }
 
-    public PsForEach(PSource<T> origin) {
+    public PsForEach(CondSource<T> origin) {
         this.origin = origin;
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if (origin.feed(target).choose(false, true)) {
-            return Cond.FALSE;
-        }
+    public void feed(Target<T> target) {
         while (origin.feed(target).choose(true, false)) ;
-        return Cond.TRUE;
     }
 }

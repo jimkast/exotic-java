@@ -1,15 +1,16 @@
 package org.jimkast.ooj.source.adapter;
 
 import java.util.Iterator;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.lang.ArrayTarget;
+import org.jimkast.ooj.source.Source;
 import org.jimkast.ooj.target.RefQueue;
 
 public final class PsAsIterator<T> implements Iterator<T> {
-    private final PSource<T> source;
-    private final RefQueue<T> store = new RefQueue<>();
+    private final Source<T> source;
+    private final ArrayTarget<T> store = new RefQueue<>();
     private boolean fetched = false;
 
-    public PsAsIterator(PSource<T> source) {
+    public PsAsIterator(Source<T> source) {
         this.source = source;
     }
 
@@ -19,7 +20,7 @@ public final class PsAsIterator<T> implements Iterator<T> {
             source.feed(store);
             fetched = true;
         }
-        return store.feed(store).choose(true, false);
+        return store.length() > 0;
     }
 
     @Override

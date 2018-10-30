@@ -1,31 +1,30 @@
 package org.jimkast.ooj.source;
 
 import java.util.Arrays;
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.target.RefQueue;
 
-public final class PsFlattened<T> implements PSource<T> {
-    private final PSource<PSource<T>> sources;
-    private final Store<PSource<T>> store;
+public final class PsFlattened<T> implements Source<T> {
+    private final Source<Source<T>> sources;
+    private final Store<Source<T>> store;
 
     @SafeVarargs
-    public PsFlattened(PSource<T>... sources) {
+    public PsFlattened(Source<T>... sources) {
         this(new PsOfIterator<>(Arrays.asList(sources).iterator()));
     }
 
-    public PsFlattened(PSource<PSource<T>> sources) {
+    public PsFlattened(Source<Source<T>> sources) {
         this(sources, new RefQueue<>());
     }
 
-    PsFlattened(PSource<PSource<T>> sources, Store<PSource<T>> store) {
+    PsFlattened(Source<Source<T>> sources, Store<Source<T>> store) {
         this.sources = sources;
         this.store = store;
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        return new PsFiltered<>(
-            src -> src.feed(target),
+    public void feed(Target<T> target) {
+        new PsFiltered<>(
+            src -> new CondSource.Default<>(src).feed(target),
             new PsFallback<>(sources, store)
         ).feed(store);
     }

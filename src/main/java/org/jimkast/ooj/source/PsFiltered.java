@@ -3,8 +3,8 @@ package org.jimkast.ooj.source;
 import org.jimkast.ooj.cond.Check;
 import org.jimkast.ooj.map.Mapping;
 
-public final class PsFiltered<T> extends PSource.Env<T> {
-    public PsFiltered(Check<T> check, PSource<T> origin) {
+public final class PsFiltered<T> extends Source.Env<T> {
+    public PsFiltered(Check<T> check, Source<T> origin) {
         super(new PsStore<>(
             new PsMapping<>(
                 new FilteredMapping<>(
@@ -16,17 +16,17 @@ public final class PsFiltered<T> extends PSource.Env<T> {
     }
 
 
-    public static final class FilteredMapping<T> implements Mapping<Target<T>, PSource<T>> {
+    public static final class FilteredMapping<T> implements Mapping<Target<T>, Source<T>> {
         private final Check<T> check;
-        private final PSource<T> origin;
+        private final Source<T> origin;
 
-        public FilteredMapping(Check<T> check, PSource<T> origin) {
+        public FilteredMapping(Check<T> check, Source<T> origin) {
             this.check = check;
             this.origin = origin;
         }
 
         @Override
-        public PSource<T> map(Target<T> store) {
+        public Source<T> map(Target<T> store) {
             return new PsWithFixedTarget<>(Target.Noop.instance(),
                 new PsForEach<>(
                     new PsWhile<>(check, store, origin)

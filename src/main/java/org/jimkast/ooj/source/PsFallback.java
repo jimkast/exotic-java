@@ -1,22 +1,24 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.cond.Cond;
+public final class PsFallback<T> implements Source<T> {
+    private final Source<T> other;
+    private final CondSource<T> origin;
 
-public final class PsFallback<T> implements PSource<T> {
-    private final PSource<T> other;
-    private final PSource<T> origin;
-
-    public PsFallback(T fixed, PSource<T> origin) {
-        this(new PSource.Fixed<>(fixed), origin);
+    public PsFallback(T fixed, Source<T> origin) {
+        this(new Source.Fixed<>(fixed), origin);
     }
 
-    public PsFallback(PSource<T> other, PSource<T> origin) {
+    public PsFallback(Source<T> other, Source<T> origin) {
+        this(other, new CondSource.Default<>(origin));
+    }
+
+    public PsFallback(Source<T> other, CondSource<T> origin) {
         this.other = other;
         this.origin = origin;
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        return origin.feed(target).choose(PSource.Empty.<T>instance(), other).feed(target);
+    public void feed(Target<T> target) {
+        origin.feed(target).choose(Source.Empty.<T>instance(), other).feed(target);
     }
 }

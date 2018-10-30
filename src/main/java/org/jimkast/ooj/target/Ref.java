@@ -1,6 +1,5 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.Array;
 import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
@@ -16,12 +15,10 @@ public final class Ref<T> implements Store<T>, Array<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if (ref == null) {
-            return Cond.FALSE;
+    public void feed(Target<T> target) {
+        if (ref != null) {
+            target.accept(ref);
         }
-        target.accept(ref);
-        return Cond.TRUE;
     }
 
     @Override

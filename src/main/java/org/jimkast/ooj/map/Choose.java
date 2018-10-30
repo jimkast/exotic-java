@@ -1,10 +1,10 @@
 package org.jimkast.ooj.map;
 
 import org.jimkast.ooj.source.PsOrElse;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
 public final class Choose<K, V> implements Mapping<K, V> {
-    private final Mapping<PSource<V>, V> other;
+    private final Mapping<Source<V>, V> other;
     private final PMapping<K, V> possible;
 
     @SafeVarargs
@@ -16,7 +16,7 @@ public final class Choose<K, V> implements Mapping<K, V> {
         this(new PsOrElse<>(other), possible);
     }
 
-    public Choose(Mapping<PSource<V>, V> other, PMapping<K, V> possible) {
+    public Choose(Mapping<Source<V>, V> other, PMapping<K, V> possible) {
         this.other = other;
         this.possible = possible;
     }

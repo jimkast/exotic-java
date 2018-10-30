@@ -1,17 +1,16 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.cond.Cond;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
-public final class BiPs2Simple<T> implements BiPSource<T, T> {
-    private final PSource<T> origin;
+public final class BiPs2Simple<T> implements BiSource<T, T> {
+    private final Source<T> origin;
 
-    public BiPs2Simple(PSource<T> origin) {
+    public BiPs2Simple(Source<T> origin) {
         this.origin = origin;
     }
 
     @Override
-    public Cond feed(BiTarget<T, T> target) {
-        return origin.feed(t -> origin.feed(t2 -> target.accept(t, t2)));
+    public void feed(BiTarget<T, T> target) {
+        origin.feed(t -> origin.feed(t2 -> target.accept(t, t2)));
     }
 }

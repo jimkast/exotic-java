@@ -1,20 +1,19 @@
 package org.jimkast.ooj.bisource;
 
-import org.jimkast.ooj.cond.Cond;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
-public final class PsBiCombined2<X, Y> implements BiPSource<X, Y> {
-    private final PSource<X> p1;
-    private final PSource<Y> p2;
+public final class PsBiCombined2<X, Y> implements BiSource<X, Y> {
+    private final Source<X> p1;
+    private final Source<Y> p2;
 
-    public PsBiCombined2(PSource<X> p1, PSource<Y> p2) {
+    public PsBiCombined2(Source<X> p1, Source<Y> p2) {
         this.p1 = p1;
         this.p2 = p2;
     }
 
 
     @Override
-    public Cond feed(BiTarget<X, Y> target) {
-        return p1.feed(x -> p2.feed(y -> target.accept(x, y)));
+    public void feed(BiTarget<X, Y> target) {
+        p1.feed(x -> p2.feed(y -> target.accept(x, y)));
     }
 }

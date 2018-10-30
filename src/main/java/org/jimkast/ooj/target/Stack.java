@@ -1,6 +1,5 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
@@ -19,15 +18,13 @@ public final class Stack<T> implements Store<T>, ArrayTarget<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if (count == 0) {
-            return Cond.FALSE;
+    public void feed(Target<T> target) {
+        if (count > 0) {
+            count--;
+            int len = arr.length();
+            next = (next + len - 1) % len;
+            target.accept(arr.map(next));
         }
-        count--;
-        int len = arr.length();
-        next = (next + len - 1) % len;
-        target.accept(arr.map(next));
-        return Cond.TRUE;
     }
 
     @Override

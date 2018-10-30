@@ -2,10 +2,9 @@ package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.cond.Check;
 import org.jimkast.ooj.cond.ChkLte;
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.Quantity;
 
-public final class PsRange implements PSource<Integer> {
+public final class PsRange implements Source<Integer> {
     private int i;
     private final Check<Number> chk;
 
@@ -31,9 +30,7 @@ public final class PsRange implements PSource<Integer> {
     }
 
     @Override
-    public Cond feed(Target<Integer> target) {
-        Cond c = chk.test(i);
-        c.choose(target, Target.Noop.<Integer>instance()).accept(i++);
-        return c;
+    public void feed(Target<Integer> target) {
+        chk.test(i).choose(target, Target.Noop.<Integer>instance()).accept(i++);
     }
 }

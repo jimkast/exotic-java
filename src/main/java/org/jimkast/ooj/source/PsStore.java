@@ -1,24 +1,23 @@
 package org.jimkast.ooj.source;
 
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.target.RefQueue;
 
-public final class PsStore<T> implements PSource<T> {
+public final class PsStore<T> implements Source<T> {
     private final Store<T> store;
-    private final PSource<T> origin;
+    private final Source<T> origin;
 
-    public PsStore(PSource<T> origin) {
+    public PsStore(Source<T> origin) {
         this(new RefQueue<>(), origin);
     }
 
-    public PsStore(Store<T> store, PSource<T> origin) {
+    public PsStore(Store<T> store, Source<T> origin) {
         this.store = store;
         this.origin = origin;
     }
 
     @Override
-    public Cond feed(Target<T> target) {
+    public void feed(Target<T> target) {
         origin.feed(store);
-        return store.feed(target);
+        store.feed(target);
     }
 }

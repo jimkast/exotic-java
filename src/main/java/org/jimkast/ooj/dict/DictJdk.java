@@ -1,7 +1,7 @@
 package org.jimkast.ooj.dict;
 
 import java.util.Map;
-import org.jimkast.ooj.bisource.BiPSource;
+import org.jimkast.ooj.bisource.BiSource;
 import org.jimkast.ooj.bisource.BiPsOfIterator;
 import org.jimkast.ooj.map.Dictionary;
 
@@ -30,7 +30,7 @@ public final class DictJdk<K, V> implements Dictionary<K, V> {
     }
 
     @Override
-    public BiPSource<K, V> stream() {
+    public BiSource<K, V> stream() {
         return new BiPsOfIterator<>(map.entrySet().iterator());
     }
 }

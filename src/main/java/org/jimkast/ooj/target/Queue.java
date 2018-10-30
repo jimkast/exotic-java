@@ -1,6 +1,5 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
@@ -24,14 +23,12 @@ public final class Queue<T> implements Store<T>, ArrayTarget<T> {
     }
 
     @Override
-    public Cond feed(Target<T> target) {
-        if (count == 0) {
-            return Cond.FALSE;
+    public void feed(Target<T> target) {
+        if (count > 0) {
+            count--;
+            int len = arr.length();
+            target.accept(arr.map((next + len - count - 1) % len));
         }
-        count--;
-        int len = arr.length();
-        target.accept(arr.map((next + len - count - 1) % len));
-        return Cond.TRUE;
     }
 
     @Override

@@ -3,7 +3,7 @@ package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.lang.Array;
 
-public final class PsOfArray<T> extends PSource.Env<T> {
+public final class PsOfArray<T> extends Source.Env<T> {
     public PsOfArray(Array<T> array) {
         this(0, array);
     }

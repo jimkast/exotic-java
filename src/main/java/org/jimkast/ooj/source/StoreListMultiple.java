@@ -20,7 +20,7 @@ public final class StoreListMultiple<T> implements Target<T>, SourceStream<T> {
     }
 
     @Override
-    public PSource<T> stream() {
+    public Source<T> stream() {
         return new PsOfIterator<>(list.iterator());
     }
 }

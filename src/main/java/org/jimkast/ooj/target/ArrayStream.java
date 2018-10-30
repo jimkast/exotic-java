@@ -2,7 +2,7 @@ package org.jimkast.ooj.target;
 
 
 import org.jimkast.ooj.lang.Array;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 import org.jimkast.ooj.source.PsOfArray;
 import org.jimkast.ooj.source.SourceStream;
 
@@ -14,7 +14,7 @@ public final class ArrayStream<T> implements SourceStream<T> {
     }
 
     @Override
-    public PSource<T> stream() {
+    public Source<T> stream() {
         return new PsOfArray<>(arr);
     }
 }

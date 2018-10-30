@@ -3,14 +3,18 @@ package org.jimkast.ooj.source;
 import org.jimkast.ooj.cond.Cond;
 
 public final class PsNotEmpty<T> implements Cond {
-    private final PSource<T> source;
+    private final CondSource<T> source;
     private final Target<T> target;
 
-    public PsNotEmpty(PSource<T> source) {
+    public PsNotEmpty(Source<T> source) {
         this(source, Target.Noop.instance());
     }
 
-    public PsNotEmpty(PSource<T> source, Target<T> target) {
+    public PsNotEmpty(Source<T> source, Target<T> target) {
+        this(new CondSource.Default<>(source), target);
+    }
+
+    public PsNotEmpty(CondSource<T> source, Target<T> target) {
         this.source = source;
         this.target = target;
     }

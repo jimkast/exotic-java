@@ -1,8 +1,8 @@
 package org.jimkast.ooj.sql;
 
 import java.sql.SQLException;
-import org.jimkast.ooj.source.PSource;
+import org.jimkast.ooj.source.Source;
 
 public interface SqlExchange {
-    PSource<Row> rs() throws SQLException;
+    Source<Row> rs() throws SQLException;
 }
