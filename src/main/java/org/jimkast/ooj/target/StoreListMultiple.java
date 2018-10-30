@@ -1,7 +1,11 @@
-package org.jimkast.ooj.source;
+package org.jimkast.ooj.target;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.jimkast.ooj.source.PsOfIterator;
+import org.jimkast.ooj.source.Source;
+import org.jimkast.ooj.source.SourceStream;
+import org.jimkast.ooj.source.Target;
 
 public final class StoreListMultiple<T> implements Target<T>, SourceStream<T> {
     private final List<T> list;
