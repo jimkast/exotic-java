@@ -9,7 +9,7 @@ public class BiPsReducedTest {
     @Test
     public void feed() {
         new PsForEach<>(
-            new BiPsReduced<>(
+            new PsReduced<>(
                 0,
                 (i, i2) -> i*i,
                 new PsRange(1, 10)
