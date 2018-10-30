@@ -1,7 +1,6 @@
 package org.jimkast.ooj.source.ints;
 
 import org.jimkast.ooj.cond.ChkLt;
-import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.map.Case;
 import org.jimkast.ooj.map.Choose;
 import org.jimkast.ooj.map.Mapping;
@@ -35,16 +34,15 @@ public final class Utf8Decoder implements IntSource {
     }
 
     @Override
-    public Cond feed(IntTarget target) {
-        return origin.feed(b -> mapping.map(b).feed(b, target));
+    public void feed(IntTarget target) {
+        origin.feed(b -> mapping.map(b).feed(b, target));
     }
 
 
     public static final class Byte1 implements IntSource2 {
         @Override
-        public Cond feed(int b, IntTarget target) {
+        public void feed(int b, IntTarget target) {
             target.accept(b);
-            return Cond.TRUE;
         }
     }
 
@@ -56,8 +54,8 @@ public final class Utf8Decoder implements IntSource {
         }
 
         @Override
-        public Cond feed(int b, IntTarget target) {
-            return s.feed(b2 -> target.accept(b & 0b00011111 << 6 | (b2 & MASK)));
+        public void feed(int b, IntTarget target) {
+            s.feed(b2 -> target.accept(b & 0b00011111 << 6 | (b2 & MASK)));
         }
     }
 
@@ -69,8 +67,8 @@ public final class Utf8Decoder implements IntSource {
         }
 
         @Override
-        public Cond feed(int b, IntTarget target) {
-            return s.feed(b2 -> s.feed(b3 -> target.accept(b + b2 + b3)));
+        public void feed(int b, IntTarget target) {
+            s.feed(b2 -> s.feed(b3 -> target.accept(b + b2 + b3)));
         }
     }
 
@@ -82,8 +80,8 @@ public final class Utf8Decoder implements IntSource {
         }
 
         @Override
-        public Cond feed(int b, IntTarget target) {
-            return s.feed(b2 -> s.feed(b3 -> s.feed(b4 -> target.accept(b + b2 + b3 + b4))));
+        public void feed(int b, IntTarget target) {
+            s.feed(b2 -> s.feed(b3 -> s.feed(b4 -> target.accept(b + b2 + b3 + b4))));
         }
     }
 }
