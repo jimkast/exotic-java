@@ -1,6 +1,7 @@
 package org.jimkast.ooj.bisource;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.target.Ref;
 
 public interface BiCondSource<X, Y> {
@@ -16,11 +17,8 @@ public interface BiCondSource<X, Y> {
         @Override
         public Cond feed(BiTarget<X, Y> target) {
             Ref<X> ref = new Ref<>();
-            source.feed((x, y) -> {
-                ref.accept(x);
-                target.accept(x, y);
-            });
-            return ref.length() == 0 ? Cond.FALSE : Cond.TRUE;
+            source.feed(new BiTarget.Both<>(new BiTarget.Ignore2<>(ref), target));
+            return new Quantity.NotEmpty<>(ref);
         }
     }
 }

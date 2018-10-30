@@ -1,10 +1,10 @@
 package org.jimkast.ooj.target;
 
-import org.jimkast.ooj.lang.Array;
+import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.source.Store;
 import org.jimkast.ooj.source.Target;
 
-public final class Ref<T> implements Store<T>, Array<T> {
+public final class Ref<T> implements Store<T>, ArrayTarget<T> {
     private T ref;
 
     public Ref() {

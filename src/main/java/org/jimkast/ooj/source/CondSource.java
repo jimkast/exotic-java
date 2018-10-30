@@ -1,6 +1,7 @@
 package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.cond.Cond;
+import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.target.Ref;
 
 public interface CondSource<T> {
@@ -18,7 +19,7 @@ public interface CondSource<T> {
         public Cond feed(Target<T> target) {
             Ref<T> ref = new Ref<>();
             source.feed(new Target.Both<>(ref, target));
-            return ref.length() == 0 ? Cond.FALSE : Cond.TRUE;
+            return new Quantity.NotEmpty<>(ref);
         }
     }
 }

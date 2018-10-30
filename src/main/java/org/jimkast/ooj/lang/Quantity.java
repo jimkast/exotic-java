@@ -1,6 +1,7 @@
 package org.jimkast.ooj.lang;
 
 import org.jimkast.exotic.numberjdk.Int;
+import org.jimkast.ooj.cond.Cond;
 import org.jimkast.ooj.source.Scalar;
 
 public interface Quantity {
@@ -77,6 +78,32 @@ public interface Quantity {
                 sum += q.length();
             }
             return sum;
+        }
+    }
+
+    final class NotEmpty<T> implements Cond {
+        private final Quantity q;
+
+        public NotEmpty(Quantity q) {
+            this.q = q;
+        }
+
+        @Override
+        public <X> X choose(X main, X other) {
+            return q.length() > 0 ? main : other;
+        }
+    }
+
+    final class Empty<T> implements Cond {
+        private final Quantity q;
+
+        public Empty(Quantity q) {
+            this.q = q;
+        }
+
+        @Override
+        public <X> X choose(X main, X other) {
+            return q.length() == 0 ? main : other;
         }
     }
 }
