@@ -29,7 +29,7 @@ public final class Offseted implements MemBlockR, MemBlockW {
 
 
     @Override
-    public void write(int skip, HeapBlock block) throws IOException {
+    public void write(int skip, HeapBlockArray block) throws IOException {
         origin.write(skip + offset, block);
     }
 }

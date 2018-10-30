@@ -1,11 +1,12 @@
 package org.jimkast.ooj.heap;
 
 import java.io.IOException;
+import org.jimkast.ooj.lang.IntArray;
 import org.jimkast.ooj.net.OutStream;
 import org.jimkast.ooj.lang.IntIntMapping;
 import org.jimkast.ooj.lang.Quantity;
 
-public interface MemBlockR extends Quantity, IntIntMapping, MemInput {
+public interface MemBlockR extends IntArray, MemInput {
 
     class Env implements MemBlockR {
         private final MemBlockR origin;

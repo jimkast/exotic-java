@@ -3,7 +3,7 @@ package org.jimkast.ooj.heap;
 import java.io.IOException;
 import org.jimkast.ooj.net.OutStream;
 
-public final class HeapAlloc implements HeapBlock, MemBlockR, MemBlockW {
+public final class HeapAlloc implements HeapBlockArray, MemBlockR, MemBlockW {
     private final byte[] jarr;
 
     public HeapAlloc(int size) {
@@ -30,7 +30,7 @@ public final class HeapAlloc implements HeapBlock, MemBlockR, MemBlockW {
     }
 
     @Override
-    public void write(int skip, HeapBlock block) throws IOException {
+    public void write(int skip, HeapBlockArray block) throws IOException {
         HeapAddr addr = block.address();
         System.arraycopy(addr.jarr, addr.offset, jarr, skip, block.length());
     }
