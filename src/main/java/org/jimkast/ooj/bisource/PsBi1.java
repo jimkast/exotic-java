@@ -12,6 +12,6 @@ public final class PsBi1<T> implements Source<T> {
 
     @Override
     public void feed(Target<T> target) {
-        origin.feed((t, o) -> target.accept(t));
+        origin.feed(new BiTarget.Ignore2<>(target));
     }
 }
