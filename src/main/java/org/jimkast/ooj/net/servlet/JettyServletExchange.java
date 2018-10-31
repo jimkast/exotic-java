@@ -9,19 +9,19 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.jimkast.ooj.net.http.HttpServerMapping;
 
 public final class JettyServletExchange extends AbstractHandler {
-    private final ServletExchange exchange;
+    private final Servlet exchange;
 
     public JettyServletExchange(HttpServerMapping exchange) {
         this(new ServletMappingAdapter(exchange));
     }
 
-    public JettyServletExchange(ServletExchange exchange) {
+    public JettyServletExchange(Servlet exchange) {
         this.exchange = exchange;
     }
 
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        exchange.exchange(request, response);
+        exchange.accept(request, response);
         baseRequest.setHandled(true);
     }
 }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jimkast.ooj.net.http.HttpOut;
 import org.jimkast.ooj.net.http.HttpServerMapping;
 
-public final class ServletMappingAdapter implements ServletExchange {
+public final class ServletMappingAdapter implements Servlet {
     private final Function<HttpOut, Consumer<HttpServletResponse>> rs;
     private final HttpServerMapping mapping;
 
@@ -21,7 +21,7 @@ public final class ServletMappingAdapter implements ServletExchange {
     }
 
     @Override
-    public void exchange(HttpServletRequest req, HttpServletResponse res) {
+    public void accept(HttpServletRequest req, HttpServletResponse res) {
         rs.apply(mapping.exchange(new ServletIn(req))).accept(res);
     }
 }

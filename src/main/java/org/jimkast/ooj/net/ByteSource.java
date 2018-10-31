@@ -3,6 +3,7 @@ package org.jimkast.ooj.net;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import org.jimkast.ooj.source.PsForEach;
+import org.jimkast.ooj.source.PsMapped;
 import org.jimkast.ooj.source.PsOfArray;
 import org.jimkast.ooj.source.Source;
 
@@ -17,13 +18,32 @@ public interface ByteSource {
         }
 
         @Override
-        public void feed(OutStream out) throws IOException {
+        public final void feed(OutStream out) throws IOException {
             origin.feed(out);
         }
     }
 
+
+    final class Safe implements ByteSource {
+        private final ByteSource origin;
+
+        public Safe(ByteSource origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public void feed(OutStream out) {
+            try {
+                origin.feed(out);
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
+        }
+    }
+
+
     final class All implements ByteSource {
-        private final Source<ByteSource> all;
+        private final Source<Safe> all;
 
         public All(ByteSource... all) {
             this(new PsOfArray<>(all));
@@ -34,18 +54,12 @@ public interface ByteSource {
         }
 
         public All(int dummy, Source<ByteSource> all) {
-            this.all = all;
+            this.all = new PsMapped<>(Safe::new, all);
         }
 
         @Override
-        public void feed(OutStream out) throws IOException {
-            all.feed(bs -> {
-                try {
-                    bs.feed(out);
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
-            });
+        public void feed(OutStream out) {
+            all.feed(bs -> bs.feed(out));
         }
     }
 }

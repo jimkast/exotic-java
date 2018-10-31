@@ -6,7 +6,6 @@ import org.jimkast.ooj.target.RefQueue;
 
 public final class PsOrElse<T> implements Mapping<Source<T>, T> {
     private final T other;
-    private final ArrayTarget<T> store = new RefQueue<>();
 
     public PsOrElse(T other) {
         this.other = other;
@@ -14,6 +13,7 @@ public final class PsOrElse<T> implements Mapping<Source<T>, T> {
 
     @Override
     public T map(Source<T> source) {
+        ArrayTarget<T> store = new RefQueue<>();
         source.feed(store);
         return store.length() == 0 ? other : store.map(0);
     }
