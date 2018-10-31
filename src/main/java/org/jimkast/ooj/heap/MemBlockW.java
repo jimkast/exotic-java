@@ -1,14 +1,8 @@
 package org.jimkast.ooj.heap;
 
-import java.io.IOException;
-import org.jimkast.ooj.lang.IntArray;
+import org.jimkast.ooj.lang.Binary;
+import org.jimkast.ooj.net.OutStream;
 
-public interface MemBlockW extends IntArray {
-    void write(int skip, HeapBlockArray block) throws IOException;
-
-    @Override
-    int length();
-
-    @Override
-    int map(int offset);
+public interface MemBlockW extends Binary, OutStream {
+    MemBlockW slice(int offset, int length);
 }

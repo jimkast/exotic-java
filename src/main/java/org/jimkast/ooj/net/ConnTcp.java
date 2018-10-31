@@ -2,7 +2,6 @@ package org.jimkast.ooj.net;
 
 import java.io.IOException;
 import java.net.Socket;
-import org.jimkast.ooj.heap.HeapBlock;
 
 public final class ConnTcp implements Conn {
     private final Socket s;
@@ -12,13 +11,13 @@ public final class ConnTcp implements Conn {
     }
 
     @Override
-    public int read(HeapBlock heap) throws IOException {
-        return heap.readFrom(s.getInputStream());
+    public int read(byte[] b, int offset, int length) throws IOException {
+        return s.getInputStream().read(b, offset, length);
     }
 
     @Override
-    public void accept(HeapBlock heap) throws IOException {
-        heap.writeTo(s.getOutputStream());
+    public void accept(byte[] b, int offset, int length) throws IOException {
+        s.getOutputStream().write(b, offset, length);
     }
 
     @Override

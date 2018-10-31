@@ -3,14 +3,14 @@ package org.jimkast.ooj.heap;
 import java.io.IOException;
 import org.jimkast.ooj.net.OutStream;
 
-public final class HeapAlloc implements HeapBlockArray, MemBlockR, MemBlockW {
+public final class HeapAlloc implements MemBlockRW {
     private final byte[] jarr;
 
     public HeapAlloc(int size) {
         this(new byte[size]);
     }
 
-    HeapAlloc(byte[] jarr) {
+    public HeapAlloc(byte[] jarr) {
         this.jarr = jarr;
     }
 
@@ -25,26 +25,17 @@ public final class HeapAlloc implements HeapBlockArray, MemBlockR, MemBlockW {
     }
 
     @Override
-    public void printTo(OutStream out, int offset, int length) throws IOException {
-        out.accept(this);
+    public MemBlockRW slice(int offset, int length) {
+        return new HeapSliced(jarr, offset, jarr.length - offset);
     }
 
     @Override
-    public void write(int skip, HeapBlockArray block) throws IOException {
-        HeapAddr addr = block.address();
-        System.arraycopy(addr.jarr, addr.offset, jarr, skip, block.length());
-    }
-
-    public void write(int skip, byte[] block, int offset, int len) throws IOException {
-        System.arraycopy(block, offset, jarr, skip, len);
-    }
-
-    public void write(int skip, HeapAddr a, int len) throws IOException {
-        System.arraycopy(a.jarr, a.offset, jarr, skip, len);
+    public void feed(OutStream out) throws IOException {
+        out.accept(jarr, 0, jarr.length);
     }
 
     @Override
-    public HeapAddr address() {
-        return new HeapAddr(jarr);
+    public void accept(byte[] b, int offset, int length) throws IOException {
+        System.arraycopy(b, offset, jarr, 0, length);
     }
 }

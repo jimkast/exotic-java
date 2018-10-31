@@ -3,8 +3,6 @@ package org.jimkast.ooj.net;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
-import org.jimkast.ooj.heap.HeapBlock;
-import org.jimkast.ooj.heap.HeapFixed;
 
 public interface InStreamCloseable extends InStream, Closeable {
 
@@ -16,8 +14,8 @@ public interface InStreamCloseable extends InStream, Closeable {
         }
 
         @Override
-        public int read(HeapBlock heap) throws IOException {
-            return in.read(heap);
+        public int read(byte[] b, int offset, int length) throws IOException {
+            return in.read(b, offset, length);
         }
 
         @Override
@@ -46,7 +44,7 @@ public interface InStreamCloseable extends InStream, Closeable {
 
         @Override
         public int read(byte[] block, int offset, int len) throws IOException {
-            return in.read(new HeapFixed(block, offset, len));
+            return in.read(block, offset, len);
         }
 
         @Override

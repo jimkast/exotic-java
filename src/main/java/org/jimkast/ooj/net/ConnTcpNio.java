@@ -1,8 +1,8 @@
 package org.jimkast.ooj.net;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import org.jimkast.ooj.heap.HeapBlock;
 
 public final class ConnTcpNio implements Conn {
     private final SocketChannel s;
@@ -12,13 +12,13 @@ public final class ConnTcpNio implements Conn {
     }
 
     @Override
-    public int read(HeapBlock heap) throws IOException {
-        return s.read(heap.byteBuffer());
+    public int read(byte[] b, int offset, int length) throws IOException {
+        return s.read(ByteBuffer.wrap(b, offset, length));
     }
 
     @Override
-    public void accept(HeapBlock heap) throws IOException {
-        s.write(heap.byteBuffer());
+    public void accept(byte[] b, int offset, int length) throws IOException {
+        s.write(ByteBuffer.wrap(b, offset, length));
     }
 
     @Override

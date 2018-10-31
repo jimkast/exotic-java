@@ -3,7 +3,6 @@ package org.jimkast.ooj.net;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import org.jimkast.ooj.heap.HeapBlock;
 
 public final class ConnUdp implements Conn {
     private final DatagramSocket s;
@@ -13,15 +12,15 @@ public final class ConnUdp implements Conn {
     }
 
     @Override
-    public int read(HeapBlock heap) throws IOException {
-        DatagramPacket p = heap.supply(DatagramPacket::new);
+    public int read(byte[] b, int offset, int length) throws IOException {
+        DatagramPacket p = new DatagramPacket(b, offset, length);
         s.receive(p);
         return p.getLength();
     }
 
     @Override
-    public void accept(HeapBlock heap) throws IOException {
-        s.send(heap.supply(DatagramPacket::new));
+    public void accept(byte[] b, int offset, int length) throws IOException {
+        s.send(new DatagramPacket(b, offset, length));
     }
 
     @Override

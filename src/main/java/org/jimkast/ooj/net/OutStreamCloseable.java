@@ -3,12 +3,8 @@ package org.jimkast.ooj.net;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
-import org.jimkast.ooj.heap.HeapBlock;
-import org.jimkast.ooj.heap.HeapFixed;
 
 public interface OutStreamCloseable extends OutStream, Closeable {
-    void accept(HeapBlock heap) throws IOException;
-
 
     final class AsCloseable implements OutStreamCloseable {
         private final OutStream out;
@@ -18,8 +14,8 @@ public interface OutStreamCloseable extends OutStream, Closeable {
         }
 
         @Override
-        public void accept(HeapBlock heap) throws IOException {
-            out.accept(heap);
+        public void accept(byte[] b, int offset, int length) throws IOException {
+            out.accept(b, offset, length);
         }
 
         @Override
@@ -48,7 +44,7 @@ public interface OutStreamCloseable extends OutStream, Closeable {
 
         @Override
         public void write(byte[] block, int offset, int len) throws IOException {
-            out.accept(new HeapFixed(block, offset, len));
+            out.accept(block, offset, len);
         }
 
         @Override

@@ -1,8 +1,6 @@
 package org.jimkast.ooj.crypto;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import org.jimkast.ooj.heap.HeapBlock;
 import org.jimkast.ooj.lang.Quantity;
 import org.jimkast.ooj.net.InStream;
 import org.jimkast.ooj.net.OutStream;
@@ -25,9 +23,9 @@ public interface MessageDigest extends OutStream, Quantity, InStream {
         }
 
         @Override
-        public int read(HeapBlock heap) throws IOException {
+        public int read(byte[] b, int offset, int length) {
             try {
-                return heap.readFrom(md::digest);
+                return md.digest(b, offset, length);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -40,8 +38,8 @@ public interface MessageDigest extends OutStream, Quantity, InStream {
         }
 
         @Override
-        public void accept(HeapBlock heap) throws IOException {
-            heap.feed(md::update);
+        public void accept(byte[] b, int offset, int length) {
+            md.update(b, offset, length);
         }
     }
 }
