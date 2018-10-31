@@ -1,9 +1,8 @@
 package org.jimkast.ooj.source;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
-public final class PsOfIterable<T> implements Source<T> {
+public final class PsOfIterable<T> implements SourceStream<T> {
     private final Iterable<T> items;
 
     @SafeVarargs
@@ -16,10 +15,7 @@ public final class PsOfIterable<T> implements Source<T> {
     }
 
     @Override
-    public void feed(Target<T> target) {
-        Iterator<T> iter = items.iterator();
-        if (iter.hasNext()) {
-            target.accept(iter.next());
-        }
+    public Source<T> stream() {
+        return new PsOfIterator<T>(items.iterator());
     }
 }
