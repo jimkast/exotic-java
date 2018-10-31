@@ -23,6 +23,24 @@ public interface InStreamCloseable extends InStream, Closeable {
         }
     }
 
+    final class OfInputStream implements InStreamCloseable {
+        private final InputStream in;
+
+        public OfInputStream(InputStream in) {
+            this.in = in;
+        }
+
+        @Override
+        public int read(byte[] block, int offset, int len) throws IOException {
+            return in.read(block, offset, len);
+        }
+
+        @Override
+        public void close() throws IOException {
+            in.close();
+        }
+    }
+
 
     final class AsInputStream extends InputStream {
         private final byte[] buf = new byte[1];

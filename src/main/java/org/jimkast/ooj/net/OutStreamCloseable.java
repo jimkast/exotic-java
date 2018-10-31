@@ -52,4 +52,23 @@ public interface OutStreamCloseable extends OutStream, Closeable {
             out.close();
         }
     }
+
+
+    final class Of implements OutStreamCloseable {
+        private final OutputStream out;
+
+        public Of(OutputStream out) {
+            this.out = out;
+        }
+
+        @Override
+        public final void accept(byte[] b, int offset, int length) throws IOException {
+            out.write(b, offset, length);
+        }
+
+        @Override
+        public void close() throws IOException {
+            out.close();
+        }
+    }
 }

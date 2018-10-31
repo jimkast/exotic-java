@@ -4,12 +4,11 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jimkast.ooj.net.servlet.Servlet;
-import org.jimkast.ooj.source.Target;
 
-public final class Fixed implements Servlet {
-    private final Target<HttpServletResponse> res;
+public final class ServletFixed implements Servlet {
+    private final RsServlet res;
 
-    public Fixed(Target<HttpServletResponse> res) {
+    public ServletFixed(RsServlet res) {
         this.res = res;
     }
 
