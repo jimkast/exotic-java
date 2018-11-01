@@ -1,5 +1,12 @@
 package org.jimkast.eshop;
 
+import java.net.URL;
+import org.jimkast.eshop.classpath.ClasspathUrlHandler;
+import org.jimkast.eshop.classpath.UrlHandlerFactory;
+import org.jimkast.eshop.cms.Saxon;
+import org.jimkast.eshop.cms.TkIndex;
+import org.jimkast.eshop.cms.TkXsl;
+import org.jimkast.eshop.cms.Xsl;
 import org.jimkast.ooj.bool.And;
 import org.jimkast.ooj.map.iterable.Case;
 import org.jimkast.ooj.map.iterable.Choose;
@@ -15,12 +22,26 @@ import org.jimkast.servlet.ServletFork;
 
 public final class App {
     public static void main(String... args) throws Exception {
+        URL.setURLStreamHandlerFactory(new UrlHandlerFactory()
+            .with("classpath", new ClasspathUrlHandler())
+        );
+
+        Saxon saxon = new Saxon();
+        Xsl xsl = saxon.compile("file:///C:/Users/jimkast/WebProjects/exotic-java/src/main/resources/templates/index.xsl");
+
         new JettyServer(
             8080,
             new JettyServletExchange(
                 new ServletFork(
                     new Choose<>(
                         (req, res) -> res.getWriter().println("404!!!!"),
+                        new Case<>(
+                            new And<>(
+                                new ChkForMethod("GET"),
+                                new ChkForPath("/xml")
+                            ),
+                            new TkXsl(Saxon.XSL_IDENTITY, new TkIndex())
+                        ),
                         new Case<>(
                             new And<>(
                                 new ChkForMethod("GET"),
