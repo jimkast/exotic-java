@@ -24,7 +24,7 @@ public class PsFilteredTest {
 
     @Test
     public void all() throws Exception {
-        PsFlattened<Integer> p = new PsFlattened<>(
+        Source<Integer> p = new PsFlattenedSingle<>(
             new PsRange(1, 10),
             new PsRange(11, 20),
             new PsRange(21, 30)

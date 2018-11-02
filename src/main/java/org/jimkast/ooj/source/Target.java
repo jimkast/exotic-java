@@ -32,4 +32,21 @@ public interface Target<T> {
             t2.accept(t);
         }
     }
+
+    final class All<T> implements Target<T> {
+        private final Source<Target<T>> all;
+
+        public All(Target<T>... all) {
+            this(new PsFlattened<>(new PsOfIterable<>(all)));
+        }
+
+        public All(Source<Target<T>> all) {
+            this.all = all;
+        }
+
+        @Override
+        public void accept(T t) {
+            all.feed(target -> target.accept(t));
+        }
+    }
 }

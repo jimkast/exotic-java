@@ -27,7 +27,8 @@ public final class PsFiltered<T> extends Source.Env<T> {
 
         @Override
         public Source<T> map(Target<T> store) {
-            return new PsWithFixedTarget<>(Target.Noop.instance(),
+            return new PsWithFixedTarget<>(
+                Target.Noop.instance(),
                 new PsForEach<>(
                     new PsWhile<>(check, store, origin)
                 )
