@@ -193,14 +193,16 @@ public interface Source<T> {
 
         @Override
         public <X> X feed(Mapping<T, X> target, X other) {
-            ArrayTarget<X> store = new Ref<>(other);
+            RefQueue<X> store = new RefQueue<>(other);
             while (bi.feed((t, cond) -> {
                 if (cond) {
                     store.accept(target.map(t));
                 }
                 return !cond;
             }, false)) ;
-            return store.map(0);
+            X x = store.length() == 0 ? other : store.map(0);
+            store.feed(x1 -> {});
+            return x;
         }
     }
 
