@@ -81,7 +81,7 @@ public interface Quantity {
         }
     }
 
-    final class NotEmpty<T> implements Cond {
+    final class NotEmpty implements Cond {
         private final Quantity q;
 
         public NotEmpty(Quantity q) {
@@ -94,7 +94,7 @@ public interface Quantity {
         }
     }
 
-    final class Empty<T> implements Cond {
+    final class Empty implements Cond {
         private final Quantity q;
 
         public Empty(Quantity q) {

@@ -18,7 +18,7 @@ public interface BiCondSource<X, Y> {
         public Cond feed(BiTarget<X, Y> target) {
             Ref<X> ref = new Ref<>();
             source.feed(new BiTarget.Both<>(new BiTarget.Ignore2<>(ref), target));
-            return new Quantity.NotEmpty<>(ref);
+            return new Quantity.NotEmpty(ref);
         }
     }
 }

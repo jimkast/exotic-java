@@ -16,6 +16,16 @@ public class PsFilteredTest {
         ).feed(System.out::println);
     }
 
+    @Test
+    public void setUp2222() throws Exception {
+        new PsForEach<>(
+            new PsFiltered2<>(
+                i -> i > 5 && i < 12 || i > 17 ? Cond.TRUE : Cond.FALSE,
+                new PsRange(20)
+            )
+        ).feed(System.out::println);
+    }
+
 
     @Test
     public void setUp2() throws Exception {
