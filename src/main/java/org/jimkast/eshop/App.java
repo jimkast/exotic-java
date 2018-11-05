@@ -4,6 +4,7 @@ import java.net.URL;
 import org.jimkast.eshop.classpath.ClasspathUrlHandler;
 import org.jimkast.eshop.classpath.UrlHandlerFactory;
 import org.jimkast.eshop.cms.Saxon;
+import org.jimkast.eshop.cms.TkFile;
 import org.jimkast.eshop.cms.TkIndex;
 import org.jimkast.eshop.cms.TkXsl;
 import org.jimkast.eshop.cms.Xsl;
@@ -12,12 +13,12 @@ import org.jimkast.ooj.map.iterable.Case;
 import org.jimkast.ooj.net.BsString;
 import org.jimkast.ooj.net.servlet.JettyServer;
 import org.jimkast.ooj.net.servlet.JettyServletExchange;
+import org.jimkast.ooj.net.servlet.Servlet;
 import org.jimkast.servlet.ChkForMethod;
 import org.jimkast.servlet.ChkForPath;
 import org.jimkast.servlet.ChkRegex;
 import org.jimkast.servlet.RsBody;
 import org.jimkast.servlet.ServletFixed;
-import org.jimkast.servlet.ServletFork;
 
 public final class App {
     public static void main(String... args) throws Exception {
@@ -26,19 +27,23 @@ public final class App {
         );
 
         Saxon saxon = new Saxon();
-        Xsl xsl = saxon.compile("file:///C:/Users/jimkast/WebProjects/exotic-java/src/main/resources/templates/index.xsl");
+        Xsl xsl = saxon.compile("src/main/resources/templates/index.xsl");
 
         new JettyServer(
             8080,
             new JettyServletExchange(
-                new ServletFork(
+                new Servlet.Fork(
                     (req, res) -> res.getWriter().println("404!!!!"),
                     new Case<>(
                         new And<>(
                             new ChkForMethod("GET"),
                             new ChkForPath("/xml")
                         ),
-                        new TkXsl(Saxon.XSL_IDENTITY, new TkIndex())
+                        new TkXsl(xsl, new TkIndex())
+                    ),
+                    new Case<>(new ChkForPath(path ->
+                        path.toString().startsWith("/xml")),
+                        new TkFile("https://www.w3schools.com")
                     ),
                     new Case<>(
                         new And<>(

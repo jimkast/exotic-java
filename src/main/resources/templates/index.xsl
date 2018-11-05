@@ -2,6 +2,9 @@
     <xsl:output method="html" indent="no" encoding="utf-8" version="5"/>
     <xsl:strip-space elements="*"/>
 
-    <!--<xsl:include href="layout.xsl"/>-->
-
+        <xsl:template match="@*|node()">
+            <xsl:copy>
+                <xsl:apply-templates select="@*|node()"/>
+            </xsl:copy>
+        </xsl:template>
 </xsl:stylesheet>

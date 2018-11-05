@@ -8,6 +8,6 @@ public final class TkIndex implements TkXml {
 
     @Override
     public Source map(HttpServletRequest req) {
-        return new StreamSource("file:///C:/Users/jimkast/Desktop/example2.xml");
+        return new StreamSource("https://www.w3schools.com/xml/cd_catalog.xml");
     }
 }

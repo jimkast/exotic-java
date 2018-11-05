@@ -1,6 +1,7 @@
 package org.jimkast.ooj.source;
 
 import org.jimkast.ooj.map.Mapping;
+import org.jimkast.ooj.source2.TrgMapped;
 
 public final class PsMapped<X, Y> implements Source<Y> {
     private final Mapping<X, Y> mapping;

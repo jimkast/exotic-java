@@ -6,16 +6,16 @@ import org.jimkast.ooj.map.Choose;
 import org.jimkast.ooj.net.BsString;
 import org.jimkast.ooj.net.servlet.JettyServer;
 import org.jimkast.ooj.net.servlet.JettyServletExchange;
+import org.jimkast.ooj.net.servlet.Servlet;
 import org.jimkast.servlet.RsBody;
 import org.jimkast.servlet.ServletFixed;
-import org.jimkast.servlet.ServletFork;
 
 public final class App2 {
     public static void main(String... args) throws Exception {
         new JettyServer(
             8080,
             new JettyServletExchange(
-                new ServletFork(
+                new Servlet.Fork(
                     new Choose<>(
                         (req, res) -> res.getWriter().println("404!!!!"),
                         new Case<>(

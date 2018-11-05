@@ -18,6 +18,21 @@ public interface Mapping<K, T> {
         }
     }
 
+
+    final class Self<T> implements Mapping<T, T> {
+        private static final Mapping SELF = new Self<>();
+
+        @Override
+        public T map(T key) {
+            return key;
+        }
+
+        @SuppressWarnings("unchecked")
+        public static <T> Mapping<T, T> instance() {
+            return SELF;
+        }
+    }
+
     final class Fixed<K, T> implements Mapping<K, T> {
         private final T value;
 
