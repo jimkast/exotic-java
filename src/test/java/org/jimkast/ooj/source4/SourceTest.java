@@ -12,7 +12,7 @@ public class SourceTest {
                 key -> "Hi " + key,
                 new Source.Filtered<>(
                     i -> i < 3 || i > 7 ? Cond.TRUE : Cond.FALSE,
-                    new Source.Range<>(
+                    new Source.Range(
                         1, 10
                     )
                 )

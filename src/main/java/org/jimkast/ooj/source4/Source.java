@@ -7,6 +7,7 @@ import org.jimkast.ooj.lang.ArrayTarget;
 import org.jimkast.ooj.map.BiMapping;
 import org.jimkast.ooj.map.MappedKey;
 import org.jimkast.ooj.map.Mapping;
+import org.jimkast.ooj.map.MappingFork;
 import org.jimkast.ooj.source.Target;
 import org.jimkast.ooj.target.Ref;
 import org.jimkast.ooj.target.RefQueue;
@@ -46,7 +47,7 @@ public interface Source<T> {
     }
 
 
-    final class Range<T> implements Source<Integer> {
+    final class Range implements Source<Integer> {
         private int i;
         private final int max;
 
@@ -92,7 +93,7 @@ public interface Source<T> {
         @Override
         public Source<V> map(K key) {
             for (Mapping<K, Source<V>> mapping : all) {
-                if (mapping.map(key).feed(key1 -> true, false)) {
+                if (mapping.map(key).feed(new Fixed<>(true), false)) {
                     return mapping.map(key);
                 }
             }
@@ -175,7 +176,7 @@ public interface Source<T> {
 
         @Override
         public <X> X feed(Mapping<T, X> target, X other) {
-            return origin.feed(key -> check.test(key).choose(target.map(key), other), other);
+            return origin.feed(new MappingFork<>(check, target, new Mapping.Fixed<>(other)), other);
         }
     }
 
@@ -201,7 +202,8 @@ public interface Source<T> {
                 return !cond;
             }, false)) ;
             X x = store.length() == 0 ? other : store.map(0);
-            store.feed(x1 -> {});
+            store.feed(x1 -> {
+            });
             return x;
         }
     }
@@ -244,6 +246,19 @@ public interface Source<T> {
         }
     }
 
+    final class Reduced<T> implements BiSource<T, T> {
+        private final Source<T> origin;
+
+        public Reduced(Source<T> origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public <Z> Z feed(BiMapping<T, T, Z> target, Z other) {
+            return null;
+        }
+    }
+
 
     final class AsIterator<T> implements Iterator<T> {
         private final Source<T> s;
@@ -273,6 +288,20 @@ public interface Source<T> {
                 throw new NoSuchElementException();
             }
             return store.map(0);
+        }
+    }
+
+
+    final class OfIterator<T> implements Source<T> {
+        private final Iterator<T> iter;
+
+        public OfIterator(Iterator<T> iter) {
+            this.iter = iter;
+        }
+
+        @Override
+        public <X> X feed(Mapping<T, X> target, X other) {
+            return iter.hasNext() ? target.map(iter.next()) : other;
         }
     }
 }
