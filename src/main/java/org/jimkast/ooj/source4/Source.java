@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.jimkast.ooj.cond.Check;
 import org.jimkast.ooj.lang.ArrayTarget;
-import org.jimkast.ooj.map.BiMapping;
 import org.jimkast.ooj.map.MappedKey;
 import org.jimkast.ooj.map.Mapping;
 import org.jimkast.ooj.map.MappingFork;
@@ -15,8 +14,17 @@ import org.jimkast.ooj.target.RefQueue;
 public interface Source<T> {
     <X> X feed(Mapping<T, X> target, X other);
 
-    interface BiSource<X, Y> {
-        <Z> Z feed(BiMapping<X, Y, Z> target, Z other);
+    class Env<T> implements Source<T> {
+        private final Source<T> origin;
+
+        public Env(Source<T> origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public final <X> X feed(Mapping<T, X> target, X other) {
+            return origin.feed(target, other);
+        }
     }
 
     final class Empty<T> implements Source<T> {
@@ -133,37 +141,6 @@ public interface Source<T> {
         }
     }
 
-    final class Combined2<X, Y> implements BiSource<X, Y> {
-        private final Mapping<X, Y> mapping;
-        private final Source<X> s1;
-
-        public Combined2(Mapping<X, Y> mapping, Source<X> s1) {
-            this.mapping = mapping;
-            this.s1 = s1;
-        }
-
-        @Override
-        public <Z> Z feed(BiMapping<X, Y, Z> target, Z other) {
-            return s1.feed(x -> target.map(x, mapping.map(x)), other);
-        }
-    }
-
-
-    final class Combined<X, Y> implements BiSource<X, Y> {
-        private final Source<X> s1;
-        private final Source<Y> s2;
-
-        public Combined(Source<X> s1, Source<Y> s2) {
-            this.s1 = s1;
-            this.s2 = s2;
-        }
-
-        @Override
-        public <Z> Z feed(BiMapping<X, Y, Z> target, Z other) {
-            return s1.feed(x -> s2.feed(y -> target.map(x, y), other), other);
-        }
-    }
-
 
     final class While<T> implements Source<T> {
         private final Check<T> check;
@@ -243,19 +220,6 @@ public interface Source<T> {
                 target.accept(key);
                 return true;
             }, false)) ;
-        }
-    }
-
-    final class Reduced<T> implements BiSource<T, T> {
-        private final Source<T> origin;
-
-        public Reduced(Source<T> origin) {
-            this.origin = origin;
-        }
-
-        @Override
-        public <Z> Z feed(BiMapping<T, T, Z> target, Z other) {
-            return null;
         }
     }
 
